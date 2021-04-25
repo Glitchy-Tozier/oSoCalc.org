@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+}
+.subtitle {
+    text-align: center;
+}
+.advantage-section {
+    background-color: lightblue;
+}
+.VS-section {
+    background-color: #ffda77;
+}
+.pros {
+    color: darkgreen;
+}
+.cons {
+    color: darkred;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
