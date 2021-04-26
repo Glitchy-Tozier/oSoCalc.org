@@ -1,29 +1,37 @@
 function calcCost() {
-    let softwareCost = document.calcInput.package.value; // Get input from HTML form
-    let employeeCost = document.calcInput.employeeCost.value;
-    let programmerCost = document.calcInput.programmerCost.value;
-    const nrEmployees = document.calcInput.nrEmployees.value;
+    let softwareCost = getRadioValue(document.getElementsByName("package")); // Get input from HTML form
+    let employeeCost = document.getElementById("employeeCost").value;
+    let programmerCost = document.getElementById("programmerCost").value;
+    const nrEmployees = document.getElementById("nrEmployees").value;
 
-    softwareCost *= document.calcInput.sCostPeriod.value; // Turn all costs into their yearly equivalents (multiply monthly costs by 12)
-    employeeCost *= document.calcInput.eCostPeriod.value;
-    programmerCost *= document.calcInput.pCostPeriod.value;
+    softwareCost *= getRadioValue(document.getElementsByName("sCostPeriod")); // Turn all costs into their yearly equivalents (multiply monthly costs by 12)
+    employeeCost *= getRadioValue(document.getElementsByName("eCostPeriod"));
+    programmerCost *= getRadioValue(document.getElementsByName("pCostPeriod"));
     
     softwareCost *= nrEmployees; // Get the total cost you pay for the commercial software
     employeeCost *= nrEmployees; // Get the total cost you pay to your Employees
-
+    
 
     const commercialCost = {
-        one: softwareCost,
-        two: softwareCost * 2,
-        three: softwareCost * 3,
-        five: softwareCost * 5,
-        ten: softwareCost * 10,
+        y1: softwareCost,
+        y2: softwareCost * 2,
+        y3: softwareCost * 3,
+        y5: softwareCost * 5,
+        y10: softwareCost * 10,
     };
 
     const fossCost = calcFossCost(employeeCost, programmerCost);
 
-    alert("Word: " + commercialCost.five + "€");
-    alert("LibreOffice: " + fossCost.five + "€"); // fosst HAHAHAHA
+    outputResults(commercialCost, fossCost);
+}
+
+function getRadioValue(radioArray) {
+    console.log("haeihaei", radioArray[1], radioArray.length, radioArray[1].value)
+    for(let i = 0; i < radioArray.length; i++) {
+        if(radioArray[i].checked == true) {
+            return radioArray[i].value;
+        }
+    }
 }
 
 function calcFossCost(employeeCost, programmerCost) {
@@ -33,27 +41,45 @@ function calcFossCost(employeeCost, programmerCost) {
     // Calculate the one-time payments
     const workingDays = 265;
     const employeeDailySalary = employeeCost / workingDays; // What ALL your employees cost you each day
-    const daysOfInactivity = 5; // Assume your employees are COMPLETELY INACTIVE for some time-period due to training and inefficiently with the new software.
+    const daysOfInactivity = document.getElementById("trainingInactivity").value; // Assume your employees are COMPLETELY INACTIVE for some time-period due to training and inefficiently with the new software.
     const employeeTrainingCost =  employeeDailySalary * daysOfInactivity; // What inactivity will cost you.
     
-    const monthlyProgrammerCost = programmerCost/365;
-    const setupProgrammerCount = 3; // Number of programmers needed to initially implement the new solution
-    const setupMonthCount = 3; // Number of months those Programmers work on that implementation
+    const monthlyProgrammerCost = programmerCost/12;
+    const setupProgrammerCount = document.getElementById("nrSetupProgrammers").value; // Number of programmers needed to initially implement the new solution
+    const setupMonthCount = document.getElementById("nrSetupMonths").value; // Number of months those Programmers work on that implementation
     const setupCost = monthlyProgrammerCost * setupProgrammerCount * setupMonthCount; // What the initial setup will cost you.
     
     const oneTimeCost = employeeTrainingCost + setupCost;
 
     // Calculate the yearly payments
-    const nrMaintananceProgrammers = 3; // Assuming three extra programmers will be needed to maintain the new solution
+    const nrMaintananceProgrammers = document.getElementById("nrMaintananceProgrammers").value; // Assuming three extra programmers will be needed to maintain the new solution
     const recurringCost = programmerCost * nrMaintananceProgrammers;
 
     // Add up all the previous costs
     const cost = {
-        one: oneTimeCost + recurringCost,
-        two: oneTimeCost + (recurringCost * 2),
-        three: oneTimeCost + (recurringCost * 3),
-        five: oneTimeCost + (recurringCost * 5),
-        ten: oneTimeCost + (recurringCost * 10),
+        y1: oneTimeCost + recurringCost,
+        y2: oneTimeCost + (recurringCost * 2),
+        y3: oneTimeCost + (recurringCost * 3),
+        y5: oneTimeCost + (recurringCost * 5),
+        y10: oneTimeCost + (recurringCost * 10),
     }
     return cost;
+}
+
+function outputResults(commercialCost, fossCost) {
+    // This function first prepares the values for output and then outputs them.
+    const years = getRadioValue(document.getElementsByName("timeSpan"));
+    
+    oldCost = commercialCost["y"+years]
+    prettyOldCost = (oldCost/1000000).toFixed(3);
+
+    newCost = fossCost["y"+years]
+    prettyNewCost = (newCost/1000000).toFixed(3);
+
+    let message = "";
+    message += "Comparison for " + years + " years:\n\n";
+    message += "Old software: " + prettyOldCost + " million €.\n";
+    message += "New software: " + prettyNewCost + " million €.";
+
+    alert(message);
 }

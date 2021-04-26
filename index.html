@@ -52,24 +52,36 @@
                 <label for="MsPremium"><input type="radio" name="package" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
                 <label for="MsApps"><input type="radio" name="package" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br>
 
-                <label for="sYearly"><input type="radio" name=sCostPeriod id="sYearly" value="1">Yearly salary</label>
-                <label for="sMonthly"><input type="radio" name=sCostPeriod id="sMonthly" value="12" checked>Monthly salary</label><br><br>
+                <label for="sYearly"><input type="radio" name=sCostPeriod id="sYearly" value="1">Yearly fee</label>
+                <label for="sMonthly"><input type="radio" name=sCostPeriod id="sMonthly" value="12" checked>Monthly fee</label><br><br>
 
 
                 <h4>The average salary of an employee in your company</h4>
-                <input type="text" name="employeeCost" placeholder="Average Salary" value="50000" required><br>
+                <input type="text" id="employeeCost" placeholder="Average Salary" value="50000" required><br>
                 <label for="eYearly"><input type="radio" name=eCostPeriod id="eYearly" value="1" checked>Yearly salary</label>
                 <label for="eMonthly"><input type="radio" name=eCostPeriod id="eMonthly" value="12">Monthly salary</label><br><br>
 
 
                 <h4>The average salary for programmers</h4>
-                <input type="text" name="programmerCost" placeholder="Programmer Salary" value="100000" required><br>
+                <input type="text" id="programmerCost" placeholder="Programmer Salary" value="100000" required><br>
                 <label for="pYearly"><input type="radio" name=pCostPeriod id="pYearly" value="1" checked>Yearly salary</label>
                 <label for="pMonthly"><input type="radio" name=pCostPeriod id="pMonthly" value="12">Monthly salary</label><br><br>
 
                 <h4>Number of Employees (=number of licences)</h4>
-                <input type="text" name="nrEmployees" placeholder="Employee Count" value="40000" required><br><br>
+                <input type="text" id="nrEmployees" placeholder="Employee Count" value="40000" required><br><br>
 
+                <h4>Extra Cost</h4>
+                <input type="text" id="trainingInactivity" placeholder="Days of total inactivity" value="2" required>Number of days your Employees will COMPLETELY INACTIVE because of training & inactivity.<br><br>
+                <input type="text" id="nrSetupProgrammers" placeholder="Setup-programmers" value="3" required>Number of programmers needed to implement the new solution<br>
+                <input type="text" id="nrSetupMonths" placeholder="Setup-time" value="3" required>Months those programmers take to implement the new solution<br><br>
+                <input type="text" id="nrMaintananceProgrammers" placeholder="Maintaintanance-programmers" value="3" required>Number of programmers needed to maintain the new solution<br><br><br>
+
+                <h4>Calculate for a time period of...</h4>
+                <label for="oneYear"><input type="radio" name="timeSpan" id="oneYear" value="1">1 Year</label>
+                <label for="twoYears"><input type="radio" name="timeSpan" id="twoYears" value="2">2 Years</label>
+                <label for="threeYears"><input type="radio" name="timeSpan" id="threeYears" value="3">3 Years</label>
+                <label for="fiveYears"><input type="radio" name="timeSpan" id="fiveYears" value="5" checked>5 Years</label>
+                <label for="tenYears"><input type="radio" name="timeSpan" id="tenYears" value="10">10 Years</label><br>
                 <button type="button" onclick="calcCost();">Calculate financial results</button>
             </form>
         </div>
