@@ -10,6 +10,14 @@ h1 {
 .VS-section {
     background-color: #ffda77;
 }
+
+.doSwitch {
+    background-color: lightgreen;
+}
+.doNotSwitch {
+    background-color: lightpink;
+}
+
 .pros {
     color: darkgreen;
 }

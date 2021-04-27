@@ -11,80 +11,84 @@
             <h1>Open Source Calculator</h1>
             <p class="subtitle">Is Switching to Open Source Optimal <b>in Your Situation</b>?</p>
         </header>
+        <main role="main" class="main">
+            <div class="advantage-section">
+                <p>The following criteria will be used to caculate the costs and savings of switching to an open-source solution:</p>
+                <h2>Commercial Software</h2>
+                <h3>Common Advantages</h3>
+                <ul class="pros">
+                    <li>A lot of work is done for you.</li>
+                    <li>Feature-complete.</li>
+                </ul>
+                <h3>Common Disadvantages</h3>
+                <ul class="cons">
+                    <li>High cost</li>
+                    <li>Dependance on external factors</li>
+                    <li>May or may not include backdoors and telemetry</li>
+                </ul>
 
-        <div class="advantage-section">
-            <p>The following criteria will be used to caculate the costs and savings of switching to an open-source solution:</p>
-            <h2>Commercial Software</h2>
-            <h3>Common Advantages</h3>
-            <ul class="pros">
-                <li>A lot of work is done for you.</li>
-                <li>Feature-complete.</li>
-            </ul>
-            <h3>Common Disadvantages</h3>
-            <ul class="cons">
-                <li>High cost</li>
-                <li>Dependance on external factors</li>
-                <li>May or may not include backdoors and telemetry</li>
-            </ul>
+                <h2>Open Source Software</h2>
+                <h3>Common Advantages</h3>
+                <ul class="pros">
+                    <li>Free software</li>
+                    <li>Freedom from external factors</li>
+                    <li>Data security</li>
+                </ul>
+                <h3>Common Disadvantages</h3>
+                <ul class="cons">
+                    <li>Extra staff may be required to implement or organize features</li>
+                    <li>Less functionality may be included in one software. Thus, two free solutions may be required to substitute for one commercial one.</li>
+                </ul>
+            </div>
 
-            <h2>Open Source Software</h2>
-            <h3>Common Advantages</h3>
-            <ul class="pros">
-                <li>Free software</li>
-                <li>Freedom from external factors</li>
-                <li>Data security</li>
-            </ul>
-            <h3>Common Disadvantages</h3>
-            <ul class="cons">
-                <li>Extra staff may be required to implement or organize features</li>
-                <li>Less functionality may be included in one software. Thus, two free solutions may be required to substitute for one commercial one.</li>
-            </ul>
-        </div>
+            <div class="VS-section">
+                <h2>Price Calculator</h2>
+                <form id="calcInput" name="calcInput">
+                    <h3>MS Office (Word) vs. LibreOffice</h3>
 
-        <div class="VS-section">
-            <h2>Price Calculator</h2>
-            <form id="calcInput" name="calcInput">
-                <h3>MS Office (Word) vs. LibreOffice</h3>
+                    <h4>Product price (per employee per Month)</h4>
+                    <label for="MsBasic"><input type="radio" name="package" id="MsBasic" value="4.20" checked>Microsoft 365 Business Basic (€4,20 per month)</label>
+                    <label for="MsStandard"><input type="radio" name="package" id="MsStandard" value="10.50">Microsoft 365 Business Standard (€10,50 per month)</label>
+                    <label for="MsPremium"><input type="radio" name="package" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
+                    <label for="MsApps"><input type="radio" name="package" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br>
 
-                <h4>Product price (per employee per Month)</h4>
-                <label for="MsBasic"><input type="radio" name="package" id="MsBasic" value="4.20" checked>Microsoft 365 Business Basic (€4,20 per month)</label>
-                <label for="MsStandard"><input type="radio" name="package" id="MsStandard" value="10.50">Microsoft 365 Business Standard (€10,50 per month)</label>
-                <label for="MsPremium"><input type="radio" name="package" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
-                <label for="MsApps"><input type="radio" name="package" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br>
-
-                <label for="sYearly"><input type="radio" name=sCostPeriod id="sYearly" value="1">Yearly fee</label>
-                <label for="sMonthly"><input type="radio" name=sCostPeriod id="sMonthly" value="12" checked>Monthly fee</label><br><br>
-
-
-                <h4>The average salary of an employee in your company</h4>
-                <input type="text" id="employeeCost" placeholder="Average Salary" value="50000" required><br>
-                <label for="eYearly"><input type="radio" name=eCostPeriod id="eYearly" value="1" checked>Yearly salary</label>
-                <label for="eMonthly"><input type="radio" name=eCostPeriod id="eMonthly" value="12">Monthly salary</label><br><br>
+                    <label for="sYearly"><input type="radio" name=sCostPeriod id="sYearly" value="1">Yearly fee</label>
+                    <label for="sMonthly"><input type="radio" name=sCostPeriod id="sMonthly" value="12" checked>Monthly fee</label><br><br>
 
 
-                <h4>The average salary for programmers</h4>
-                <input type="text" id="programmerCost" placeholder="Programmer Salary" value="100000" required><br>
-                <label for="pYearly"><input type="radio" name=pCostPeriod id="pYearly" value="1" checked>Yearly salary</label>
-                <label for="pMonthly"><input type="radio" name=pCostPeriod id="pMonthly" value="12">Monthly salary</label><br><br>
+                    <h4>The average salary of an employee in your company</h4>
+                    <input type="text" id="employeeCost" placeholder="Average Salary" value="50000" required><br>
+                    <label for="eYearly"><input type="radio" name=eCostPeriod id="eYearly" value="1" checked>Yearly salary</label>
+                    <label for="eMonthly"><input type="radio" name=eCostPeriod id="eMonthly" value="12">Monthly salary</label><br><br>
 
-                <h4>Number of Employees (=number of licences)</h4>
-                <input type="text" id="nrEmployees" placeholder="Employee Count" value="40000" required><br><br>
 
-                <h4>Extra Cost</h4>
-                <input type="text" id="trainingInactivity" placeholder="Days of total inactivity" value="2" required>Number of days your Employees will COMPLETELY INACTIVE because of training & inactivity.<br><br>
-                <input type="text" id="nrSetupProgrammers" placeholder="Setup-programmers" value="3" required>Number of programmers needed to implement the new solution<br>
-                <input type="text" id="nrSetupMonths" placeholder="Setup-time" value="3" required>Months those programmers take to implement the new solution<br><br>
-                <input type="text" id="nrMaintananceProgrammers" placeholder="Maintaintanance-programmers" value="3" required>Number of programmers needed to maintain the new solution<br><br><br>
+                    <h4>The average salary for programmers</h4>
+                    <input type="text" id="programmerCost" placeholder="Programmer Salary" value="100000" required><br>
+                    <label for="pYearly"><input type="radio" name=pCostPeriod id="pYearly" value="1" checked>Yearly salary</label>
+                    <label for="pMonthly"><input type="radio" name=pCostPeriod id="pMonthly" value="12">Monthly salary</label><br><br>
 
-                <h4>Calculate for a time period of...</h4>
-                <label for="oneYear"><input type="radio" name="timeSpan" id="oneYear" value="1">1 Year</label>
-                <label for="twoYears"><input type="radio" name="timeSpan" id="twoYears" value="2">2 Years</label>
-                <label for="threeYears"><input type="radio" name="timeSpan" id="threeYears" value="3">3 Years</label>
-                <label for="fiveYears"><input type="radio" name="timeSpan" id="fiveYears" value="5" checked>5 Years</label>
-                <label for="tenYears"><input type="radio" name="timeSpan" id="tenYears" value="10">10 Years</label><br>
-                <button type="button" onclick="calcCost();">Calculate financial results</button>
-            </form>
-        </div>
+                    <h4>Number of Employees (=number of licences)</h4>
+                    <input type="text" id="nrEmployees" placeholder="Employee Count" value="40000" required><br><br>
+
+                    <h4>Extra Cost</h4>
+                    <input type="text" id="trainingInactivity" placeholder="Days of total inactivity" value="2" required>Number of days your Employees will COMPLETELY INACTIVE because of training & inactivity.<br><br>
+                    <input type="text" id="nrSetupProgrammers" placeholder="Setup-programmers" value="3" required>Number of programmers needed to implement the new solution<br>
+                    <input type="text" id="nrSetupMonths" placeholder="Setup-time" value="3" required>Months those programmers take to implement the new solution<br><br>
+                    <input type="text" id="nrMaintananceProgrammers" placeholder="Maintaintanance-programmers" value="3" required>Number of programmers needed to maintain the new solution<br><br><br>
+
+                    <h4>Calculate for a time period of...</h4>
+                    <label for="oneYear"><input type="radio" name="timeSpan" id="oneYear" value="1">1 Year</label>
+                    <label for="twoYears"><input type="radio" name="timeSpan" id="twoYears" value="2">2 Years</label>
+                    <label for="threeYears"><input type="radio" name="timeSpan" id="threeYears" value="3">3 Years</label>
+                    <label for="fiveYears"><input type="radio" name="timeSpan" id="fiveYears" value="5" checked>5 Years</label>
+                    <label for="tenYears"><input type="radio" name="timeSpan" id="tenYears" value="10">10 Years</label><br>
+                    <button type="button" onclick="main();" autofocus>Calculate financial results</button>
+                </form>
+            </div>
+            <div class="results-section" id="results">
+
+            </div>
+        </main>
 
         <footer>
             <br><br><br><br><br><br><br><br><br><br><br><br>

@@ -1,4 +1,4 @@
-function calcCost() {
+function main() {
     let softwareCost = getRadioValue(document.getElementsByName("package")); // Get input from HTML form
     let employeeCost = document.getElementById("employeeCost").value;
     let programmerCost = document.getElementById("programmerCost").value;
@@ -26,7 +26,7 @@ function calcCost() {
 }
 
 function getRadioValue(radioArray) {
-    console.log("haeihaei", radioArray[1], radioArray.length, radioArray[1].value)
+    // Return the pressed radiobutton's value.
     for(let i = 0; i < radioArray.length; i++) {
         if(radioArray[i].checked == true) {
             return radioArray[i].value;
@@ -62,7 +62,7 @@ function calcFossCost(employeeCost, programmerCost) {
         y3: oneTimeCost + (recurringCost * 3),
         y5: oneTimeCost + (recurringCost * 5),
         y10: oneTimeCost + (recurringCost * 10),
-    }
+    };
     return cost;
 }
 
@@ -70,16 +70,27 @@ function outputResults(commercialCost, fossCost) {
     // This function first prepares the values for output and then outputs them.
     const years = getRadioValue(document.getElementsByName("timeSpan"));
     
-    oldCost = commercialCost["y"+years]
-    prettyOldCost = (oldCost/1000000).toFixed(3);
+    const oldCost = commercialCost["y"+years];
+    const prettyOldCost = (oldCost/1000000).toFixed(3);
 
-    newCost = fossCost["y"+years]
-    prettyNewCost = (newCost/1000000).toFixed(3);
+    const newCost = fossCost["y"+years];
+    const prettyNewCost = (newCost/1000000).toFixed(3);
 
     let message = "";
-    message += "Comparison for " + years + " years:\n\n";
-    message += "Old software: " + prettyOldCost + " million €.\n";
+    message += "<strong>Comparison for " + years + " years:</strong><br><br>";
+    message += "Old software: " + prettyOldCost + " million €.<br>";
     message += "New software: " + prettyNewCost + " million €.";
 
-    alert(message);
+    // alert(message);
+    
+    let outputDiv = document.getElementById("results");
+    let p = document.createElement("p");
+
+    if(newCost < oldCost) {
+        p.classList.add("doSwitch")
+    } else if (newCost > oldCost) {
+        p.classList.add("doNotSwitch")
+    }
+    p.innerHTML = message;
+    outputDiv.appendChild(p);
 }
