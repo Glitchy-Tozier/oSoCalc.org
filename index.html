@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
         <script type="text/javascript" src="script.js"></script>
         <title>o$o Calculator</title>
@@ -11,49 +12,75 @@
             <h1>Open Source Calculator</h1>
             <p class="subtitle">Is Switching to Open Source Optimal <b>in Your Situation</b>?</p>
         </header>
-        <main role="main" class="main">
-            <div class="advantage-section">
-                <p>The following criteria will be used to caculate the costs and savings of switching to an open-source solution:</p>
-                <h2>Commercial Software</h2>
-                <h3>Common Advantages</h3>
-                <ul class="pros">
-                    <li>A lot of work is done for you.</li>
-                    <li>Feature-complete.</li>
-                </ul>
-                <h3>Common Disadvantages</h3>
-                <ul class="cons">
-                    <li>High cost</li>
-                    <li>Dependance on external factors</li>
-                    <li>May or may not include backdoors and telemetry</li>
-                </ul>
 
-                <h2>Open Source Software</h2>
-                <h3>Common Advantages</h3>
-                <ul class="pros">
-                    <li>Free software</li>
-                    <li>Freedom from external factors</li>
-                    <li>Data security</li>
-                </ul>
-                <h3>Common Disadvantages</h3>
-                <ul class="cons">
-                    <li>Extra staff may be required to implement or organize features</li>
-                    <li>Less functionality may be included in one software. Thus, two free solutions may be required to substitute for one commercial one.</li>
-                </ul>
+        <main role="main" class="main">
+
+            <div class="advantage-section row justify-content-md-center">
+                <h2>Short Summary of Advantages and Disadvantages.</h2>
+                <div class="col-md-5" >
+                    <h3>Commercial Software</h3>
+                    <h4>Common Advantages</h4>
+                    <ul class="pros">
+                        <li>A lot of work is done for you</li>
+                        <li>Feature-complete</li>
+                    </ul>
+                    <h4>Common Disadvantages</h4>
+                    <ul class="cons">
+                        <li>High cost</li>
+                        <li>Dependance on external factors</li>
+                        <li>May or may not include backdoors and telemetry</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-5">
+                    <h3>Open Source Software</h3>
+                    <h4>Common Advantages</h4>
+                    <ul class="pros">
+                        <li>Free software</li>
+                        <li>Freedom from external factors</li>
+                        <li>Data security</li>
+                    </ul>
+                    <h4>Common Disadvantages</h4>
+                    <ul class="cons">
+                        <li>Extra staff may be required to implement or organize features</li>
+                        <li>Less functionality may be included in one software. Thus, two free solutions may be required to substitute for one commercial one.</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="VS-section">
+
+
+
+            <div class="VS-section row">
                 <h2>Price Calculator</h2>
                 <form id="calcInput" name="calcInput">
-                    <h3>MS Office (Word) vs. LibreOffice</h3>
 
-                    <h4>Product price (per employee per Month)</h4>
-                    <label for="MsBasic"><input type="radio" name="package" id="MsBasic" value="4.20" checked>Microsoft 365 Business Basic (€4,20 per month)</label>
-                    <label for="MsStandard"><input type="radio" name="package" id="MsStandard" value="10.50">Microsoft 365 Business Standard (€10,50 per month)</label>
-                    <label for="MsPremium"><input type="radio" name="package" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
-                    <label for="MsApps"><input type="radio" name="package" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br>
+                    <div class="col-md-6">
+                        <h3>Old Software</h3>
+                        <h4>Product Name</h4>
+                        <input type="text" id="newName" value="MS Office" required>
 
-                    <label for="sYearly"><input type="radio" name=sCostPeriod id="sYearly" value="1">Yearly fee</label>
-                    <label for="sMonthly"><input type="radio" name=sCostPeriod id="sMonthly" value="12" checked>Monthly fee</label><br><br>
+                        <h4>Price of licence (per employee)</h4>
+                        <label for="MsBasic"><input type="radio" name="oldCost" id="MsBasic" value="4.20" checked>Microsoft 365 Business Basic (€4,20 per month)</label>
+                        <label for="MsStandard"><input type="radio" name="oldCost" id="MsStandard" value="10.50">Microsoft 365 Business Standard (€10,50 per month)</label>
+                        <label for="MsPremium"><input type="radio" name="oldCost" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
+                        <label for="MsApps"><input type="radio" name="oldCost" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br>
+
+                        <label for="oldYearly"><input type="radio" name=oldCostPeriod id="oldYearly" value="1">Yearly fee</label>
+                        <label for="oldMonthly"><input type="radio" name=oldCostPeriod id="oldMonthly" value="12" checked>Monthly fee</label><br><br>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>New Software</h3>
+                        <h4>Product Name</h4>
+                        <input type="text" id="newName" value="LibreOffice" required>
+
+                        <h4>Price of licence (per employee)</h4>
+                        <input type="text" name="newCost" id="newCost" value="0" required>
+
+                        <label for="newYearly"><input type="radio" name=newCostPeriod id="newYearly" value="1">Yearly fee</label>
+                        <label for="newMonthly"><input type="radio" name=newCostPeriod id="newMonthly" value="12" checked>Monthly fee</label><br><br>
+                    </div>
+
 
 
                     <h4>The average salary of an employee in your company</h4>
@@ -85,6 +112,19 @@
                     <button type="button" onclick="main();" autofocus>Calculate financial results</button>
                 </form>
             </div>
+
+
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md col-lg-6 col-xl">htasenrithsaenrit</div>
+                    <div class="col-md col-lg-6 col-xl">htasenrithsaenrit</div>
+                    <div class="col-md col-lg-6 col-xl">htasenrithsaenrit</div>
+                    
+                </div>
+            </div>
+
             <div class="results-section" id="results">
 
             </div>

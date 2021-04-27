@@ -1,10 +1,17 @@
 function main() {
-    let softwareCost = getRadioValue(document.getElementsByName("package")); // Get input from HTML form
+
+    let form = document.getElementById("calcInput");
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    let softwareCost = getRadioValue(document.getElementsByName("oldCost")); // Get input from HTML form
     let employeeCost = document.getElementById("employeeCost").value;
     let programmerCost = document.getElementById("programmerCost").value;
     const nrEmployees = document.getElementById("nrEmployees").value;
 
-    softwareCost *= getRadioValue(document.getElementsByName("sCostPeriod")); // Turn all costs into their yearly equivalents (multiply monthly costs by 12)
+    softwareCost *= getRadioValue(document.getElementsByName("oldCostPeriod")); // Turn all costs into their yearly equivalents (multiply monthly costs by 12)
     employeeCost *= getRadioValue(document.getElementsByName("eCostPeriod"));
     programmerCost *= getRadioValue(document.getElementsByName("pCostPeriod"));
     
