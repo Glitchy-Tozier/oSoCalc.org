@@ -13,7 +13,15 @@ h2 {
 .VS-section {
     background-color: #ffda77;
 }
-
+.spacerSection {
+    height: 40px;
+}
+.preComparison {
+    background-color: darkgrey;
+}
+.postComparison {
+    background-color: darkgrey;
+}
 .doSwitch {
     background-color: lightgreen;
 }
