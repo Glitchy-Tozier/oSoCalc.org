@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
         <script type="text/javascript" src="script.js"></script>
@@ -10,255 +13,368 @@
     <body>
         <header>
             <h1>Open Source Calculator</h1>
-            <p class="subtitle">Is Switching to Open Source Optimal <b>in Your Situation</b>?</p>
+            <!-- <p class="subtitle">Is Switching to Open Source Optimal <b>in Your Situation</b>?</p> -->
         </header>
 
-        <main role="main" class="main">
+        <main role="main" class="main" id="main">
+            
 
-            <div class="advantage-section row justify-content-md-center">
-                <h2>Short Summary of Advantages and Disadvantages.</h2>
-                <div class="col-md" >
-                    <h3>Commercial Software</h3>
-                    <div class="row">
-                        <div class="col-xl">
-                            <h4>Common Advantages</h4>
-                            <ul class="pros">
-                                <li>A lot of work is done for you</li>
-                                <li>Feature-complete</li>
-                                <li>May have better synergy with other commercial software</li>
-                            </ul>
-                        </div>
-                        <div class="col-xl">
-                            <h4>Common Disadvantages</h4>
-                            <ul class="cons">
-                                <li>High cost</li>
-                                <li>Dependance on external factors</li>
-                                <li>May or may not include backdoors and telemetry</li>
-                                <li>May not synergize well with software outside the proprietary ecosystem</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="container" id="mainContainer">
+                
+                <div class="accordion accordion-flush" id="accordionExample">
 
-                <div class="col-md">
-                    <h3>Open Source Software</h3>
-                    <div class="row">
-                        <div class="col-xl">
-                            <h4>Common Advantages</h4>
-                            <ul class="pros">
-                                <li>Free software</li>
-                                <li>Freedom from external factors</li>
-                                <li>Data security</li>
-                                <li>May have better synergy with other open-source software</li>
-                            </ul>
-                        </div>
-                        <div class="col-xl">
-                            <h4>Common Disadvantages</h4>
-                            <ul class="cons">
-                                <li>Extra staff may be required to implement or organize features</li>
-                                <li>Less functionality may be included in one software. Thus, two free solutions may be required to substitute for one commercial one.</li>
-                                <li>Proprietary solutions may refuse to work and synergize with open standards</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <p class="h2">Introduction to this Website</p>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="introduction-section" id="introduction-section">
+                                    <div class="container">
+                                        <h3>What does this website do?</h3>
+                                        <p>This website lets companies calculate whether it is worth it to switch to Free and Open-Source Software (FOSS) solutions.<br>
+                                            A promininent example would be MS Office vs Libreoffice</p>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h3>How to use the calculator:</h3>
+                                                <p></p>
+                                            </div>
 
-            <div class="spacerSection preComparison"></div>
-
-            <div class="VS-section">
-                <h2>Price Calculator</h2>
-                <form id="calcInput" name="calcInput">
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h3>Old Software</h3>
-
-                            <!-- <h4>Product Name</h4> -->
-                            <label for="oldName" class="form-label">Product Name</label>
-                            <input type="text" id="oldName" class="form-control form-control-lg" value="MS Office" required>
-                            
-                            <h4>Price of licence (per employee)</h4>
-                            <label for="MsBasic"><input type="radio" name="oldCost" id="MsBasic" value="4.20" checked>Microsoft 365 Business Basic (€4,20 per month)</label>
-                            <label for="MsStandard"><input type="radio" name="oldCost" id="MsStandard" value="10.50">Microsoft 365 Business Standard (€10,50 per month)</label>
-                            <label for="MsPremium"><input type="radio" name="oldCost" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
-                            <label for="MsApps"><input type="radio" name="oldCost" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br>
-
-                            <div class="form-check">
-                                <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldYearly" value="1">
-                                <label for="oldYearly" class="form-check-label">Yearly fee</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldMonthly" value="12" checked>
-                                <label for="oldMonthly" class="form-check-label">Monthly fee</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h3>New Software</h3>
-                            
-                            <!-- <h4>Product Name</h4> -->
-                            <label for="newName" class="form-label">Product Name</label>
-                            <input type="text" id="newName" class="form-control form-control-lg" value="LibreOffice" required>
-
-                            <h4>Price of licence (per employee)</h4>
-                            <input type="text" name="newCost" id="newCost" value="0" required><br>
-
-                            
-                            <div class="form-check">
-                                <input type="radio" name="newCostPeriod" class="form-check-input" id="newYearly" value="1">
-                                <label for="newYearly" class="form-check-label">Yearly fee</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" name="newCostPeriod" class="form-check-input" id="newMonthly" value="12" checked>
-                                <label for="newMonthly" class="form-check-label">Monthly fee</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3>General Data</h3>
-                    <div class="row justify-content-center">
-                        <!-- <h4>Number of Employees (=number of licences)</h4> -->
-                        <div class="col-md-12 col-lg-4">
-                            <label for="nrEmployees" class="form-label">Number of Employees (=number of licences)</label>
-                            <input type="text" id="nrEmployees" class="form-control" placeholder="Employee Count" aria-describedby="nrEmployeesHelp" value="40000" required>
-                            <div id="nrEmployeesHelp" class="form-text">Input the number of employees working at your company.</div>
-                        </div>
-                    <!-- </div>
-                    <div class="row"> -->
-                        <!-- <h4>The average salary of an employee in your company</h4> -->
-                        <div class="col-md-6 col-lg-4">
-                            <label for="employeeCost" class="form-label">The average salary of an employee in your company</label>
-                            <div class="col-auto">
-                                <input type="text" id="employeeCost" class="form-control" placeholder="Average Salary" aria-describedby="eCostHelp" value="50000" required>
-                                <div id="eCostHelp" class="form-text">What does one employee cost you?</div>
-                            </div>
-                            
-                            <div class="col-auto">
-                                <div class="row">
-                                    <div class="form-check col-auto">
-                                        <input type="radio" name=eCostPeriod class="form-check-input" id="eYearly" value="1" checked>
-                                        <label for="eYearly" class="form-check-label">Yearly salary</label>
-                                    </div>
-                                    <div class="form-check col-auto">
-                                        <input type="radio" name=eCostPeriod class="form-check-input" id="eMonthly" value="12">
-                                        <label for="eMonthly" class="form-check-label">Monthly salary</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- <h4>The average salary for programmers</h4> -->
-                        <div class="col-md-6 col-lg-4">
-                            <label for="programmerCost" class="form-label">The average salary for programmers</label>
-                            <div class="col-auto">
-                                <input type="text" id="programmerCost" class="form-control" placeholder="Programmer Salary" aria-describedby="pCostHelp" value="100000" required>
-                                <div id="pCostHelp" class="form-text">What does one programmer cost you?</div>
-                            </div>
-                            
-
-                            <div class="col-auto">
-                                <div class="row">
-                                    <div class="form-check col-auto">
-                                        <input type="radio" name=pCostPeriod class="form-check-input" id="pYearly" value="1" checked>
-                                        <label for="pYearly" class="form-check-label">Yearly salary</label>
-                                    </div>
-                                    <div class="form-check col-auto">
-                                        <input type="radio" name=pCostPeriod class="form-check-input" id="pMonthly" value="12">
-                                        <label for="pMonthly" class="form-check-label">Monthly salary</label>
+                                            <div class="col-lg-6">
+                                                <h3>If you're a boss getting sent here by an ambitious employee:</h3>
+                                                <p></p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- <h4>Extra Cost</h4> -->
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#extraCosts" role="button" aria-expanded="true" aria-controls="extraCosts">
-                        Edit extra costs
-                    </button>
-                    <div class="collapse" id="extraCosts">
-                        <div class="card card-body" style="background-color: transparent;">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="trainingInactivity" class="form-label">Employee-inactivity</label>
-                                    <input type="text" id="trainingInactivity" class="form-control" placeholder="Days of total inactivity" aria-describedby="inactivityHelp" value="2" required>
-                                    <div id="inactivityHelp" class="form-text">Input the number of days you assume your employees will COMPLETELY INACTIVE because of training & inactivity. (one-time expense)</div>
-                                </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" id="calcSecBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <p class="h2" id="calcSecTitle">Price Calculator</p>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="VS-section" id="VS-section">
+                                    <div class="container">
+                                        <!-- <h2>Price Calculator</h2> -->
+                                        <form id="calcInput" name="calcInput">
 
-                                <div class="col-md-6">
-                                    <label for="nrSetupProgrammers" class="form-label">Setup programmers</label>
-                                    <input type="text" id="nrSetupProgrammers" class="form-control" placeholder="Setup-programmers" aria-describedby="setupProgrammersHelp" value="3" required>
-                                    <div id="setupProgrammersHelp" class="form-text">Input the number of programmers needed to implement the new solution. (one-time expense)</div>
-                                </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h3>Old Software</h3>
 
-                                <div class="col-md-6">
-                                    <label for="nrSetupMonths" class="form-label">Setup time-period</label>
-                                    <input type="text" id="nrSetupMonths" class="form-control" placeholder="Setup-time" aria-describedby="setupTimeHelp" value="3" required>
-                                    <div id="setupTimeHelp" class="form-text">Input the months will take those programmers to implement the new solution. (one-time expense)</div>
-                                </div>
+                                                    <!-- <h4>Product Name</h4> -->
+                                                    <label for="oldName" class="form-label">Product Name</label>
+                                                    <input type="text" id="oldName" class="form-control form-control-lg" value="MS Office" required>
+                                                    
+                                                    <!-- <h4>Price of licence (per employee)</h4>
+                                                    <label for="MsBasic"><input type="radio" name="oldCost" id="MsBasic" value="4.20" checked>Microsoft 365 Business Basic (€4,20 per month)</label>
+                                                    <label for="MsStandard"><input type="radio" name="oldCost" id="MsStandard" value="10.50">Microsoft 365 Business Standard (€10,50 per month)</label>
+                                                    <label for="MsPremium"><input type="radio" name="oldCost" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
+                                                    <label for="MsApps"><input type="radio" name="oldCost" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br> -->
+                                                    <label for="oldCost" class="form-label">Price of licence (per employee)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="oldCost" class="form-control" placeholder="What does your current solution cost?" value="4,20" required><br>
+                                                        <span class="input-group-text">¤</span><!-- $/€/£/¥/… -->
+                                                    </div>
 
-                                <div class="col-md-6">
-                                    <label for="" class="form-label">Maintanance programmers</label>
-                                    <input type="text" id="nrMaintananceProgrammers" class="form-control" placeholder="Maintaintanance-programmers" aria-describedby="nrMaintananceHelp" value="3" required>
-                                    <div id="nrMaintananceHelp" class="form-text">Input the number of programmers needed to maintain the new solution.</div>
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldYearly" value="1">
+                                                                <label for="oldYearly" class="form-check-label">Yearly fee</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldMonthly" value="12" checked>
+                                                                <label for="oldMonthly" class="form-check-label">Monthly fee</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <label for="nrCurrentProgrammers" class="form-label">Maintanance programmers needed</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">x</span>
+                                                        <input type="text" id="nrCurrentProgrammers" class="form-control" placeholder="Current programmer count" aria-describedby="nrCurrentPHelp" value="0" required>
+                                                    </div>
+                                                    <div id="nrCurrentPHelp" class="form-text">Input the number of programmers that are working to maintain the current solution.</div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h3>New Software</h3>
+                                                    
+                                                    <!-- <h4>Product Name</h4> -->
+                                                    <label for="newName" class="form-label">Product Name</label>
+                                                    <input type="text" id="newName" class="form-control form-control-lg" value="LibreOffice" required>
+
+                                                    <!-- <h4>Price of licence (per employee)</h4> -->
+                                                    <label for="newCost" class="form-label">Price of licence (per employee)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="newCost" class="form-control" placeholder="What would the new solution cost?" value="0" required><br>
+                                                        <span class="input-group-text">¤</span>
+                                                    </div>
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="newCostPeriod" class="form-check-input" id="newYearly" value="1">
+                                                                <label for="newYearly" class="form-check-label">Yearly fee</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="newCostPeriod" class="form-check-input" id="newMonthly" value="12" checked>
+                                                                <label for="newMonthly" class="form-check-label">Monthly fee</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <label for="nrFutureProgrammers" class="form-label">Maintanance programmers needed</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">x</span>
+                                                        <input type="text" id="nrFutureProgrammers" class="form-control" placeholder="Future programmer count" aria-describedby="nrFuturePHelp" value="3" required>
+                                                    </div>
+                                                    <div id="nrFuturePHelp" class="form-text">Input the number of programmers that would be required to maintain the new solution.</div>
+                                                </div>
+                                            </div>
+
+                                            <h3>General Data</h3>
+                                            <div class="row justify-content-center">
+                                                <!-- <h4>Number of Employees (=number of licences)</h4> -->
+                                                <div class="col-md-12 col-lg-4">
+                                                    <label for="nrEmployees" class="form-label">Number of employees (=nr of licences)</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">x</span>
+                                                        <input type="text" id="nrEmployees" class="form-control" placeholder="Employee Count" aria-describedby="nrEmployeesHelp" value="40000" required>
+                                                    </div>
+                                                    <div id="nrEmployeesHelp" class="form-text">Input the number of employees working at your company.</div>
+                                                </div>
+                                            
+                                                <!-- <h4>The average salary of an employee in your company</h4> -->
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="employeeCost" class="form-label">The average salary of an employee</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="employeeCost" class="form-control" placeholder="Average Salary" aria-describedby="eCostHelp" value="50000" required>
+                                                        <span class="input-group-text">¤</span>
+                                                    </div>
+                                                    <div id="eCostHelp" class="form-text">What does one employee cost you?</div>
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=eCostPeriod class="form-check-input" id="eYearly" value="1" checked>
+                                                                <label for="eYearly" class="form-check-label">Yearly salary</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=eCostPeriod class="form-check-input" id="eMonthly" value="12">
+                                                                <label for="eMonthly" class="form-check-label">Monthly salary</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <h4>The average salary for programmers</h4> -->
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="programmerCost" class="form-label">The average salary of a programmer</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="programmerCost" class="form-control" placeholder="Programmer Salary" aria-describedby="pCostHelp" value="100000" required>
+                                                        <span class="input-group-text">¤</span>
+                                                    </div>
+                                                    <div id="pCostHelp" class="form-text">What does one programmer cost you?</div>
+                                                    
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=pCostPeriod class="form-check-input" id="pYearly" value="1" checked>
+                                                                <label for="pYearly" class="form-check-label">Yearly salary</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=pCostPeriod class="form-check-input" id="pMonthly" value="12">
+                                                                <label for="pMonthly" class="form-check-label">Monthly salary</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <h3>One-Time Cost</h3>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <label for="trainingInactivity" class="form-label">Employee-inactivity</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">x</span>
+                                                        <input type="text" id="trainingInactivity" class="form-control" placeholder="Days of total inactivity" aria-describedby="inactivityHelp" value="2" required>
+                                                        <span class="input-group-text">days</span>
+                                                    </div>
+                                                    <div id="inactivityHelp" class="form-text">Input the number of days you assume your employees will be <strong>completely inactive</strong> because of training & inactivity.</div>
+                                                </div>
+
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="nrSetupProgrammers" class="form-label">Setup programmers</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">x</span>
+                                                        <input type="text" id="nrSetupProgrammers" class="form-control" placeholder="Setup-programmers" aria-describedby="setupProgrammersHelp" value="3" required>
+                                                    </div>
+                                                    <div id="setupProgrammersHelp" class="form-text">Input the number of programmers needed to implement the new solution.</div>
+                                                </div>
+
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="nrSetupMonths" class="form-label">Setup time-period</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">x</span>
+                                                        <input type="text" id="nrSetupMonths" class="form-control" placeholder="Setup-time" aria-describedby="setupTimeHelp" value="3" required>
+                                                        <span class="input-group-text">months</span>
+                                                    </div>
+                                                    <div id="setupTimeHelp" class="form-text">Input the months will take those programmers to implement the new solution.</div>
+                                                </div>
+                                            </div>
+                                            
+
+
+                                            <!-- <h4>Calculate for a time period of...</h4>
+                                            <label for="oneYear"><input type="radio" name="timeSpan" id="oneYear" value="1">1 Year</label>
+                                            <label for="twoYears"><input type="radio" name="timeSpan" id="twoYears" value="2">2 Years</label>
+                                            <label for="threeYears"><input type="radio" name="timeSpan" id="threeYears" value="3">3 Years</label>
+                                            <label for="fiveYears"><input type="radio" name="timeSpan" id="fiveYears" value="5" checked>5 Years</label>
+                                            <label for="tenYears"><input type="radio" name="timeSpan" id="tenYears" value="10">10 Years</label><br> -->
+
+                                            <button type="button" class="btn btn-success" onclick="main();">Calculate financial results</button>
+                                            <button type="button" class="btn btn-info" onclick="alert('Nope');">Share website with preinserted values</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
 
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" id="resSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <p class="h2">Results</p>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                
+                                <div id="notingYetCalculated" style="text-align: center;">
+                                    <p>Nothing was calculated yet. Go to the previous section to input data and receive results.</p>
 
-                    <h4>Calculate for a time period of...</h4>
-                    <label for="oneYear"><input type="radio" name="timeSpan" id="oneYear" value="1">1 Year</label>
-                    <label for="twoYears"><input type="radio" name="timeSpan" id="twoYears" value="2">2 Years</label>
-                    <label for="threeYears"><input type="radio" name="timeSpan" id="threeYears" value="3">3 Years</label>
-                    <label for="fiveYears"><input type="radio" name="timeSpan" id="fiveYears" value="5" checked>5 Years</label>
-                    <label for="tenYears"><input type="radio" name="timeSpan" id="tenYears" value="10">10 Years</label><br>
-                    <button type="button" class="btn btn-light" onclick="main();">Calculate financial results</button>
-                </form>
-            </div>
+                                    <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
+                                        Go to 
+                                        <script>
+                                            const title = document.getElementById("calcSecTitle").innerHTML;
+                                            document.write(title);
+                                        </script>
+                                    </button>
+                                </div>
+                                
+                                <div class="results-section invisible" id="results-section">
+                                    <div class="container">
+                                        <h2 id="resTitle">First State</h2>
+                                        <div class="row">
+                                            <div class="col-lg-6" id="tableDiv"></div>
+                                            <div class="col-lg-6" id="chartDiv"></div>
+                                        </div>
+                                        <div id="worthSwitchingDiv"></div>
+                                        <div>
+                                            <p><strong>Disclaimer:</strong> hsnraetihasnreti hasreit hasnrit</p>
+                                            <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
+                                                Go back to 
+                                                <script>
+                                                    const calcTitle = document.getElementById("calcSecTitle").innerHTML;
+                                                    document.write(calcTitle);
+                                                </script>
+                                            </button>
+                                            <button type="button" class="btn btn-info" onclick="alert('Nope');">Share website with preinserted values</button>
+                                            <button type="button" class="btn btn-primary" onclick="document.getElementById('advSecBtn').click();">
+                                                See 
+                                                <script>
+                                                    const advTitle = document.getElementById("advSecTitle").innerHTML;
+                                                    document.write(advTitle);
+                                                </script>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="spacerSection postComparison"></div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" id="advSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <p class="h2" id="advSecTitle">Common Advantages and Disadvantages of Open-Source and Commercial Software</p>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="advantage-section" id="advantage-section">
+                                    <div class="container">
+                                        <!-- <h2>Open-Source and Commercial Software</h2> -->
+                                        <div class="row">
+                                            <div class="col-md" >
+                                                <h3>Commercial Software</h3>
+                                                <div class="row">
+                                                    <div class="col-xl">
+                                                        <h4>Common Advantages</h4>
+                                                        <ul class="pros">
+                                                            <li>A lot of work is done for you</li>
+                                                            <li>Feature-complete</li>
+                                                            <li>May have better synergy with other commercial software</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xl">
+                                                        <h4>Common Disadvantages</h4>
+                                                        <ul class="cons">
+                                                            <li>High cost</li>
+                                                            <li>Dependance on external factors</li>
+                                                            <li>May or may not include backdoors and telemetry</li>
+                                                            <li>May not synergize well with software outside the proprietary ecosystem</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-            <div class="results-section" id="results">
-
-            </div>
-
-            <p>
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Toggle third element</button>
-                <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle all elements</button>
-            </p>
-              
-                <div class="collapse multi-collapse" id="multiCollapseExample1">
-                    <div class="card card-body advantage-section">
-                        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                                            <div class="col-md">
+                                                <h3>Open Source Software</h3>
+                                                <div class="row">
+                                                    <div class="col-xl">
+                                                        <h4>Common Advantages</h4>
+                                                        <ul class="pros">
+                                                            <li>Free software</li>
+                                                            <li>Freedom from external factors</li>
+                                                            <li>Data security</li>
+                                                            <li>May have better synergy with other open-source software</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xl">
+                                                        <h4>Common Disadvantages</h4>
+                                                        <ul class="cons">
+                                                            <li>Extra staff may be required to implement or organize features</li>
+                                                            <li>Less functionality may be included in one software. Thus, two free solutions may be required to substitute for one commercial one.</li>
+                                                            <li>Proprietary solutions may refuse to work and synergize with open standards</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="collapse multi-collapse" id="multiCollapseExample2">
-                    <div class="card card-body VS-section">
-                        Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                    </div>
-                </div>
-
-                <div class="collapse multi-collapse" id="multiCollapseExample3">
-                    <div class="card card-body doSwitch">
-                        Some placeholder content for the third collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        Some placeholder content for the third collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        Some placeholder content for the third collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                    </div>
-                </div>
             </div>
+            
         </main>
 
         <footer>
             <br><br><br><br><br><br><br><br><br><br><br><br>
-            <p>Links</p>
+            <p><a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub</a></p>
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>

@@ -7,13 +7,16 @@ h1 {
 h2 {
     text-align: center;
 }
-.advantage-section {
+h3 {
+    text-align: center;
+}
+/* .advantage-section {
     background-color: lightblue;
 }
 .VS-section {
     background-color: #ffda77;
 }
-.spacerSection {
+.spacer-section {
     height: 40px;
 }
 .preComparison {
@@ -21,6 +24,9 @@ h2 {
 }
 .postComparison {
     background-color: darkgrey;
+} */
+.invisible {
+    display: none;
 }
 .doSwitch {
     background-color: lightgreen;
@@ -35,13 +41,3 @@ h2 {
 .cons {
     color: darkred;
 }
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
