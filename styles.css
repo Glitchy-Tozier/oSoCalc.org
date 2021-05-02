@@ -15,18 +15,13 @@ h3 {
 }
 .VS-section {
     background-color: #ffda77;
-}
-.spacer-section {
-    height: 40px;
-}
-.preComparison {
-    background-color: darkgrey;
-}
-.postComparison {
-    background-color: darkgrey;
 } */
 .invisible {
     display: none;
+}
+.monospace-div {
+    font-family: monospace;
+    background-color: lightgray;
 }
 .doSwitch {
     background-color: lightgreen;

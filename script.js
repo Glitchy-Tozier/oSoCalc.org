@@ -27,12 +27,17 @@ function main() {
     const checkYears = [1,2,3,5,10,20];
     
 
-    const commercialCost = calcCost(oldSoftwareCost, programmerCost, nrCurrentProgrammers, maxYears);
+    const oldCost = calcCost(oldSoftwareCost, programmerCost, nrCurrentProgrammers, maxYears);
+    addToMonoLog("Old yearly cost: ", oldCost[0], true);
 
-    const fossYearlyCost = calcCost(newSoftwareCost, programmerCost, nrFutureProgrammers, maxYears);
-    const fossCost = addOneTimeCost(fossYearlyCost, employeeCost, programmerCost)
+    const newYearlyCost = calcCost(newSoftwareCost, programmerCost, nrFutureProgrammers, maxYears);
+    addToMonoLog("New yearly cost: ", newYearlyCost[0]);
 
-    outputResults(commercialCost, fossCost, checkYears);
+    const newCost = addOneTimeCost(newYearlyCost, employeeCost, programmerCost)
+    // The one-time cost gets added to the mono-log INSIDE the addOneTimeCost()-function
+    
+
+    outputResults(oldCost, newCost, checkYears);
 }
 
 function getRadioValue(radioArray) {
@@ -128,12 +133,46 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
         cost[i] += oneTimeCost;
     }
 
+    addToMonoLog("One-time switching cost: ", oneTimeCost);
+
     return cost
+}
+
+function addToMonoLog(name, value, deleteMonoLog) {
+    // Add a line to the monospace-log in the "results"-section
+
+    if (deleteMonoLog) {
+        document.getElementById("monoName").innerHTML = ""
+        document.getElementById("monoValue").innerHTML = ""
+    }
+
+    monoNameDiv = document.getElementById("monoName"); // Create and add the name-part of the line
+    nameLine = document.createElement("p");
+    nameTextNode = document.createTextNode(name);
+
+    nameLine.appendChild(nameTextNode);
+    monoNameDiv.appendChild(nameLine);
+
+
+    let valueStr = Math.round(value).toString(); // Make the cost look a little better.
+    let fullStr = "";
+    for(let i = 0; i < valueStr.length; i++) {
+        let currentLetter = valueStr[valueStr.length - (i+1)]
+        fullStr = currentLetter + fullStr
+        if(((i+1) % 3 == 0) && (i > 0) && ((i+1) < valueStr.length)) {
+            fullStr = "." + fullStr;
+        }
+    }
+    monoValueDiv = document.getElementById("monoValue"); // Create and add the value-part of the line
+    valueLine = document.createElement("p");
+    valueTextNode = document.createTextNode(fullStr);
+
+    valueLine.appendChild(valueTextNode);
+    monoValueDiv.appendChild(valueLine);
 }
 
 function outputResults(oldCost, newCost, tableYears) {
     // This function first prepares the values for output and then outputs them.
-
 
     const oldName = document.getElementById("oldName").value; // Set the title
     const newName = document.getElementById("newName").value;
@@ -150,10 +189,10 @@ function outputResults(oldCost, newCost, tableYears) {
     const table_turningPoint = createSumTable(oldName, newName, prettyOldCost, prettyNewCost, modifierText, tableYears)
     const table = table_turningPoint["table"]
     const turningPoint = table_turningPoint["turningPoint"]
-    //const graph = createGraph()
-    const message = createMessage(oldName, newName, turningPoint)
-    
 
+    const graphConfig = createGraph(oldName, newName, oldCost, newCost)
+
+    const message = createMessage(oldName, newName, turningPoint)
 
 
     if(document.getElementById("notingYetCalculated")) { // Remove the "Calculation wasn't started yet"-section
@@ -166,11 +205,21 @@ function outputResults(oldCost, newCost, tableYears) {
         outputDiv.classList.remove("invisible");
     }
 
-    tableDiv = document.getElementById("tableDiv");
+    tableDiv = document.getElementById("tableDiv"); // Add the table to the DOM
     tableDiv.innerHTML = table;
 
-    messageDiv = document.getElementById("worthSwitchingDiv");
+    chartDiv = document.getElementById("chartDiv"); // Add the chart/graph to the DOM
+    if (document.getElementById("chartCanvas")) {
+        document.getElementById("chartCanvas").remove();
+    }
+    let chartCanvas = document.createElement("canvas");
+    chartCanvas.id = "chartCanvas";
+    new Chart(chartCanvas, graphConfig);
+    chartDiv.appendChild(chartCanvas);
+
+    messageDiv = document.getElementById("worthSwitchingDiv"); // Add the "sholud you switch?" Reply to the DOM
     messageDiv.innerHTML = message;
+
 
     document.getElementById("resSecBtn").click(); // Switch to the section where the results will be displayed.
 }
@@ -298,6 +347,71 @@ function createSumTable(oldName, newName, oldCost, newCost, modifierText, tableY
     return {table: table, turningPoint: turningPoint};
 }
 
+function createGraph(oldName, newName, oldCost, newCost) {
+
+    let labels = [];
+    for (let i = 0; i < oldCost.length; i++) {
+        if ( true ) {//(i + 1) % 2 == 0 ) {
+            labels.push(i+1)
+        } else {
+            labels.push([])
+        }
+        oldCost[i] = Math.round(oldCost[i])
+        newCost[i] = Math.round(newCost[i])
+    }
+
+
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                label: oldName,
+                borderColor: "black",
+                backgroundColor: "gray",
+                radius: 0,
+                /* fill: {
+                    target: +1,
+                    above: "#d1e7dd",
+                    below: "#f8d7da"
+                }, */
+                fillColor: "green",
+                data: oldCost,
+            }, {
+                label: newName,
+                borderColor: "darkorange",
+                backgroundColor: "orange",
+                radius: 0,
+                data: newCost,
+            }
+        ]
+    };
+
+
+    const config = {
+        type: "line",
+        data,
+        options: { interaction: {
+                mode: "index",
+                intersect: false
+            },
+            scales: {
+                x: { title: {
+                        display: true,
+                        text: "Years passed",
+                    }
+                },
+                y: { title: {
+                        display: true,
+                        text: "Money spent"
+                    }
+                }
+            }
+        }
+    };
+
+    return config;
+}
+
 function createMessage(oldName, newName, turningPoint) {
     // Create the text-version of the results and return it.
 
@@ -314,9 +428,4 @@ function createMessage(oldName, newName, turningPoint) {
     }
 
     return message;
-}
-
-function changePageClass(cssClass) {
-    let website = document.getElementById("main");
-    website.classList.add(cssClass);
 }
