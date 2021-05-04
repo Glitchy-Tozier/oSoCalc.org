@@ -6,25 +6,29 @@ function main() {
         return;
     }
 
-    let oldSoftwareCost = makeCostNum(document.getElementById("oldCost").value); // Get input from HTML form
-    let newSoftwareCost = makeCostNum(document.getElementById("newCost").value);
-    let nrEmployees = makeNrNum(document.getElementById("nrEmployees").value);
-    let employeeCost = makeCostNum(document.getElementById("employeeCost").value);
-    let programmerCost = makeCostNum(document.getElementById("programmerCost").value);
-    let nrCurrentProgrammers = makeNrNum(document.getElementById("nrCurrentProgrammers").value);
-    let nrFutureProgrammers = makeNrNum(document.getElementById("nrFutureProgrammers").value);
+    let oldSoftwareCost = getCostNum("oldCost"); // Get input from HTML form
+    let newSoftwareCost = getCostNum("newCost");
 
-    oldSoftwareCost *= getRadioValue(document.getElementsByName("oldCostPeriod")); // Turn all costs into their yearly equivalents (multiply monthly costs by 12)
-    newSoftwareCost *= getRadioValue(document.getElementsByName("newCostPeriod"));
-    employeeCost *= getRadioValue(document.getElementsByName("eCostPeriod"));
-    programmerCost *= getRadioValue(document.getElementsByName("pCostPeriod"));
+    let nrEmployees = getNrNum("nrEmployees");
+    let employeeCost = getCostNum("employeeCost");
+    let programmerCost = getCostNum("programmerCost");
+
+    let nrCurrentProgrammers = getNrNum("nrCurrentProgrammers");
+    let nrFutureProgrammers = getNrNum("nrFutureProgrammers");
+
+    
+    oldSoftwareCost *= getRadioValue("oldCostPeriod"); // Turn all costs into their yearly equivalents (multiply monthly costs by 12)
+    newSoftwareCost *= getRadioValue("newCostPeriod");
+    employeeCost *= getRadioValue("eCostPeriod");
+    programmerCost *= getRadioValue("pCostPeriod");
 
     oldSoftwareCost *= nrEmployees; // Get the total cost you pay for the commercial software
+    newSoftwareCost *= nrEmployees; // Get the total cost you pay for the commercial software
     employeeCost *= nrEmployees; // Get the total cost you pay to your Employees
 
 
     const maxYears = 20;
-    const checkYears = [1,2,3,5,10,20];
+    const displayYears = [1,2,3,5,10,20];
     
 
     const oldCost = calcCost(oldSoftwareCost, programmerCost, nrCurrentProgrammers, maxYears);
@@ -33,15 +37,18 @@ function main() {
     const newYearlyCost = calcCost(newSoftwareCost, programmerCost, nrFutureProgrammers, maxYears);
     addToMonoLog("New yearly cost: ", newYearlyCost[0]);
 
-    const newCost = addOneTimeCost(newYearlyCost, employeeCost, programmerCost)
+    const newCost = addOneTimeCost(newYearlyCost, employeeCost, programmerCost);
     // The one-time cost gets added to the mono-log INSIDE the addOneTimeCost()-function
     
 
-    outputResults(oldCost, newCost, checkYears);
+    outputResults(oldCost, newCost, displayYears);
 }
 
-function getRadioValue(radioArray) {
+function getRadioValue(name) {
     // Return the pressed radiobutton's value.
+
+    let radioArray = document.getElementsByName(name);
+
     for(let i = 0; i < radioArray.length; i++) {
         if(radioArray[i].checked == true) {
             return radioArray[i].value;
@@ -49,31 +56,37 @@ function getRadioValue(radioArray) {
     }
 }
 
-function makeCostNum(input) {
-    // This small function corrects common errors and returns a properly formatted number.
+function getCostNum(id) {
+    // This small function fetches the input corrects common errors and returns a properly formatted number.
+    // It is only used for input-fields that ask the user to input an amount of money.
 
-    input = input.replace(",", ".")
+    let input = document.getElementById(id).value;
+
+    input = input.replace(",", ".");
 
     while(input.includes(" ")){
-        input = input.replace(" ", "")
+        input = input.replace(" ", "");
     }
 
-    const currencySymbols = ["$","€","¢","¥","£","¤"]
+    const currencySymbols = ["$","€","¢","¥","£","¤"];
     for(let i=0; i<currencySymbols.length; i++){
         input = input.replace(currencySymbols[i], "");
     }
     
     if(isNaN(Number(input))) {
-        alert("Please check for errors when inputting costs. Do not use multiple periods or commas.")
-        throw new Error("Please check for errors when inputting costs. Do not use multiple periods or commas.");
+        alert("Please check for errors when inputting costs. Please do not use multiple periods or commas.");
+        throw new Error("Please check for errors when inputting costs. Please do not use multiple periods or commas.");
     }
-    input = Number(input)
+    input = Number(input);
 
-    return input
+    return input;
 }
 
-function makeNrNum(input) {
-    // This small function corrects common errors and returns a properly formatted number.
+function getNrNum(id) {
+    // This small function fetches an input and corrects common errors before returning the number.
+    // It is used for all number-input-fields that do not ask for monetary amounts
+
+    let input = document.getElementById(id).value;
 
     while(input.includes(",")){
         input = input.replace(",", "")
@@ -97,7 +110,7 @@ function makeNrNum(input) {
 }
 
 function calcCost(softwareCost, programmerCost, nrMaintananceProgrammers, maxYears) {
-    // Calculates the recurring cost for a software solution.
+    // Calculates the recurring (yearly) accumulated cost for a software solution.
     // Returns those costs for the years specified in the "maxYears"-constant.
 
     const maintananceCost = programmerCost * nrMaintananceProgrammers;
@@ -129,7 +142,7 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
     
     const oneTimeCost = employeeTrainingCost + setupCost; // Full one-time cost
 
-    for(let i=0; i<cost.length; i++) {
+    for(let i=0; i<cost.length; i++) { // Add the one-time cost to the yearly costs.
         cost[i] += oneTimeCost;
     }
 
@@ -144,7 +157,13 @@ function addToMonoLog(name, value, deleteMonoLog) {
     if (deleteMonoLog) {
         document.getElementById("monoName").innerHTML = ""
         document.getElementById("monoValue").innerHTML = ""
-    }
+    } /* else {
+        monoNameDiv.appendChild(document.createElement("br"));
+        monoNameDiv.appendChild(document.createElement("br"));
+        monoValueDiv.appendChild(document.createElement("br"));
+        monoValueDiv.appendChild(document.createElement("br"));
+    } */
+    
 
     monoNameDiv = document.getElementById("monoName"); // Create and add the name-part of the line
     nameLine = document.createElement("p");
@@ -180,7 +199,7 @@ function outputResults(oldCost, newCost, tableYears) {
     document.getElementById("resTitle").innerHTML = title;
     
 
-    const prettyCostObj = makeCostsPretty(oldCost, newCost); // Get the values to be displayed in the output-div
+    const prettyCostObj = makeCostsPretty(oldCost, newCost); // Prettify the cost-arrays and get their modifier text (for example, "M" for million)
     const prettyOldCost = prettyCostObj["prettyOldCost"];
     const prettyNewCost = prettyCostObj["prettyNewCost"];
     const modifierText = prettyCostObj["modifierText"];
@@ -232,7 +251,7 @@ function makeCostsPretty(oldCost, newCost) {
     let prettyNewCost = []
     let modifierText = []
 
-    for(let i=0; i<oldCost.length; i++) {
+    for(let i=0; i<oldCost.length; i++) { // Go through every element of the cost-arrays.
 
         let oldCost_i = Math.round(oldCost[i]);
         let newCost_i = Math.round(newCost[i]);
@@ -312,7 +331,7 @@ function createSumTable(oldName, newName, oldCost, newCost, modifierText, tableY
         savedMoney = Math.round(savedMoney); // Round
         savedMoney /= 100; // Finish rounding
 
-        let diffClass = "";
+        let diffClass = ""; // Prepare the dynamic styles for some of the cells.
         let isActive = "";
         if(savedMoney < 0) {
             diffClass = "table-danger";
@@ -348,6 +367,7 @@ function createSumTable(oldName, newName, oldCost, newCost, modifierText, tableY
 }
 
 function createGraph(oldName, newName, oldCost, newCost) {
+    // Prepare everything needed to output the graph/chart
 
     let labels = [];
     for (let i = 0; i < oldCost.length; i++) {

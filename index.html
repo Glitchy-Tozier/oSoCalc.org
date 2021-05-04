@@ -26,11 +26,11 @@
                 <div class="accordion accordion-flush" id="accordionExample">
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
+                        <h1 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 <p class="h2">Introduction to this Website</p>
                             </button>
-                        </h2>
+                        </h1>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div class="introduction-section" id="introduction-section">
@@ -56,11 +56,11 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
+                        <h1 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" id="calcSecBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <p class="h2" id="calcSecTitle">Price Calculator</p>
                             </button>
-                        </h2>
+                        </h1>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div class="VS-section" id="VS-section">
@@ -240,11 +240,11 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
+                        <h1 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" id="resSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 <p class="h2">Results</p>
                             </button>
-                        </h2>
+                        </h1>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 
@@ -257,32 +257,35 @@
                                 
                                 <div class="results-section invisible" id="results-section">
                                     <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="monospace-div col-auto" id="monospaceDiv">
-                                                <div class="row invisible">
-                                                    <div class="col-auto" id="monoName"></div>
-                                                    <div class="col-auto" id="monoValue" style="text-align: right;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        
                                         <h2 id="resTitle"></h2>
                                         <div class="row">
                                             <div class="col-lg-6" id="tableDiv"></div>
                                             <div class="col-lg-6"id="chartDiv"></div>
                                         </div>
 
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-auto" id="monospaceDiv">
+                                                <h3>Summary:</h3>
+                                                <div class="row">
+                                                    <div class="col-auto" id="monoName"></div>
+                                                    <div class="col-auto" id="monoValue" style="text-align: right;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div id="worthSwitchingDiv"></div>
 
-                                        <p style="text-align: justify;"><strong>Disclaimer:</strong> However, those simply are the results of a somewhat basic calculation, comparing the 
-                                        obvious costs like licence-fee, employee-cost, hired programmers, setup-costs, inactivity due to training, ... with each other.
+                                        <h3>Please Conisder This:</h3>
+                                        <p style="text-align: justify;">Those simply are the results of a somewhat basic calculation, however.
                                         This calculation <strong>does not</strong> include many other aspects of switching from a commercial software solution to a FOSS solution.
-                                        In <a href="#advSecTitle">the following-section</a>, you find a few common advantages and disadvantages of both, commercial and open-source software.</p>
-                                        
+                                        In <a href="#advSecTitle">the following-section</a>, you find a few common advantages and disadvantages of both, commercial and open-source software, to help you decide whether to make a switch.</p>
+
                                         <div style="text-align: center;">
                                             <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
                                                 Go back to Price Calculator</button>
-                                            <button type="button" class="btn btn-info" onclick="alert('Nope');">Share Website with Preinserted Palues</button>
+                                            <button type="button" class="btn btn-info" onclick="alert('Nope');">Share Website with Preinserted Values</button>
                                             <button type="button" class="btn btn-primary" onclick="document.getElementById('advSecBtn').click();">
                                                 See List of Pros and Cons</button>
                                         </div>
@@ -293,58 +296,64 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFour">
+                        <h1 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" id="advSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                 <p class="h2" id="advSecTitle">Open-Source vs Commercial Software</p>
                             </button>
-                        </h2>
+                        </h1>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div class="advantage-section" id="advantage-section">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md" >
-                                                <h3>Commercial Software</h3>
-                                                <div class="row">
-                                                    <div class="col-xl">
-                                                        <h4>Common Advantages</h4>
-                                                        <ul class="pros">
-                                                            <li>A lot of work is done for you</li>
-                                                            <li>Feature-complete</li>
-                                                            <li>May have better synergy with other commercial software</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-xl">
-                                                        <h4>Common Disadvantages</h4>
-                                                        <ul class="cons">
-                                                            <li>High cost</li>
-                                                            <li>Dependance on external factors</li>
-                                                            <li>May or may not include backdoors and telemetry</li>
-                                                            <li>May not synergize well with software outside the proprietary ecosystem</li>
-                                                        </ul>
+                                            <div class="col-md">
+                                                <div class="prosAndConsSection">
+
+                                                    <div class="row">
+                                                        <h2>Commercial Software</h2>
+                                                        <div class="col-xl">
+                                                            <h3>Common Advantages</h3>
+                                                            <ul class="pros">
+                                                                <li>A lot of work is done for you</li>
+                                                                <li>Feature-complete</li>
+                                                                <li>May have better synergy with other commercial software</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-xl">
+                                                            <h3>Common Disadvantages</h3>
+                                                            <ul class="cons">
+                                                                <li>High cost</li>
+                                                                <li>Dependance on external factors</li>
+                                                                <li>May or may not include backdoors and telemetry</li>
+                                                                <li>May not synergize well with software outside the proprietary ecosystem</li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-md">
-                                                <h3>Open Source Software</h3>
-                                                <div class="row">
-                                                    <div class="col-xl">
-                                                        <h4>Common Advantages</h4>
-                                                        <ul class="pros">
-                                                            <li>Free software</li>
-                                                            <li>Freedom from external factors</li>
-                                                            <li>Data security</li>
-                                                            <li>May have better synergy with other open-source software</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-xl">
-                                                        <h4>Common Disadvantages</h4>
-                                                        <ul class="cons">
-                                                            <li>Extra staff may be required to implement or organize features</li>
-                                                            <li>Less functionality may be included in one software. Thus, two free solutions may be required to substitute for one commercial one.</li>
-                                                            <li>Proprietary solutions may refuse to work and synergize with open standards</li>
-                                                        </ul>
+                                                <div class="prosAndConsSection">
+
+                                                    <div class="row">
+                                                        <h2>Open Source Software</h2>
+                                                        <div class="col-xl">
+                                                            <h3>Common Advantages</h3>
+                                                            <ul class="pros">
+                                                                <li>Free software</li>
+                                                                <li>Freedom from external factors</li>
+                                                                <li>Data security</li>
+                                                                <li>May have better synergy with other open-source software</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-xl">
+                                                            <h3>Common Disadvantages</h3>
+                                                            <ul class="cons">
+                                                                <li>Extra staff may be required to implement or organize features</li>
+                                                                <li>Two free solutions may be required to substitute for one commercial one.</li>
+                                                                <li>Proprietary solutions may refuse to accept open standards</li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
