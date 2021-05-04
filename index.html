@@ -65,185 +65,171 @@
                             <div class="accordion-body">
                                 <div class="VS-section" id="VS-section">
                                     <div class="container">
-                                        <!-- <h2>Price Calculator</h2> -->
+
                                         <form id="calcInput" name="calcInput">
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <h3>Old Software</h3>
+                                                    <div class="formSection">
+                                                        <h3>Old Software</h3>
 
-                                                    <!-- <h4>Product Name</h4> -->
-                                                    <label for="oldName" class="form-label">Product Name</label>
-                                                    <input type="text" id="oldName" class="form-control form-control-lg" value="MS Office" required>
-                                                    
-                                                    <!-- <h4>Price of licence (per employee)</h4>
-                                                    <label for="MsBasic"><input type="radio" name="oldCost" id="MsBasic" value="4.20" checked>Microsoft 365 Business Basic (€4,20 per month)</label>
-                                                    <label for="MsStandard"><input type="radio" name="oldCost" id="MsStandard" value="10.50">Microsoft 365 Business Standard (€10,50 per month)</label>
-                                                    <label for="MsPremium"><input type="radio" name="oldCost" id="MsPremium" value="16.90">Microsoft 365 Business Premium (€16,90 per month)</label>
-                                                    <label for="MsApps"><input type="radio" name="oldCost" id="MsApps" value="8.80">Microsoft 365 Apps (€8,80 per month)</label><br> -->
-                                                    <label for="oldCost" class="form-label">Price of licence (per employee)</label>
-                                                    <div class="input-group">
-                                                        <input type="text" id="oldCost" class="form-control" placeholder="What does your current solution cost?" value="4,20" required><br>
-                                                        <span class="input-group-text">¤</span><!-- $/€/£/¥/… -->
-                                                    </div>
+                                                        
+                                                        <label for="oldName" class="form-label inputFieldLabel">Product Name</label>
+                                                        <input type="text" id="oldName" class="form-control form-control-lg" value="MS Office" required>
+                                                        
+                                                        <label for="oldCost" class="form-label inputFieldLabel">Price of licence (per employee)</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="oldCost" class="form-control numberForm" placeholder="What does your current solution cost?" value="4,20" required><br>
+                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                        </div>
 
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldYearly" value="1">
-                                                                <label for="oldYearly" class="form-check-label">Yearly fee</label>
-                                                            </div>
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldMonthly" value="12" checked>
-                                                                <label for="oldMonthly" class="form-check-label">Monthly fee</label>
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldYearly" value="1">
+                                                                    <label for="oldYearly" class="form-check-label">Yearly fee</label>
+                                                                </div>
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldMonthly" value="12" checked>
+                                                                    <label for="oldMonthly" class="form-check-label">Monthly fee</label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <label for="nrCurrentProgrammers" class="form-label">Maintanance programmers needed</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text">x</span>
-                                                        <input type="text" id="nrCurrentProgrammers" class="form-control" placeholder="Current programmer count" aria-describedby="nrCurrentPHelp" value="0" required>
+                                                        <label for="nrCurrentProgrammers" class="form-label inputFieldLabel">Maintanance programmers needed</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="nrCurrentProgrammers" class="form-control numberForm" placeholder="Current programmer count" aria-describedby="nrCurrentPHelp" value="0" required>
+                                                            <span class="input-group-text">x</span>
+                                                        </div>
+                                                        <div id="nrCurrentPHelp" class="form-text">Input the number of programmers that are working to maintain the current solution.</div>
                                                     </div>
-                                                    <div id="nrCurrentPHelp" class="form-text">Input the number of programmers that are working to maintain the current solution.</div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <h3>New Software</h3>
-                                                    
-                                                    <!-- <h4>Product Name</h4> -->
-                                                    <label for="newName" class="form-label">Product Name</label>
-                                                    <input type="text" id="newName" class="form-control form-control-lg" value="LibreOffice" required>
+                                                    <div class="formSection">
+                                                        <h3>New Software</h3>
+                                                        
+                                                        <label for="newName" class="form-label inputFieldLabel">Product Name</label>
+                                                        <input type="text" id="newName" class="form-control form-control-lg" value="LibreOffice" required>
 
-                                                    <!-- <h4>Price of licence (per employee)</h4> -->
-                                                    <label for="newCost" class="form-label">Price of licence (per employee)</label>
-                                                    <div class="input-group">
-                                                        <input type="text" id="newCost" class="form-control" placeholder="What would the new solution cost?" value="0" required><br>
-                                                        <span class="input-group-text">¤</span>
-                                                    </div>
+                                                        <label for="newCost" class="form-label inputFieldLabel">Price of licence (per employee)</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="newCost" class="form-control numberForm" placeholder="What would the new solution cost?" value="0" required><br>
+                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                        </div>
 
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name="newCostPeriod" class="form-check-input" id="newYearly" value="1">
-                                                                <label for="newYearly" class="form-check-label">Yearly fee</label>
-                                                            </div>
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name="newCostPeriod" class="form-check-input" id="newMonthly" value="12" checked>
-                                                                <label for="newMonthly" class="form-check-label">Monthly fee</label>
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name="newCostPeriod" class="form-check-input" id="newYearly" value="1">
+                                                                    <label for="newYearly" class="form-check-label">Yearly fee</label>
+                                                                </div>
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name="newCostPeriod" class="form-check-input" id="newMonthly" value="12" checked>
+                                                                    <label for="newMonthly" class="form-check-label">Monthly fee</label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    
-                                                    <label for="nrFutureProgrammers" class="form-label">Maintanance programmers needed</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text">x</span>
-                                                        <input type="text" id="nrFutureProgrammers" class="form-control" placeholder="Future programmer count" aria-describedby="nrFuturePHelp" value="3" required>
-                                                    </div>
-                                                    <div id="nrFuturePHelp" class="form-text">Input the number of programmers that would be required to maintain the new solution.</div>
-                                                </div>
-                                            </div>
-
-                                            <h3>General Data</h3>
-                                            <div class="row justify-content-center">
-                                                <!-- <h4>Number of Employees (=number of licences)</h4> -->
-                                                <div class="col-md-12 col-lg-4">
-                                                    <label for="nrEmployees" class="form-label">Number of employees (=nr of licences)</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text">x</span>
-                                                        <input type="text" id="nrEmployees" class="form-control" placeholder="Employee Count" aria-describedby="nrEmployeesHelp" value="40000" required>
-                                                    </div>
-                                                    <div id="nrEmployeesHelp" class="form-text">Input the number of employees working at your company.</div>
-                                                </div>
-                                            
-                                                <!-- <h4>The average salary of an employee in your company</h4> -->
-                                                <div class="col-md-6 col-lg-4">
-                                                    <label for="employeeCost" class="form-label">The average salary of an employee</label>
-                                                    <div class="input-group">
-                                                        <input type="text" id="employeeCost" class="form-control" placeholder="Average Salary" aria-describedby="eCostHelp" value="50000" required>
-                                                        <span class="input-group-text">¤</span>
-                                                    </div>
-                                                    <div id="eCostHelp" class="form-text">What does one employee cost you?</div>
-
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name=eCostPeriod class="form-check-input" id="eYearly" value="1" checked>
-                                                                <label for="eYearly" class="form-check-label">Yearly salary</label>
-                                                            </div>
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name=eCostPeriod class="form-check-input" id="eMonthly" value="12">
-                                                                <label for="eMonthly" class="form-check-label">Monthly salary</label>
-                                                            </div>
+                                                        
+                                                        <label for="nrFutureProgrammers" class="form-label inputFieldLabel">Maintanance programmers needed</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="nrFutureProgrammers" class="form-control numberForm" placeholder="Future programmer count" aria-describedby="nrFuturePHelp" value="3" required>
+                                                            <span class="input-group-text">x</span>
                                                         </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- <h4>The average salary for programmers</h4> -->
-                                                <div class="col-md-6 col-lg-4">
-                                                    <label for="programmerCost" class="form-label">The average salary of a programmer</label>
-                                                    <div class="input-group">
-                                                        <input type="text" id="programmerCost" class="form-control" placeholder="Programmer Salary" aria-describedby="pCostHelp" value="100000" required>
-                                                        <span class="input-group-text">¤</span>
-                                                    </div>
-                                                    <div id="pCostHelp" class="form-text">What does one programmer cost you?</div>
-                                                    
-                                                    <div class="container">
-                                                        <div class="row">
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name=pCostPeriod class="form-check-input" id="pYearly" value="1" checked>
-                                                                <label for="pYearly" class="form-check-label">Yearly salary</label>
-                                                            </div>
-                                                            <div class="form-check col-auto">
-                                                                <input type="radio" name=pCostPeriod class="form-check-input" id="pMonthly" value="12">
-                                                                <label for="pMonthly" class="form-check-label">Monthly salary</label>
-                                                            </div>
-                                                        </div>
+                                                        <div id="nrFuturePHelp" class="form-text">Input the number of programmers that would be required to maintain the new solution.</div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            
-                                            <h3>One-Time Cost</h3>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <label for="trainingInactivity" class="form-label">Employee-inactivity</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text">x</span>
-                                                        <input type="text" id="trainingInactivity" class="form-control" placeholder="Days of total inactivity" aria-describedby="inactivityHelp" value="2" required>
-                                                        <span class="input-group-text">days</span>
+                                            <div class="formSection">
+                                                <h3>General Data</h3>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-12 col-lg-4">
+                                                        <label for="nrEmployees" class="form-label inputFieldLabel">Number of employees (=nr of licences)</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="nrEmployees" class="form-control numberForm" placeholder="Employee Count" aria-describedby="nrEmployeesHelp" value="40000" required>
+                                                            <span class="input-group-text">x</span>
+                                                        </div>
+                                                        <div id="nrEmployeesHelp" class="form-text">Input the number of employees working at your company.</div>
                                                     </div>
-                                                    <div id="inactivityHelp" class="form-text">Input the number of days you assume your employees will be <strong>completely inactive</strong> because of training & inactivity.</div>
-                                                </div>
+                                                
+                                                    <div class="col-md-6 col-lg-4">
+                                                        <label for="employeeCost" class="form-label inputFieldLabel">The average salary of an employee</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="employeeCost" class="form-control numberForm" placeholder="Average Salary" aria-describedby="eCostHelp" value="50000" required>
+                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                        </div>
+                                                        <div id="eCostHelp" class="form-text">What does one employee cost you?</div>
 
-                                                <div class="col-md-6 col-lg-4">
-                                                    <label for="nrSetupProgrammers" class="form-label">Setup programmers</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text">x</span>
-                                                        <input type="text" id="nrSetupProgrammers" class="form-control" placeholder="Setup-programmers" aria-describedby="setupProgrammersHelp" value="3" required>
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name=eCostPeriod class="form-check-input" id="eYearly" value="1" checked>
+                                                                    <label for="eYearly" class="form-check-label">Yearly salary</label>
+                                                                </div>
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name=eCostPeriod class="form-check-input" id="eMonthly" value="12">
+                                                                    <label for="eMonthly" class="form-check-label">Monthly salary</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div id="setupProgrammersHelp" class="form-text">Input the number of programmers needed to implement the new solution.</div>
-                                                </div>
 
-                                                <div class="col-md-6 col-lg-4">
-                                                    <label for="nrSetupMonths" class="form-label">Setup time-period</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text">x</span>
-                                                        <input type="text" id="nrSetupMonths" class="form-control" placeholder="Setup-time" aria-describedby="setupTimeHelp" value="3" required>
-                                                        <span class="input-group-text">months</span>
+                                                    <div class="col-md-6 col-lg-4">
+                                                        <label for="programmerCost" class="form-label inputFieldLabel">The average salary of a programmer</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="programmerCost" class="form-control numberForm" placeholder="Programmer Salary" aria-describedby="pCostHelp" value="100000" required>
+                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                        </div>
+                                                        <div id="pCostHelp" class="form-text">What does one programmer cost you?</div>
+                                                        
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name=pCostPeriod class="form-check-input" id="pYearly" value="1" checked>
+                                                                    <label for="pYearly" class="form-check-label">Yearly salary</label>
+                                                                </div>
+                                                                <div class="form-check col-auto">
+                                                                    <input type="radio" name=pCostPeriod class="form-check-input" id="pMonthly" value="12">
+                                                                    <label for="pMonthly" class="form-check-label">Monthly salary</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div id="setupTimeHelp" class="form-text">Input the months will take those programmers to implement the new solution.</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="formSection">
+                                                <h3>One-Time Cost</h3>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <label for="trainingInactivity" class="form-label inputFieldLabel">Employee-inactivity</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="trainingInactivity" class="form-control numberForm" placeholder="Days of total inactivity" aria-describedby="inactivityHelp" value="2" required>
+                                                            <span class="input-group-text">days</span>
+                                                        </div>
+                                                        <div id="inactivityHelp" class="form-text">Input the number of days you assume your employees will be <strong>completely inactive</strong> because of training & inactivity.</div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-lg-4">
+                                                        <label for="nrSetupProgrammers" class="form-label inputFieldLabel">Setup programmers</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="nrSetupProgrammers" class="form-control numberForm" placeholder="Setup-programmers" aria-describedby="setupProgrammersHelp" value="3" required>
+                                                            <span class="input-group-text">x</span>
+                                                        </div>
+                                                        <div id="setupProgrammersHelp" class="form-text">Input the number of programmers needed to implement the new solution.</div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-lg-4">
+                                                        <label for="nrSetupMonths" class="form-label inputFieldLabel">Setup time-period</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="nrSetupMonths" class="form-control numberForm" placeholder="Setup-time" aria-describedby="setupTimeHelp" value="3" required>
+                                                            <span class="input-group-text">months</span>
+                                                        </div>
+                                                        <div id="setupTimeHelp" class="form-text">Input the months will take those programmers to implement the new solution.</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             
-
-
-                                            <!-- <h4>Calculate for a time period of...</h4>
-                                            <label for="oneYear"><input type="radio" name="timeSpan" id="oneYear" value="1">1 Year</label>
-                                            <label for="twoYears"><input type="radio" name="timeSpan" id="twoYears" value="2">2 Years</label>
-                                            <label for="threeYears"><input type="radio" name="timeSpan" id="threeYears" value="3">3 Years</label>
-                                            <label for="fiveYears"><input type="radio" name="timeSpan" id="fiveYears" value="5" checked>5 Years</label>
-                                            <label for="tenYears"><input type="radio" name="timeSpan" id="tenYears" value="10">10 Years</label><br> -->
-
                                             <button type="button" class="btn btn-success" onclick="main();">Calculate Financial Results</button>
                                             <button type="button" class="btn btn-info" onclick="alert('Nope');">Share Website with Preinserted Values</button>
                                         </form>
@@ -283,24 +269,22 @@
                                         <h2 id="resTitle"></h2>
                                         <div class="row">
                                             <div class="col-lg-6" id="tableDiv"></div>
-                                            <div class="col-lg-6"id="chartDiv">
-                                                <canvas id="chartCanvas"></canvas>
-                                            </div>
+                                            <div class="col-lg-6"id="chartDiv"></div>
                                         </div>
 
                                         <div id="worthSwitchingDiv"></div>
-                                        <div>
-                                            <p style="text-align: justify;"><strong>Disclaimer:</strong> However, those simply are the results of a somewhat basic calculation, comparing the 
-                                            obvious costs like licence-fee, employee-cost, hired programmers, setup-costs, inactivity due to training, ... with each other.
-                                            This calculation <strong>does not</strong> include many other aspects of switching from a commercial software solution to a FOSS solution.
-                                            In <a href="#advSecTitle">the following-section</a>, you find a few common advantages and disadvantages of both, commercial and open-source software.</p>
-                                            <p style="text-align: center;">
-                                                <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
-                                                    Go back to Price Calculator</button>
-                                                <button type="button" class="btn btn-info" onclick="alert('Nope');">Share Website with Preinserted Palues</button>
-                                                <button type="button" class="btn btn-primary" onclick="document.getElementById('advSecBtn').click();">
-                                                    See List of Pros and Cons</button>
-                                            </p>
+
+                                        <p style="text-align: justify;"><strong>Disclaimer:</strong> However, those simply are the results of a somewhat basic calculation, comparing the 
+                                        obvious costs like licence-fee, employee-cost, hired programmers, setup-costs, inactivity due to training, ... with each other.
+                                        This calculation <strong>does not</strong> include many other aspects of switching from a commercial software solution to a FOSS solution.
+                                        In <a href="#advSecTitle">the following-section</a>, you find a few common advantages and disadvantages of both, commercial and open-source software.</p>
+                                        
+                                        <div style="text-align: center;">
+                                            <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
+                                                Go back to Price Calculator</button>
+                                            <button type="button" class="btn btn-info" onclick="alert('Nope');">Share Website with Preinserted Palues</button>
+                                            <button type="button" class="btn btn-primary" onclick="document.getElementById('advSecBtn').click();">
+                                                See List of Pros and Cons</button>
                                         </div>
                                     </div>
                                 </div>
@@ -311,14 +295,13 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" id="advSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <p class="h2" id="advSecTitle">Common Advantages and Disadvantages of Open-Source and Commercial Software</p>
+                                <p class="h2" id="advSecTitle">Open-Source vs Commercial Software</p>
                             </button>
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <div class="advantage-section" id="advantage-section">
                                     <div class="container">
-                                        <!-- <h2>Open-Source and Commercial Software</h2> -->
                                         <div class="row">
                                             <div class="col-md" >
                                                 <h3>Commercial Software</h3>
