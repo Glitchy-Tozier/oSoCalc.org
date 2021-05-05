@@ -44,21 +44,10 @@ function main() {
     outputResults(oldCost, newCost, displayYears);
 }
 
-function getRadioValue(name) {
-    // Return the pressed radiobutton's value.
-
-    let radioArray = document.getElementsByName(name);
-
-    for(let i = 0; i < radioArray.length; i++) {
-        if(radioArray[i].checked == true) {
-            return radioArray[i].value;
-        }
-    }
-}
-
 function getCostNum(id) {
     // This small function fetches the input corrects common errors and returns a properly formatted number.
     // It is only used for input-fields that ask the user to input an amount of money.
+    // Input the input-form's ID
 
     let input = document.getElementById(id).value;
 
@@ -85,6 +74,7 @@ function getCostNum(id) {
 function getNrNum(id) {
     // This small function fetches an input and corrects common errors before returning the number.
     // It is used for all number-input-fields that do not ask for monetary amounts
+    // Input the input-form's ID
 
     let input = document.getElementById(id).value;
 
@@ -107,6 +97,19 @@ function getNrNum(id) {
     input = Number(input)
 
     return input
+}
+
+function getRadioValue(name) {
+    // Input name of radio group.
+    // Returns the pressed radiobutton's value.
+
+    let radioArray = document.getElementsByName(name);
+
+    for(let i = 0; i < radioArray.length; i++) {
+        if(radioArray[i].checked == true) {
+            return radioArray[i].value;
+        }
+    }
 }
 
 function calcCost(softwareCost, programmerCost, nrMaintananceProgrammers, maxYears) {
@@ -448,4 +451,27 @@ function createMessage(oldName, newName, turningPoint) {
     }
 
     return message;
+}
+
+function hover(className){
+    // This function visually pairs two list-elements on hover.
+    // Input their class-name.
+
+    elements = document.getElementsByClassName(className)
+
+    for(let i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('mouseenter', event => {
+            for(let n = 0; n < elements.length; n++) {
+                elements[n].classList.add("hoverStyle")
+                console.log(className, 1)
+            }
+        })
+        
+        elements[i].addEventListener('mouseleave', event => {
+            for(let n = 0; n < elements.length; n++) {
+                elements[n].classList.remove("hoverStyle")
+                console.log(className, 2)
+            }
+        })
+    }
 }

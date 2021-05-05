@@ -71,9 +71,17 @@ button {
     background-color: lightpink;
 }
 
+.hoverStyle {
+    background-color: yellowgreen;
+}
+
 .pros {
     color: darkgreen;
 }
 .cons {
     color: darkred;
+}
+.infoI {
+    height: 16px;
+    width: 16px;
 }
