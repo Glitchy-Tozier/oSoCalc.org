@@ -35,18 +35,37 @@
                             <div class="accordion-body">
                                 <div class="introduction-section" id="introduction-section">
                                     <div class="container">
-                                        <h3>What does this website do?</h3>
+                                        <h2>What does this website do?</h2>
                                         <p>This website lets companies calculate whether it is worth it to switch to Free and Open-Source Software (FOSS) solutions.<br>
                                             A promininent example would be MS Office vs Libreoffice</p>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <h3>How to use the calculator:</h3>
+                                                <h2>How to use the calculator:</h2>
                                                 <p></p>
                                             </div>
 
                                             <div class="col-lg-6">
-                                                <h3>If you're a boss getting sent here by an ambitious employee:</h3>
+                                                <h2>If you're a boss getting sent here by an ambitious employee:</h2>
                                                 <p></p>
+                                                <!-- <script>
+                                                    let stringUrl = window.location.href;
+                                                    const splitUrl = stringUrl.split("?");
+                                                    console.log(stringUrl)
+                                                    console.log(splitUrl)
+                                                    console.log("file:///home/florian/Documents/Programme/Open%20Source%20Website/index.html?param_1=val_1".split("?"));
+
+                                                    if (splitUrl.length < 1 && splitUrl[1] !== "") {
+                                                        alert("e i")
+                                                    } else {
+                                                        alert("almost")
+                                                    }
+
+                                                    let url = new URL(window.location.href);
+                                                    console.log(url)
+                                                    url.searchParams.append('param_1', 'val_1');
+                                                    console.log(url)
+                                                </script> -->
+                                                <button type="button" class="btn btn-primary" onclick='createUrlParameters();//window.history.pushState("object or string", "Title", window.location.href+"/?urt=new-url/");'>Test</button>
                                             </div>
                                         </div>
                                     </div>
@@ -314,9 +333,9 @@
                                                         <div class="col-xl">
                                                             <h3>Common Advantages</h3>
                                                             <ul class="pros">
-                                                                <li class="aLi1">A lot of work is done for you</li>
-                                                                <li class="aLi2">Feature-complete</li>
-                                                                <li class="aLi3">May have better synergy with other commercial software
+                                                                <li class="aLi1 nonHoverStyle">A lot of work is done for you</li>
+                                                                <li class="aLi2 nonHoverStyle">Feature-complete</li>
+                                                                <li class="aLi3 nonHoverStyle">May have better synergy with other commercial software
                                                                     <a href="#" data-bs-toggle="tooltip" title="" data-bs-original-title="For example, MS Word synergizes very well with other Microsoft-solutions such as One-Drive.">
                                                                         <img src="images/info.png" alt="Info-button" class="infoI">
                                                                     </a>
@@ -326,14 +345,14 @@
                                                         <div class="col-xl">
                                                             <h3>Common Disadvantages</h3>
                                                             <ul class="cons">
-                                                                <li class="bLi1">High cost</li>
-                                                                <li class="bLi2">Dependance on external factors
+                                                                <li class="bLi1 nonHoverStyle">High cost</li>
+                                                                <li class="bLi2 nonHoverStyle">Dependance on external factors
                                                                     <a href="#" data-bs-toggle="tooltip" title="" data-bs-original-title="For example, Microsoft may cut availibility of certain feartures for certian countries or certain clients.">
                                                                         <img src="images/info.png" alt="Info-button" class="infoI">
                                                                     </a>
                                                                 </li>
-                                                                <li class="bLi3">May or may not include backdoors and telemetry</li>
-                                                                <li class="bLi4">May not synergize well with software outside the proprietary ecosystem
+                                                                <li class="bLi3 nonHoverStyle">May or may not include backdoors and telemetry</li>
+                                                                <li class="bLi4 nonHoverStyle">May not synergize well with software outside the proprietary ecosystem
                                                                     <a href="#" data-bs-toggle="tooltip" title="" data-bs-original-title="For example, MS Word gives users a fake warning when they open an .odt-file.">
                                                                         <img src="images/info.png" alt="Info-button" class="infoI">
                                                                     </a>
@@ -352,30 +371,30 @@
                                                         <div class="col-xl">
                                                             <h3>Common Advantages</h3>
                                                             <ul class="pros">
-                                                                <li class="bLi1">Free software</li>
-                                                                <li class="bLi2">Freedom from external factors
+                                                                <li class="bLi1 nonHoverStyle">Free software</li>
+                                                                <li class="bLi2 nonHoverStyle">Freedom from external factors
                                                                     <a href="#" data-bs-toggle="tooltip" title="" data-bs-original-title="The source-code will always be free and available for anyone to copy and use.">
                                                                         <img src="images/info.png" alt="Info-button" class="infoI">
                                                                     </a>
                                                                 </li>
-                                                                <li class="bLi3">Data security
+                                                                <li class="bLi3 nonHoverStyle">Data security
                                                                     <a href="#" data-bs-toggle="tooltip" title="" data-bs-original-title="You can check for yourself what is happening inside the software. You're not forced to accept anyone's promises of data-security.">
                                                                         <img src="images/info.png" alt="Info-button" class="infoI">
                                                                     </a>
                                                                 </li>
-                                                                <li class="bLi4">May have better synergy with other open-source software</li>
+                                                                <li class="bLi4 nonHoverStyle">May have better synergy with other open-source software</li>
                                                             </ul>
                                                         </div>
                                                         <div class="col-xl">
                                                             <h3>Common Disadvantages</h3>
                                                             <ul class="cons">
-                                                                <li class="aLi1">Extra staff may be required to implement or organize features</li>
-                                                                <li class="aLi2">Two free solutions may be required to substitute for one commercial one.
+                                                                <li class="aLi1 nonHoverStyle">Extra staff may be required to implement or organize features</li>
+                                                                <li class="aLi2 nonHoverStyle">Two free solutions may be required to substitute for one commercial one.
                                                                     <a href="#" data-bs-toggle="tooltip" title="" data-bs-html="true" data-bs-original-title="For example, LibreOffice <u>and</u> a self-hosted cloud are required to replace MS-Office's Cloud package.">
                                                                         <img src="images/info.png" alt="Info-button" class="infoI">
                                                                     </a>
                                                                 </li>
-                                                                <li class="aLi3">Proprietary solutions may refuse to accept open standards
+                                                                <li class="aLi3 nonHoverStyle">Proprietary solutions may refuse to accept open standards
                                                                     <a href="#" data-bs-toggle="tooltip" title="" data-bs-original-title="For example, MS Office saves .docx-files and .pptx-files in inconsistent formats, making it difficult for other Software such as LibreOffice to import their files.">
                                                                         <img src="images/info.png" alt="Info-button" class="infoI">
                                                                     </a>
@@ -392,7 +411,7 @@
                         </div>
                     </div>
                 </div>
-            </div>                  
+            </div>
 
         </main>
 
@@ -401,14 +420,14 @@
             <p><a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub</a></p>
         </footer>
         <script>
-            const aLi1Style = hover("aLi1");
-            const aLi2Style = hover("aLi2");
-            const aLi3Style = hover("aLi3");
+            hover("aLi1");
+            hover("aLi2");
+            hover("aLi3");
 
-            const bLi1Style = hover("bLi1");
-            const bLi2Style = hover("bLi2");
-            const bLi3Style = hover("bLi3");
-            const bLi4Style = hover("bLi4");
+            hover("bLi1");
+            hover("bLi2");
+            hover("bLi3");
+            hover("bLi4");
         </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>

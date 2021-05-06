@@ -71,8 +71,24 @@ button {
     background-color: lightpink;
 }
 
-.hoverStyle {
-    background-color: yellowgreen;
+li {
+    padding: 5px;
+}
+
+@media (min-width: 768px) {
+    .nonHoverStyle {
+        border-style: solid;
+        border-color: transparent;
+        border-width: 1px;
+    }
+    .hoverStyle {
+        background-color: yellow;
+
+        border-style: solid;
+        border-color: black;
+        border-radius: 5px;
+        border-width: 1px;
+    }
 }
 
 .pros {

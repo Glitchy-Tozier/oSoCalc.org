@@ -103,7 +103,7 @@ function getRadioValue(name) {
     // Input name of radio group.
     // Returns the pressed radiobutton's value.
 
-    let radioArray = document.getElementsByName(name);
+    const radioArray = document.getElementsByName(name);
 
     for(let i = 0; i < radioArray.length; i++) {
         if(radioArray[i].checked == true) {
@@ -160,13 +160,7 @@ function addToMonoLog(name, value, deleteMonoLog) {
     if (deleteMonoLog) {
         document.getElementById("monoName").innerHTML = ""
         document.getElementById("monoValue").innerHTML = ""
-    } /* else {
-        monoNameDiv.appendChild(document.createElement("br"));
-        monoNameDiv.appendChild(document.createElement("br"));
-        monoValueDiv.appendChild(document.createElement("br"));
-        monoValueDiv.appendChild(document.createElement("br"));
-    } */
-    
+    }
 
     monoNameDiv = document.getElementById("monoName"); // Create and add the name-part of the line
     nameLine = document.createElement("p");
@@ -460,19 +454,101 @@ function hover(className){
     let elements = document.getElementsByClassName(className)
 
     for(let i = 0; i < elements.length; i++) {
-        
+
         elements[i].addEventListener('mouseenter', event => {
             for(let n = 0; n < elements.length; n++) {
                 elements[n].classList.add("hoverStyle")
-                console.log(className, 1)
+                elements[n].classList.remove("nonHoverStyle")
             }
         })
         
         elements[i].addEventListener('mouseleave', event => {
             for(let n = 0; n < elements.length; n++) {
                 elements[n].classList.remove("hoverStyle")
-                console.log(className, 2)
+                elements[n].classList.add("nonHoverStyle")
             }
         })
     }
+}
+
+function createUrlParameters () {
+    // This Function adds the form's values to the URL. It doesn't reload the website though.
+
+    let form = document.getElementById("calcInput");
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    const paramTypes = ["l", "l", "r", "l", "l", "l", "r", "l", "l", "l", "r", "l", "r", "l", "l", "l"] // Add an "r" in front of the radio-values!! Otherwhise, add an "l".
+    const paramValues = [
+        document.getElementById("oldName").value,
+        getCostNum("oldCost").toString(),
+        getCheckedRadioId("oldCostPeriod").toString(), // radio
+        getNrNum("nrCurrentProgrammers").toString(),
+
+
+        document.getElementById("newName").value,
+        getCostNum("newCost").toString(),
+        getCheckedRadioId("newCostPeriod").toString(), // radio
+        getNrNum("nrFutureProgrammers").toString(),
+
+
+        getNrNum("nrEmployees").toString(),
+        getCostNum("employeeCost").toString(),
+        getCheckedRadioId("eCostPeriod").toString(), // radio
+        getCostNum("programmerCost").toString(),
+        getCheckedRadioId("pCostPeriod").toString(), // radio
+
+        getNrNum("trainingInactivity").toString(),
+        getNrNum("nrSetupProgrammers").toString(),
+        getNrNum("nrSetupMonths").toString()
+    ]
+
+    let urlStr = "?";
+
+    let paramName = "";
+    let textFieldCount = 0;
+    let radioCount = 0;
+    for (let i=0; i<paramValues.length; i++) {
+
+        if (paramTypes[i] == "l") {
+            paramName = paramTypes[i] + textFieldCount;
+            textFieldCount ++
+        } else {
+            paramName = paramTypes[i] + radioCount;
+            radioCount ++
+        }
+
+        urlStr += paramName + "=" + paramValues[i];
+
+        if (i<paramValues.length-1) {
+            urlStr += "&"
+        }
+    }
+
+    urlStr = encodeURI(urlStr);
+    window.history.pushState("object or string", "Title", window.location.href + urlStr);
+}
+
+function getCheckedRadioId(radioGroupName) {
+
+    const radioArray = document.getElementsByName(radioGroupName);
+
+    for(let i = 0; i < radioArray.length; i++) {
+        if(radioArray[i].checked == true) {
+            return radioArray[i].id;
+        }
+    }
+}
+
+function getUrlParameters () {
+        /* const paramNames = [
+        "oldName", "oldCost", "oldCostPeriod", "nrCurrentProgrammers",
+        "newName", "newCost", "newCostPeriod", "nrFutureProgrammers",
+
+        "nrEmployees", "employeeCost", "eCostPeriod", "programmerCost", "pCostPeriod",
+
+        "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
+    ] */
 }
