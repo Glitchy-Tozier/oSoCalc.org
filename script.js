@@ -457,9 +457,10 @@ function hover(className){
     // This function visually pairs two list-elements on hover.
     // Input their class-name.
 
-    elements = document.getElementsByClassName(className)
+    let elements = document.getElementsByClassName(className)
 
     for(let i = 0; i < elements.length; i++) {
+        
         elements[i].addEventListener('mouseenter', event => {
             for(let n = 0; n < elements.length; n++) {
                 elements[n].classList.add("hoverStyle")
