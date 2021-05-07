@@ -416,6 +416,14 @@
             <p><a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub</a></p>
         </footer>
         <script>
+            let stringUrl = window.location.href; // Check for URL parameters
+            const splitUrl = stringUrl.split("?");
+            console.log(stringUrl)
+            console.log(splitUrl)
+            if (splitUrl.length > 1 && splitUrl[1] !== "") {
+                getUrlParameters();
+            }
+            
             hover("aLi1");
             hover("aLi2");
             hover("aLi3");

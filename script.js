@@ -627,14 +627,14 @@ function createNewUrlOutput(url, linkDiv) {
 
 
 function copyUrl() {
-    /* // Copy the URL in the input-field "linkP" to the clipboard.
+    // Copy the URL in the input-field "linkP" to the clipboard.
     // This code was stolen from https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
 
-    // Get the text field
+    /* // Get the text field
     var copyText = document.getElementById("linkP");
 
     // Select the text field
-    copyText.focus();
+    //copyText.focus();
     copyText.select();
     copyText.setSelectionRange(0, 99999); // For mobile devices
 
@@ -643,17 +643,58 @@ function copyUrl() {
 
     // Alert the copied text
     alert("Copied the text: " + copyText.value); */
+    console.log(window.location.search);
+    console.log(window.location.href);
+    console.log(window.location.origin);
 }
 
 
 
 function getUrlParameters () {
-        /* const paramNames = [
+        const paramNames = [
         "oldName", "oldCost", "oldCostPeriod", "nrCurrentProgrammers",
         "newName", "newCost", "newCostPeriod", "nrFutureProgrammers",
 
         "nrEmployees", "employeeCost", "eCostPeriod", "programmerCost", "pCostPeriod",
 
         "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
-    ] */
+    ]
+    
+    urlParams = new URLSearchParams(window.location.search);
+    /* let paramKeys = []
+    let paramValues = []
+    let paramEntries = [] */
+
+    
+/*     for (const key of urlParams.keys()) {
+        paramKeys.push(key)
+    }
+    for (const val of urlParams.values()) {
+        paramValues.push(val)
+    } */
+
+    let element;
+    let i = 0;
+    for (const entry of urlParams.entries()) {
+        if (entry[0][0]=="r") {
+            element = document.getElementById(entry[1]); // If it's a radio button, check it.
+            element.checked = true;
+        } else {
+            element = document.getElementById(paramNames[i]); // If it's an input field, insert a value.
+            element.value = entry[1];
+        }
+        i++;
+    }
+
+    console.log(i)
+    i ++;
+    console.log(i)
+    i++;
+    console.log(i)
+    
+/*     console.log(urlParams)
+    console.log(paramKeys)
+    console.log(paramValues)
+    console.log(paramEntries) */
+
 }
