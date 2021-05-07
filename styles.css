@@ -38,10 +38,6 @@ button {
     margin-top: 20px;
 }
 
-.paddingLess {
-    padding: 0px;
-}
-
 .prosAndConsSection {
     border-color: gray;
     border-style: solid;
@@ -69,9 +65,6 @@ button {
     border-width: 2px;
 
     padding-top: 10px;
-    /* padding-bottom: 5px; */
-
-/*     margin-bottom: 5px; */
 }
 .bordered {
     border-color: gray;

@@ -551,7 +551,6 @@ function createNewURL() {
 
     const url = baseURL + paramString;
 
-    //paramString = encodeURI(paramString);
     return url;
 }
 
@@ -581,19 +580,14 @@ function outputURL(url, linkDivID) {
     if (oldLinkP !== null) { // If the URL was already output at least once...
 
         let oldLinkDiv = oldLinkP.parentElement;
-
         if (oldLinkDiv == newLinkDiv) { // If it's the same Location as before...
 
-            console.log("Same Same  :)")
             oldLinkP.innerHTML = ""; // replace the previous url
-
             let text = document.createTextNode(url)
             oldLinkP.appendChild(text)
 
-        } else { 
-            // If it's a different Location than before...
+        } else { // If it's a different Location than before...
 
-            console.log("Different Position!!!!!!!")
             oldLinkP.remove(); // Remove the previous URL-section ...
             oldLinkDiv.parentElement.classList.add("invisible"); // ... and make its parent invisible.
 
@@ -602,7 +596,6 @@ function outputURL(url, linkDivID) {
 
 
     } else { // If the URL never has been output before:
-        console.log("Previously no element existed")
         createNewUrlOutput(url, newLinkDiv);
     }
 
@@ -643,15 +636,14 @@ function copyUrl() {
 
     // Alert the copied text
     alert("Copied the text: " + copyText.value); */
-    console.log(window.location.search);
-    console.log(window.location.href);
-    console.log(window.location.origin);
 }
 
 
 
-function getUrlParameters () {
-        const paramNames = [
+function fillForm () {
+    // If the Website gets loaded and the URL contains parameters, fill the form according to those parameters.
+
+    const paramNames = [
         "oldName", "oldCost", "oldCostPeriod", "nrCurrentProgrammers",
         "newName", "newCost", "newCostPeriod", "nrFutureProgrammers",
 
@@ -660,22 +652,12 @@ function getUrlParameters () {
         "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
     ]
     
-    urlParams = new URLSearchParams(window.location.search);
-    /* let paramKeys = []
-    let paramValues = []
-    let paramEntries = [] */
-
-    
-/*     for (const key of urlParams.keys()) {
-        paramKeys.push(key)
-    }
-    for (const val of urlParams.values()) {
-        paramValues.push(val)
-    } */
+    const urlParams = new URLSearchParams(window.location.search); // Get the URL Parameters
+    const entries = urlParams.entries()
 
     let element;
     let i = 0;
-    for (const entry of urlParams.entries()) {
+    for (const entry of entries) {
         if (entry[0][0]=="r") {
             element = document.getElementById(entry[1]); // If it's a radio button, check it.
             element.checked = true;
@@ -683,18 +665,6 @@ function getUrlParameters () {
             element = document.getElementById(paramNames[i]); // If it's an input field, insert a value.
             element.value = entry[1];
         }
-        i++;
+        i ++;
     }
-
-    console.log(i)
-    i ++;
-    console.log(i)
-    i++;
-    console.log(i)
-    
-/*     console.log(urlParams)
-    console.log(paramKeys)
-    console.log(paramValues)
-    console.log(paramEntries) */
-
 }
