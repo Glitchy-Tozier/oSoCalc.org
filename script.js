@@ -32,13 +32,13 @@ function main() {
     
 
     const oldCost = calcCost(oldSoftwareCost, programmerCost, nrCurrentProgrammers, maxYears);
-    addToMonoLog("Old yearly cost: ", oldCost[0], true);
+    addCostSummaryLine("Old yearly cost: ", oldCost[0], true);
 
     const newYearlyCost = calcCost(newSoftwareCost, programmerCost, nrFutureProgrammers, maxYears);
-    addToMonoLog("New yearly cost: ", newYearlyCost[0]);
+    addCostSummaryLine("New yearly cost: ", newYearlyCost[0]);
 
     const newCost = addOneTimeCost(newYearlyCost, employeeCost, programmerCost);
-    // The one-time cost gets added to the mono-log INSIDE the addOneTimeCost()-function
+    // The one-time cost gets added INSIDE the addOneTimeCost()-function. This is where the last "addCostSummaryLine()" can be found.
     
 
     outputResults(oldCost, newCost, displayYears);
@@ -76,25 +76,28 @@ function getNrNum(id) {
     // It is used for all number-input-fields that do not ask for monetary amounts
     // Input the input-form's ID
 
-    let input = document.getElementById(id).value;
+    let input = document.getElementById(id).value; // Get value by id
+
+    /* input = input.toString(); // Turn value into string
+    input = createTextNode(input); // Encode Input */
 
     while(input.includes(",")){
-        input = input.replace(",", "")
+        input = input.replace(",", "");
     }
 
     while(input.includes(".")){
-        input = input.replace(".", "")
+        input = input.replace(".", "");
     }
 
     while(input.includes(" ")){
-        input = input.replace(" ", "")
+        input = input.replace(" ", "");
     }
 
     if(isNaN(Number(input))) {
-        alert("Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?")
-        throw new Error("Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?")
+        alert("Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?");
+        throw new Error("Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?");
     }
-    input = Number(input)
+    input = Number(input);
 
     return input
 }
@@ -121,7 +124,7 @@ function calcCost(softwareCost, programmerCost, nrMaintananceProgrammers, maxYea
 
     let cost = [];
     for(let i=0; i<maxYears; i++) {
-        cost.push(yearlyCost * (i+1))
+        cost.push(yearlyCost * (i+1));
     }
 
     return cost;
@@ -134,13 +137,13 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
     // Training cost
     const workingDays = 265;
     const employeeDailySalary = employeeCost / workingDays; // What ALL your employees cost you each day
-    const daysOfInactivity = document.getElementById("trainingInactivity").value; // Assume your employees are COMPLETELY INACTIVE for some time-period due to training and inefficiently with the new software.
+    const daysOfInactivity = getNrNum("trainingInactivity"); // Assume your employees are COMPLETELY INACTIVE for some time-period due to training and inefficiently with the new software.
     const employeeTrainingCost =  employeeDailySalary * daysOfInactivity; // What inactivity will cost you.
 
     // Setup cost
     const monthlyProgrammerCost = programmerCost/12;
-    const setupProgrammerCount = document.getElementById("nrSetupProgrammers").value; // Number of programmers needed to initially implement the new solution
-    const setupMonthCount = document.getElementById("nrSetupMonths").value; // Number of months those Programmers work on that implementation
+    const setupProgrammerCount = getNrNum("nrSetupProgrammers"); // Number of programmers needed to initially implement the new solution
+    const setupMonthCount = getNrNum("nrSetupMonths"); // Number of months those Programmers work on that implementation
     const setupCost = monthlyProgrammerCost * setupProgrammerCount * setupMonthCount; // What the initial setup will cost you.
     
     const oneTimeCost = employeeTrainingCost + setupCost; // Full one-time cost
@@ -149,42 +152,43 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
         cost[i] += oneTimeCost;
     }
 
-    addToMonoLog("One-time switching cost: ", oneTimeCost);
+    addCostSummaryLine("One-time switching cost: ", oneTimeCost);
 
     return cost
 }
 
-function addToMonoLog(name, value, deleteMonoLog) {
-    // Add a line to the monospace-log in the "results"-section
+function addCostSummaryLine(name, value, deleteContents) {
+    // Add a line to the div under the "summary"-heading in the "results"-section.
 
-    if (deleteMonoLog) {
-        document.getElementById("monoName").innerHTML = ""
-        document.getElementById("monoValue").innerHTML = ""
+    nameDiv = document.getElementById("summaryName");
+    valueDiv = document.getElementById("summaryValue"); 
+
+    if (deleteContents) {
+        nameDiv.innerHTML = ""; // Make sure the 
+        valueDiv.innerHTML = "";
     }
 
-    monoNameDiv = document.getElementById("monoName"); // Create and add the name-part of the line
-    nameLine = document.createElement("p");
+    nameLine = document.createElement("p"); // Create and add the name-part of the line
     nameTextNode = document.createTextNode(name);
 
     nameLine.appendChild(nameTextNode);
-    monoNameDiv.appendChild(nameLine);
+    nameDiv.appendChild(nameLine);
 
 
     let valueStr = Math.round(value).toString(); // Make the cost look a little better.
     let fullStr = "";
     for(let i = 0; i < valueStr.length; i++) {
-        let currentLetter = valueStr[valueStr.length - (i+1)]
-        fullStr = currentLetter + fullStr
+        let currentLetter = valueStr[valueStr.length - (i+1)];
+        fullStr = currentLetter + fullStr;
         if(((i+1) % 3 == 0) && (i > 0) && ((i+1) < valueStr.length)) {
             fullStr = "." + fullStr;
         }
     }
-    monoValueDiv = document.getElementById("monoValue"); // Create and add the value-part of the line
-    valueLine = document.createElement("p");
+    valueLine = document.createElement("p"); // Create and add the value-part of the line
     valueTextNode = document.createTextNode(fullStr);
 
     valueLine.appendChild(valueTextNode);
-    monoValueDiv.appendChild(valueLine);
+    valueDiv.appendChild(valueLine);
 }
 
 function outputResults(oldCost, newCost, tableYears) {
@@ -202,13 +206,13 @@ function outputResults(oldCost, newCost, tableYears) {
     const modifierText = prettyCostObj["modifierText"];
 
     
-    const table_turningPoint = createSumTable(oldName, newName, prettyOldCost, prettyNewCost, modifierText, tableYears)
-    const table = table_turningPoint["table"]
-    const turningPoint = table_turningPoint["turningPoint"]
+    const table_turningPoint = createTable(oldName, newName, prettyOldCost, prettyNewCost, modifierText, tableYears);
+    const table = table_turningPoint["table"];
+    const turningPoint = table_turningPoint["turningPoint"];
 
-    const graphConfig = createGraph(oldName, newName, oldCost, newCost)
+    const graphConfig = createGraph(oldName, newName, oldCost, newCost);
 
-    const message = createMessage(oldName, newName, turningPoint)
+    const message = createMessage(oldName, newName, turningPoint);
 
 
     if(document.getElementById("notingYetCalculated")) { // Remove the "Calculation wasn't started yet"-section
@@ -244,9 +248,9 @@ function makeCostsPretty(oldCost, newCost) {
     // This Function prettyfies the costs so that they can be displayed properly.
 
 
-    let prettyOldCost = []
-    let prettyNewCost = []
-    let modifierText = []
+    let prettyOldCost = [];
+    let prettyNewCost = [];
+    let modifierText = [];
 
     for(let i=0; i<oldCost.length; i++) { // Go through every element of the cost-arrays.
 
@@ -256,20 +260,20 @@ function makeCostsPretty(oldCost, newCost) {
         
         let numberString = "" // Canculate how many blocks of 3 digits we can cut.
         if(oldCost_i < newCost_i) {
-            numberString += oldCost_i.toString()
+            numberString += oldCost_i.toString();
         } else {
-            numberString += newCost_i.toString()
+            numberString += newCost_i.toString();
         }
         let nrDigits = numberString.length;
         let digitsToCut = Math.floor(nrDigits/3) * 3;
 
         switch(digitsToCut) { // Get the text that should be displayed in the HTML-table.
             case 0:
-                modifierText.push("")
+                modifierText.push("");
                 break;
             case 3:
-                modifierText.push("")
-                digitsToCut = 0
+                modifierText.push("");
+                digitsToCut = 0;
                 break;
             case 6:
                 modifierText.push("M");
@@ -281,28 +285,28 @@ function makeCostsPretty(oldCost, newCost) {
                 modifierText.push("T");
         }
         
-        oldCost_i /= Math.pow(10, digitsToCut) // Finally prettify the cost.  // Cut digits
+        oldCost_i /= Math.pow(10, digitsToCut); // Finally prettify the cost.  // Cut digits
         oldCost_i *= 100; // Prepare rounding
         oldCost_i = Math.round(oldCost_i); // Rould
         oldCost_i /= 100; // Finish rounding
-        prettyOldCost.push(oldCost_i) // Save result
+        prettyOldCost.push(oldCost_i); // Save result
 
 
-        newCost_i /= Math.pow(10, digitsToCut) // Cut digits
+        newCost_i /= Math.pow(10, digitsToCut); // Cut digits
         newCost_i *= 100; // Prepare rounding
         newCost_i = Math.round(newCost_i); // Round
         newCost_i /= 100; // Finish rounding
-        prettyNewCost.push(newCost_i) // Save result
+        prettyNewCost.push(newCost_i); // Save result
     }
 
     return {
         prettyOldCost: prettyOldCost,
         prettyNewCost: prettyNewCost,
-        modifierText: modifierText
+        modifierText: modifierText,
     }
 }
 
-function createSumTable(oldName, newName, oldCost, newCost, modifierText, tableYears) {
+function createTable(oldName, newName, oldCost, newCost, modifierText, tableYears) {
     // This function creates (and returns) the string for the displayed HTML-table.
     // It also creates (and returns) the year where the new Solution starts being worthwile.
 
@@ -369,12 +373,12 @@ function createGraph(oldName, newName, oldCost, newCost) {
     let labels = [];
     for (let i = 0; i < oldCost.length; i++) {
         if ( true ) {//(i + 1) % 2 == 0 ) {
-            labels.push(i+1)
+            labels.push(i+1);
         } else {
-            labels.push([])
+            labels.push([]);
         }
-        oldCost[i] = Math.round(oldCost[i])
-        newCost[i] = Math.round(newCost[i])
+        oldCost[i] = Math.round(oldCost[i]);
+        newCost[i] = Math.round(newCost[i]);
     }
 
 
@@ -389,7 +393,7 @@ function createGraph(oldName, newName, oldCost, newCost) {
                 /* fill: {
                     target: +1,
                     above: "#d1e7dd",
-                    below: "#f8d7da"
+                    below: "#f8d7da",
                 }, */
                 fillColor: "green",
                 data: oldCost,
@@ -409,7 +413,7 @@ function createGraph(oldName, newName, oldCost, newCost) {
         data,
         options: { interaction: {
                 mode: "index",
-                intersect: false
+                intersect: false,
             },
             scales: {
                 x: { title: {
@@ -419,7 +423,7 @@ function createGraph(oldName, newName, oldCost, newCost) {
                 },
                 y: { title: {
                         display: true,
-                        text: "Money spent"
+                        text: "Money spent",
                     }
                 }
             }
@@ -432,16 +436,16 @@ function createGraph(oldName, newName, oldCost, newCost) {
 function createMessage(oldName, newName, turningPoint) {
     // Create the text-version of the results and return it.
 
-    let message = "<h3>So is it worth switching?</h3>"
+    let message = "<h3>So is it worth switching?</h3>";
 
     if(turningPoint > 0) {
         if(turningPoint == 1) {
-            message += '<p style="text-align: center">Financially speaking, <strong>yes</strong>, you should switch from ' + oldName + " to " + newName + ".</p>"
+            message += '<p style="text-align: center">Financially speaking, <strong>yes</strong>, you should switch from ' + oldName + " to " + newName + ".</p>";
         } else {
-            message += '<p style="text-align: center">Financially speaking, you should switch from, ' + oldName + " to " + newName + " <strong>if you're planning ahead at least " + turningPoint + " Years</strong>.</p>"
+            message += '<p style="text-align: center">Financially speaking, you should switch from, ' + oldName + " to " + newName + " <strong>if you're planning ahead at least " + turningPoint + " Years</strong>.</p>";
         }
     } else {
-        message += '<p style="text-align: center">Financially speaking, you <strong>should not switch</strong> from ' + oldName + " to " + newName + ".</p>"
+        message += '<p style="text-align: center">Financially speaking, you <strong>should not switch</strong> from ' + oldName + " to " + newName + ".</p>";
     }
 
     return message;
@@ -451,36 +455,51 @@ function hover(className){
     // This function visually pairs two list-elements on hover.
     // Input their class-name.
 
-    let elements = document.getElementsByClassName(className)
+    let elements = document.getElementsByClassName(className);
 
     for(let i = 0; i < elements.length; i++) {
 
         elements[i].addEventListener('mouseenter', event => {
             for(let n = 0; n < elements.length; n++) {
-                elements[n].classList.add("hoverStyle")
-                elements[n].classList.remove("nonHoverStyle")
+                elements[n].classList.add("hoverStyle");
+                elements[n].classList.remove("nonHoverStyle");
             }
         })
         
         elements[i].addEventListener('mouseleave', event => {
             for(let n = 0; n < elements.length; n++) {
-                elements[n].classList.remove("hoverStyle")
-                elements[n].classList.add("nonHoverStyle")
+                elements[n].classList.remove("hoverStyle");
+                elements[n].classList.add("nonHoverStyle");
             }
         })
     }
 }
 
-function createUrlParameters () {
-    // This Function adds the form's values to the URL. It doesn't reload the website though.
 
-    let form = document.getElementById("calcInput");
+
+
+
+
+function prepareToShare () {
+
+    let form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
     if (!form.checkValidity()) {
         form.reportValidity();
         return;
     }
 
-    const paramTypes = ["l", "l", "r", "l", "l", "l", "r", "l", "l", "l", "r", "l", "r", "l", "l", "l"] // Add an "r" in front of the radio-values!! Otherwhise, add an "l".
+    newURL = createNewURL(); // Create a new url using the current URL and the form inputs.
+
+    outputURL(newURL)
+}
+
+function createNewURL() {
+
+    const currentURL = window.location.href;
+    const splitURL = currentURL.split("?");
+    const baseURL = splitURL[0]
+    
+    const paramTypes = ["l", "l", "r", "l", "l", "l", "r", "l", "l", "l", "r", "l", "r", "l", "l", "l"]; // Add an "r" in front of the radio-values!! Otherwhise, add an "l".
     const paramValues = [
         document.getElementById("oldName").value,
         getCostNum("oldCost").toString(),
@@ -502,45 +521,65 @@ function createUrlParameters () {
 
         getNrNum("trainingInactivity").toString(),
         getNrNum("nrSetupProgrammers").toString(),
-        getNrNum("nrSetupMonths").toString()
+        getNrNum("nrSetupMonths").toString(),
     ]
 
-    let urlStr = "?";
+    let paramString = "?";
 
     let paramName = "";
+    let paramValue = "";
     let textFieldCount = 0;
     let radioCount = 0;
     for (let i=0; i<paramValues.length; i++) {
 
         if (paramTypes[i] == "l") {
             paramName = paramTypes[i] + textFieldCount;
-            textFieldCount ++
+            textFieldCount ++;
         } else {
             paramName = paramTypes[i] + radioCount;
-            radioCount ++
+            radioCount ++;
         }
 
-        urlStr += paramName + "=" + paramValues[i];
+        paramValue = encodeURIComponent(paramValues[i]);
+        paramString += paramName + "=" + paramValue;
 
         if (i<paramValues.length-1) {
-            urlStr += "&"
+            paramString += "&";
         }
     }
 
-    urlStr = encodeURI(urlStr);
-    window.history.pushState("object or string", "Title", window.location.href + urlStr);
+    const url = baseURL + paramString;
+
+    //paramString = encodeURI(paramString);
+    return url;
 }
 
 function getCheckedRadioId(radioGroupName) {
+    // Input name of radio button input group
+    // Outputs ID of the checked radio button
 
-    const radioArray = document.getElementsByName(radioGroupName);
+    const radioArray = document.getElementsByName(radioGroupName); // Get group of radio buttons
 
-    for(let i = 0; i < radioArray.length; i++) {
+    for(let i = 0; i < radioArray.length; i++) { // Search and return the checked one.
         if(radioArray[i].checked == true) {
             return radioArray[i].id;
         }
     }
 }
+
+function outputURL(url) {
+    
+    window.history.pushState("object or string", "Title", url); // Display the URL in the URL-bar.
+
+    let parentDiv = document.getElementById("linkDiv");
+    parentDiv.classList.remove("invisible");
+
+    let outputDiv = document.getElementById("linkText");
+    outputDiv.innerHTML = url;
+}
+
+
+
 
 function getUrlParameters () {
         /* const paramNames = [

@@ -46,26 +46,6 @@
 
                                             <div class="col-lg-6">
                                                 <h2>If you're a boss getting sent here by an ambitious employee:</h2>
-                                                <p></p>
-                                                <!-- <script>
-                                                    let stringUrl = window.location.href;
-                                                    const splitUrl = stringUrl.split("?");
-                                                    console.log(stringUrl)
-                                                    console.log(splitUrl)
-                                                    console.log("file:///home/florian/Documents/Programme/Open%20Source%20Website/index.html?param_1=val_1".split("?"));
-
-                                                    if (splitUrl.length < 1 && splitUrl[1] !== "") {
-                                                        alert("e i")
-                                                    } else {
-                                                        alert("almost")
-                                                    }
-
-                                                    let url = new URL(window.location.href);
-                                                    console.log(url)
-                                                    url.searchParams.append('param_1', 'val_1');
-                                                    console.log(url)
-                                                </script> -->
-                                                <button type="button" class="btn btn-primary" onclick='createUrlParameters();//window.history.pushState("object or string", "Title", window.location.href+"/?urt=new-url/");'>Test</button>
                                             </div>
                                         </div>
                                     </div>
@@ -250,8 +230,16 @@
                                             </div>
                                             
                                             <button type="button" class="btn btn-success" onclick="main();">Calculate Financial Results</button>
-                                            <button type="button" class="btn btn-info" onclick="alert('Nope');">Share Website with Preinserted Values</button>
+                                            <button type="button" class="btn btn-info" onclick="prepareToShare();">Share Website with Preinserted Values</button>
                                         </form>
+                                        <div class="container">
+                                            <div class="row invisible bordered" id="linkDiv">
+                                                <div class="monospace col-lg-10 col-md-8" id="linkText"></div>
+                                                <div class="col-lg-2 col-md-4 align-self-center">
+                                                    <button type="button" class="btn btn-info" onclick="">Copy URL</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -285,11 +273,11 @@
 
 
                                         <div class="row justify-content-center">
-                                            <div class="col-auto" id="monospaceDiv">
+                                            <div class="col-auto">
                                                 <h3>Summary:</h3>
                                                 <div class="row">
-                                                    <div class="col-auto" id="monoName"></div>
-                                                    <div class="col-auto" id="monoValue" style="text-align: right;"></div>
+                                                    <div class="col-auto" id="summaryName"></div>
+                                                    <div class="col-auto" id="summaryValue" style="text-align: right;"></div>
                                                 </div>
                                             </div>
                                         </div>
