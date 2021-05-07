@@ -480,7 +480,7 @@ function hover(className){
 
 
 
-function prepareToShare () {
+function prepareToShare (linkDivID) {
 
     let form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
     if (!form.checkValidity()) {
@@ -490,10 +490,11 @@ function prepareToShare () {
 
     newURL = createNewURL(); // Create a new url using the current URL and the form inputs.
 
-    outputURL(newURL)
+    outputURL(newURL, linkDivID);
 }
 
 function createNewURL() {
+    // Create a new url using the current URL and the form inputs.
 
     const currentURL = window.location.href;
     const splitURL = currentURL.split("?");
@@ -567,17 +568,82 @@ function getCheckedRadioId(radioGroupName) {
     }
 }
 
-function outputURL(url) {
-    
-    window.history.pushState("object or string", "Title", url); // Display the URL in the URL-bar.
+function outputURL(url, linkDivID) {
+    // Outputs the url(which contains the parameters) so that the user can copy it.
 
-    let parentDiv = document.getElementById("linkDiv");
-    parentDiv.classList.remove("invisible");
+    // window.history.pushState("object or string", "Title", url); // Display the URL in the URL-bar.
 
-    let outputDiv = document.getElementById("linkText");
-    outputDiv.innerHTML = url;
+    let oldLinkP = document.getElementById("linkP");
+
+    let newLinkDiv = document.getElementById(linkDivID);
+
+
+    if (oldLinkP !== null) { // If the URL was already output at least once...
+
+        let oldLinkDiv = oldLinkP.parentElement;
+
+        if (oldLinkDiv == newLinkDiv) { // If it's the same Location as before...
+
+            console.log("Same Same  :)")
+            oldLinkP.innerHTML = ""; // replace the previous url
+
+            let text = document.createTextNode(url)
+            oldLinkP.appendChild(text)
+
+        } else { 
+            // If it's a different Location than before...
+
+            console.log("Different Position!!!!!!!")
+            oldLinkP.remove(); // Remove the previous URL-section ...
+            oldLinkDiv.parentElement.classList.add("invisible"); // ... and make its parent invisible.
+
+            createNewUrlOutput(url, newLinkDiv);
+        }
+
+
+    } else { // If the URL never has been output before:
+        console.log("Previously no element existed")
+        createNewUrlOutput(url, newLinkDiv);
+    }
+
 }
 
+function createNewUrlOutput(url, linkDiv) {
+    // Create the new URL output and make it visible.
+
+    let text = document.createTextNode(url)
+
+    let linkP = document.createElement("p");
+    linkP.id = "linkP"
+
+    linkP.appendChild(text)
+    linkDiv.appendChild(linkP)
+
+
+    let parentDiv = linkDiv.parentElement; // Make the overarching section visible
+    parentDiv.classList.remove("invisible");
+}
+
+
+
+function copyUrl() {
+    /* // Copy the URL in the input-field "linkP" to the clipboard.
+    // This code was stolen from https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+
+    // Get the text field
+    var copyText = document.getElementById("linkP");
+
+    // Select the text field
+    copyText.focus();
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    document.execCommand("copy");
+
+    // Alert the copied text
+    alert("Copied the text: " + copyText.value); */
+}
 
 
 

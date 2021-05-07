@@ -230,13 +230,13 @@
                                             </div>
                                             
                                             <button type="button" class="btn btn-success" onclick="main();">Calculate Financial Results</button>
-                                            <button type="button" class="btn btn-info" onclick="prepareToShare();">Share Website with Preinserted Values</button>
+                                            <button type="button" class="btn btn-info" onclick='prepareToShare("linkDiv1");'>Share Website with Preinserted Values</button>
                                         </form>
                                         <div class="container">
-                                            <div class="row invisible bordered" id="linkDiv">
-                                                <div class="monospace col-lg-10 col-md-8" id="linkText"></div>
-                                                <div class="col-lg-2 col-md-4 align-self-center">
-                                                    <button type="button" class="btn btn-info" onclick="">Copy URL</button>
+                                            <div class="row invisible bordered">
+                                                <div class="monospace col-md-10" id="linkDiv1"><!-- Here will be the JS-genarated p-tag (the URL) --></div>
+                                                <div class="col-md-2 align-self-center">
+                                                    <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -292,9 +292,17 @@
                                         <div style="text-align: center;">
                                             <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
                                                 Go back to Price Calculator</button>
-                                            <button type="button" class="btn btn-info" onclick="alert('Nope');">Share Website with Preinserted Values</button>
+                                            <button type="button" class="btn btn-info" onclick="prepareToShare('linkDiv2');">Share Website with Preinserted Values</button>
                                             <button type="button" class="btn btn-primary" onclick="document.getElementById('advSecBtn').click();">
                                                 See List of Pros and Cons</button>
+                                        </div>
+                                        <div class="container">
+                                            <div class="row invisible bordered">
+                                                <div class="monospace col-md-10" id="linkDiv2"><!-- Here will be the JS-genarated p-tag (the URL) --></div>
+                                                <div class="col-md-2 align-self-center">
+                                                    <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
