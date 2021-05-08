@@ -62,13 +62,20 @@ function getCostNum(id) {
         input = input.replace(currencySymbols[i], "");
     }
     
-    if(isNaN(Number(input))) {
-        alert("Please check for errors when inputting costs. Please do not use multiple periods or commas.");
-        throw new Error("Please check for errors when inputting costs. Please do not use multiple periods or commas.");
-    }
     input = Number(input);
 
-    return input;
+    if(isNaN(input)) {
+        let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.\n\n";
+        message += 'The problem was detected in the input "<b>' + input + '</b>".';
+        createError(message);
+    }
+    else if (input.toString().includes("e+")) {
+        let message = "Please input smaller numbers.";
+        createError(message);
+    }
+    else {
+        return input;
+    }
 }
 
 function getNrNum(id) {
@@ -93,13 +100,20 @@ function getNrNum(id) {
         input = input.replace(" ", "");
     }
 
-    if(isNaN(Number(input))) {
-        alert("Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?");
-        throw new Error("Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?");
-    }
     input = Number(input);
 
-    return input
+    if(isNaN(input)) {
+        let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?\n\n";
+        message += 'The problem was detected in the input "' + input + '".'
+        createError(message);
+    }
+    else if (input.toString().includes("e+")) {
+        let message = "Please input smaller numbers.";
+        createError(message);
+    }
+    else {
+        return input;
+    }
 }
 
 function getRadioValue(name) {
@@ -113,6 +127,13 @@ function getRadioValue(name) {
             return radioArray[i].value;
         }
     }
+}
+
+function createError(message) {
+    // Complains to the user, removes the share-URL-field and then stops execution.
+    removeUrlField();
+    alert(message);
+    throw new Error(message);
 }
 
 function calcCost(softwareCost, programmerCost, nrMaintananceProgrammers, maxYears) {
@@ -254,25 +275,36 @@ function makeCostsPretty(oldCost, newCost) {
 
     for(let i=0; i<oldCost.length; i++) { // Go through every element of the cost-arrays.
 
-        let oldCost_i = Math.round(oldCost[i]);
-        let newCost_i = Math.round(newCost[i]);
+        let oldCost_i = oldCost[i];
+        let newCost_i = newCost[i];
 
-        
-        let numberString = "" // Canculate how many blocks of 3 digits we can cut.
-        if(oldCost_i < newCost_i) {
-            numberString += oldCost_i.toString();
+        let number = 0;
+        let numberString = "";
+        if(oldCost_i < newCost_i) { // Canculate how many blocks of 3 digits we can cut. Do so according to the smaller of the two cell values.
+            number = Math.round(oldCost_i)
+            numberString += number.toString();
+
+            if (newCost_i.toString().includes("e+")) { // Chech whether the larger number is within an acceptable range.
+                createError("Numbers are too large. (They got bigger than 10^20)")
+            }
         } else {
-            numberString += newCost_i.toString();
+            number = Math.round(newCost_i)
+            numberString += number.toString();
+
+            if (oldCost_i.toString().includes("e+")) { // Chech whether the larger number is within an acceptable range.
+                createError("Numbers are too large. (They got bigger than 10^20)")
+            }
         }
+
         let nrDigits = numberString.length;
         let digitsToCut = Math.floor(nrDigits/3) * 3;
 
         switch(digitsToCut) { // Get the text that should be displayed in the HTML-table.
             case 0:
-                modifierText.push("");
+                modifierText.push("¤");
                 break;
             case 3:
-                modifierText.push("");
+                modifierText.push("¤");
                 digitsToCut = 0;
                 break;
             case 6:
@@ -283,8 +315,11 @@ function makeCostsPretty(oldCost, newCost) {
                 break;
             case 12:
                 modifierText.push("T");
+                break;
+            default:
+                modifierText.push("x10^" + digitsToCut);
         }
-        
+
         oldCost_i /= Math.pow(10, digitsToCut); // Finally prettify the cost.  // Cut digits
         oldCost_i *= 100; // Prepare rounding
         oldCost_i = Math.round(oldCost_i); // Rould
@@ -483,8 +518,9 @@ function hover(className){
 function prepareToShare (linkDivID) {
 
     let form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
-    if (!form.checkValidity()) {
-        form.reportValidity();
+    if (!form.checkValidity()) { // If it's not...
+        removeUrlField() // 1. Don't display URL-field anymore.
+        form.reportValidity(); // 2. Complain to the user.
         return;
     }
 
@@ -587,10 +623,7 @@ function outputURL(url, linkDivID) {
             oldLinkP.appendChild(text)
 
         } else { // If it's a different Location than before...
-
-            oldLinkP.remove(); // Remove the previous URL-section ...
-            oldLinkDiv.parentElement.classList.add("invisible"); // ... and make its parent invisible.
-
+            removeUrlField() // Remove the previous URL-div
             createNewUrlOutput(url, newLinkDiv);
         }
 
@@ -599,6 +632,18 @@ function outputURL(url, linkDivID) {
         createNewUrlOutput(url, newLinkDiv);
     }
 
+}
+
+function removeUrlField(){
+    // This function removes the current url-display-field by deleting some parts and making others invisible.
+    // If there is no element called "linkP", do nothing.
+
+    let linkP = document.getElementById("linkP");
+    if (linkP !== null) {
+        let linkDivParent = linkP.parentElement.parentElement;
+        linkDivParent.classList.add("invisible"); // Make the overarching parent invisible ...
+        linkP.remove(); // and remove the previous the previous URL-section (=linkP).
+    }
 }
 
 function createNewUrlOutput(url, linkDiv) {
@@ -621,21 +666,27 @@ function createNewUrlOutput(url, linkDiv) {
 
 function copyUrl() {
     // Copy the URL in the input-field "linkP" to the clipboard.
-    // This code was stolen from https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+    // https://edupala.com/javascript-clipboard/ showed me how to do this
 
-    /* // Get the text field
-    var copyText = document.getElementById("linkP");
-
-    // Select the text field
-    //copyText.focus();
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    document.execCommand("copy");
-
-    // Alert the copied text
-    alert("Copied the text: " + copyText.value); */
+    var linkP = document.getElementById("linkP");
+    
+    if(document.body.createTextRange) { // for Internet Explorer
+        var range = document.body.createTextRange();
+        range.moveToElementText(linkP);
+        range.select();
+        document.execCommand("Copy");
+        alert("Copied URL content to clipboard");
+    }
+    else if(window.getSelection) { // for other browsers
+    
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(linkP);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("Copy");
+        alert("Copied URL content to clipboard");
+    }
 }
 
 
