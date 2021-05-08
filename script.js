@@ -32,13 +32,13 @@ function main() {
     
 
     const oldCost = calcCost(oldSoftwareCost, programmerCost, nrCurrentProgrammers, maxYears);
-    addCostSummaryLine("Old yearly cost: ", oldCost[0], true);
+    writeCostSummaryLine("Old yearly cost: ", oldCost[0], true);
 
     const newYearlyCost = calcCost(newSoftwareCost, programmerCost, nrFutureProgrammers, maxYears);
-    addCostSummaryLine("New yearly cost: ", newYearlyCost[0]);
+    writeCostSummaryLine("New yearly cost: ", newYearlyCost[0]);
 
     const newCost = addOneTimeCost(newYearlyCost, employeeCost, programmerCost);
-    // The one-time cost gets added INSIDE the addOneTimeCost()-function. This is where the last "addCostSummaryLine()" can be found.
+    // The one-time cost gets added INSIDE the addOneTimeCost()-function. This is where the last "writeCostSummaryLine()" can be found.
     
 
     outputResults(oldCost, newCost, displayYears);
@@ -173,12 +173,12 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
         cost[i] += oneTimeCost;
     }
 
-    addCostSummaryLine("One-time switching cost: ", oneTimeCost);
+    writeCostSummaryLine("One-time switching cost: ", oneTimeCost);
 
     return cost
 }
 
-function addCostSummaryLine(name, value, deleteContents) {
+function writeCostSummaryLine(name, value, deleteContents) {
     // Add a line to the div under the "summary"-heading in the "results"-section.
 
     nameDiv = document.getElementById("summaryName");
@@ -486,30 +486,6 @@ function createMessage(oldName, newName, turningPoint) {
     return message;
 }
 
-function hover(className){
-    // This function visually pairs two list-elements on hover.
-    // Input their class-name.
-
-    let elements = document.getElementsByClassName(className);
-
-    for(let i = 0; i < elements.length; i++) {
-
-        elements[i].addEventListener('mouseenter', event => {
-            for(let n = 0; n < elements.length; n++) {
-                elements[n].classList.add("hoverStyle");
-                elements[n].classList.remove("nonHoverStyle");
-            }
-        })
-        
-        elements[i].addEventListener('mouseleave', event => {
-            for(let n = 0; n < elements.length; n++) {
-                elements[n].classList.remove("hoverStyle");
-                elements[n].classList.add("nonHoverStyle");
-            }
-        })
-    }
-}
-
 
 
 
@@ -664,6 +640,8 @@ function createNewUrlOutput(url, linkDiv) {
 
 
 
+
+
 function copyUrl() {
     // Copy the URL in the input-field "linkP" to the clipboard.
     // https://edupala.com/javascript-clipboard/ showed me how to do this
@@ -688,6 +666,9 @@ function copyUrl() {
         alert("Copied URL content to clipboard");
     }
 }
+
+
+
 
 
 
@@ -717,5 +698,33 @@ function fillForm () {
             element.value = entry[1];
         }
         i ++;
+    }
+}
+
+
+
+
+
+function hoverPair(className){
+    // This function visually pairs two list-elements on hover.
+    // Input their class-name.
+
+    let elements = document.getElementsByClassName(className);
+
+    for(let i = 0; i < elements.length; i++) {
+
+        elements[i].addEventListener('mouseenter', event => {
+            for(let n = 0; n < elements.length; n++) {
+                elements[n].classList.add("hoverStyle");
+                elements[n].classList.remove("nonHoverStyle");
+            }
+        })
+        
+        elements[i].addEventListener('mouseleave', event => {
+            for(let n = 0; n < elements.length; n++) {
+                elements[n].classList.remove("hoverStyle");
+                elements[n].classList.add("nonHoverStyle");
+            }
+        })
     }
 }
