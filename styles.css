@@ -113,3 +113,20 @@ li {
     height: 16px;
     width: 16px;
 }
+
+.toastParent {
+    display: flex;
+    justify-content: center;
+}
+.toast {
+    position: fixed; /* Sit on top of the screen */
+    top: 20px;
+    z-index: 999;
+}
+
+.toast-body {
+    color: black;
+}
+i {
+    margin-right: 10px;
+}

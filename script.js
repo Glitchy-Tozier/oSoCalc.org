@@ -102,8 +102,8 @@ function getNrNum(id) {
 
 
     if(isNaN(Number(input))) {
-        let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?\n\n";
-        message += 'The problem was detected in the input "' + input + '".'
+        let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?<br><br>";
+        message += 'The problem was detected in the input "<b>' + input + '</b>".'
         createError(message);
     }
     else if (input.toString().includes("e+")) {
@@ -130,9 +130,18 @@ function getRadioValue(name) {
 }
 
 function createError(message) {
-    // Complains to the user, removes the share-URL-field and then stops execution.
+    // Remove the share-URL-field.
     removeUrlField();
-    alert(message);
+
+    // Complain to the user.
+    let toastBody = document.getElementById("errorToastBody");
+    toastBody.innerHTML = message;
+
+    let toastDiv = document.getElementById("errorToast")
+    let toast = new bootstrap.Toast(toastDiv);
+    toast.show()
+
+    // Stops execution.
     throw new Error(message);
 }
 
@@ -644,7 +653,6 @@ function createNewUrlOutput(url, linkDiv) {
 
 function copyUrl() {
     // Copy the URL in the input-field "linkP" to the clipboard.
-    // https://edupala.com/javascript-clipboard/ showed me how to do this
 
     var linkP = document.getElementById("linkP");
     
@@ -653,7 +661,10 @@ function copyUrl() {
         range.moveToElementText(linkP);
         range.select();
         document.execCommand("Copy");
-        alert("Copied URL content to clipboard");
+
+        let toastDiv = document.getElementById("urlCopyToast") // Tell user the URL was copied
+        let toast = new bootstrap.Toast(toastDiv);
+        toast.show()
     }
     else if(window.getSelection) { // for other browsers
     
@@ -663,7 +674,10 @@ function copyUrl() {
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
-        alert("Copied URL content to clipboard");
+
+        let toastDiv = document.getElementById("urlCopyToast") // Tell user the URL was copied
+        let toast = new bootstrap.Toast(toastDiv);
+        toast.show()
     }
 }
 
@@ -699,6 +713,31 @@ function fillForm () {
         }
         i ++;
     }
+
+    let toastDiv = document.getElementById("urlImportToast") // Tell user the URL-parameters were imported.
+    let toast = new bootstrap.Toast(toastDiv);
+    toast.show()
+}
+
+
+
+
+
+function submitOnEnter(inputId) {
+    // This function adds an event-listener to each input-field to make them click the calculate-button upon pressed enter.
+
+    // Get the input field
+    var input = document.getElementById(inputId);
+
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", event => {
+        if (event.key === "Enter") {// Number 13 is the "Enter" key on the keyboard
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("calcButton").click();
+        }
+    }); 
 }
 
 
