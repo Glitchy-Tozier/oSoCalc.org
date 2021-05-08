@@ -62,11 +62,10 @@ function getCostNum(id) {
         input = input.replace(currencySymbols[i], "");
     }
     
-    input = Number(input);
 
-    if(isNaN(input)) {
+    if(isNaN(Number(input))) {
         let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.\n\n";
-        message += 'The problem was detected in the input "<b>' + input + '</b>".';
+        message += 'The problem was detected in the input "' + input + '".';
         createError(message);
     }
     else if (input.toString().includes("e+")) {
@@ -74,6 +73,7 @@ function getCostNum(id) {
         createError(message);
     }
     else {
+        input = Number(input);
         return input;
     }
 }
@@ -100,9 +100,8 @@ function getNrNum(id) {
         input = input.replace(" ", "");
     }
 
-    input = Number(input);
 
-    if(isNaN(input)) {
+    if(isNaN(Number(input))) {
         let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?\n\n";
         message += 'The problem was detected in the input "' + input + '".'
         createError(message);
@@ -112,6 +111,7 @@ function getNrNum(id) {
         createError(message);
     }
     else {
+        input = Number(input);
         return input;
     }
 }
