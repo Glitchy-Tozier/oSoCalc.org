@@ -120,8 +120,8 @@ li {
 }
 .toast {
     position: fixed; /* Sit on top of the screen */
-    top: 20px;
-    z-index: 999;
+    top: 30px;
+    z-index: 99;
 }
 
 .toast-body {

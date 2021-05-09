@@ -15,7 +15,7 @@
     
     <body>
         <header>
-            <h1>Open Source Calculator</h1>
+            <h1><strong>O</strong>pen <strong>So</strong>urce <strong>Calc</strong>ulator</h1>
             <p class="subtitle">Is Switching to Open Source Optimal <strong>in Your Situation</strong>?</p>
         </header>
 
@@ -29,7 +29,7 @@
                     <div class="accordion-item">
                         <h1 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <p class="h2">Introduction to this Website</p>
+                                <span class="h2">Introduction to this Website</span>
                             </button>
                         </h1>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -57,8 +57,8 @@
 
                     <div class="accordion-item">
                         <h1 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" id="calcSecBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <p class="h2" id="calcSecTitle">Price Calculator</p>
+                            <button class="accordion-button collapsed" id="calcSecBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" autofocus>
+                                <span class="h2" id="calcSecTitle">Price Calculator</span>
                             </button>
                         </h1>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -230,7 +230,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <button type="button" class="btn btn-success" id="calcButton"onclick="main();">Calculate Financial Results</button>
+                                            <button type="button" class="btn btn-success" id="calcButton" onclick="main();">Calculate Financial Results</button>
                                             <button type="button" class="btn btn-info" onclick='prepareToShare("linkDiv1");'>Share Website with Preinserted Values</button>
                                         </form>
                                         <div class="container">
@@ -254,7 +254,7 @@
                     <div class="accordion-item">
                         <h1 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" id="resSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <p class="h2">Results</p>
+                                <span class="h2">Results</span>
                             </button>
                         </h1>
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -273,7 +273,7 @@
                                         <h2 id="resTitle"></h2>
                                         <div class="row">
                                             <div class="col-lg-6" id="tableDiv"></div>
-                                            <div class="col-lg-6"id="chartDiv"></div>
+                                            <div class="col-lg-6" id="chartDiv"></div>
                                         </div>
 
 
@@ -318,7 +318,7 @@
                     <div class="accordion-item">
                         <h1 class="accordion-header" id="headingFour">
                             <button class="accordion-button collapsed" type="button" id="advSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <p class="h2" id="advSecTitle">Open-Source vs Commercial Software</p>
+                                <span class="h2" id="advSecTitle">Open-Source vs Commercial Software</span>
                             </button>
                         </h1>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
@@ -413,37 +413,42 @@
                     </div>
 
 
-                    <div class="toastParent">
-                        
-                        <div class="toast text-white bg-success" id="urlImportToast" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <strong class="me-auto">URL imported</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body" style="color: white;">
-                                The form was filled up using the parameters imported from the URL.
+                    <div class="toastContainer">
+                        <div id="urlImportToastParent">
+                            <div class="toast bg-success" id="urlImportToast" data-bs-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <strong class="me-auto">URL imported</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" style="z-index:100;"></button>
+                                </div>
+                                <div class="toast-body" style="color: white;">
+                                    The form was filled up using the parameters imported from the URL.
+                                </div>
                             </div>
                         </div>
 
-                        <div class="toast text-white bg-success" id="urlCopyToast" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <strong class="me-auto">URL copied</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body" style="color: white;">
-                                Your URL was successfully copied to the clipboard.
+                        <div id="urlCopyToastParent">
+                            <div class="toast bg-success" id="urlCopyToast" data-bs-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <strong class="me-auto">URL copied</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body" style="color: white;">
+                                    Your URL was successfully copied to the clipboard.
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="toast text-white bg-warning" id="errorToast" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <i class="bi bi-exclamation-diamond-fill"></i>
-                                <strong class="me-auto">Error</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
+                        <div id="errorToastParent">
+                            <div class="toast bg-warning" id="errorToast" data-bs-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <i class="bi bi-exclamation-diamond-fill"></i>
+                                    <strong class="me-auto">Error</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body" id="errorToastBody"></div>
                             </div>
-                            <div class="toast-body" id="errorToastBody"></div>
                         </div>
 
                     </div>
@@ -462,9 +467,20 @@
 
         <script>
             // Initialize all Toasts
-            var toastList = [].slice.call(document.querySelectorAll('.toast'))
+            var toastList = [].slice.call(document.querySelectorAll('.toast'));
+            
+
             toastList.map( toast => {
-                return new bootstrap.Toast(toast)
+
+                toast.addEventListener('show.bs.toast', function () { // Necessary to make the 'X' for closing the toast clickable.
+                    toast.parentElement.classList.add("toastParent")
+                })
+
+                toast.addEventListener('hidden.bs.toast', function () { // Necessary for not blocking the 'X's of other toasts.
+                    toast.parentElement.classList.remove("toastParent")
+                })
+
+                return new bootstrap.Toast(toast); // Initialize the toast.
             })
 
 
@@ -484,7 +500,7 @@
                 "nrEmployees", "employeeCost", "eYearly", "eMonthly", "programmerCost", "pYearly", "pMonthly",
 
                 "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
-            ]
+            ];
             for (let i=0; i<formArrayIDs.length; i++) {
                 submitOnEnter(formArrayIDs[i]);
             }
@@ -498,9 +514,9 @@
         
             
             // Initialize all Tooltips
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
+                return new bootstrap.Tooltip(tooltipTriggerEl);
             })
         </script>
     </body>

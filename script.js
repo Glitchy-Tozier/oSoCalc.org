@@ -714,6 +714,8 @@ function fillForm () {
         i ++;
     }
 
+    /* let toastParent = document.getElementById("urlImportToast" + "Parent");
+    toastParent.classList.add("toastParent"); */
     let toastDiv = document.getElementById("urlImportToast") // Tell user the URL-parameters were imported.
     let toast = new bootstrap.Toast(toastDiv);
     toast.show()
