@@ -12,7 +12,7 @@
         <script type="text/javascript" src="script.js"></script> <!-- self-written-->
         <title>o$o Calculator</title>
     </head>
-    
+
     <body>
         <header>
             <h1><strong>O</strong>pen <strong>So</strong>urce <strong>Calc</strong>ulator</h1>
@@ -20,11 +20,11 @@
         </header>
 
         <main role="main" class="main" id="main">
-            
+
 
             <div class="container" id="mainContainer">
-                
-                <div class="accordion accordion-flush" id="accordionExample">
+
+                <div class="accordion accordion-flush" id="bigAccordion">
 
                     <div class="accordion-item">
                         <h1 class="accordion-header" id="headingOne">
@@ -32,7 +32,7 @@
                                 <span class="h2">Introduction to this Website</span>
                             </button>
                         </h1>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#bigAccordion">
                             <div class="accordion-body">
                                 <div class="introduction-section" id="introduction-section">
                                     <div class="container">
@@ -61,7 +61,7 @@
                                 <span class="h2" id="calcSecTitle">Price Calculator</span>
                             </button>
                         </h1>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#bigAccordion">
                             <div class="accordion-body">
                                 <div class="VS-section" id="VS-section">
                                     <div class="container">
@@ -73,10 +73,10 @@
                                                     <div class="formSection">
                                                         <h3>Old Software</h3>
 
-                                                        
+
                                                         <label for="oldName" class="form-label inputFieldLabel">Product Name</label>
                                                         <input type="text" id="oldName" class="form-control form-control-lg" value="MS Office" required>
-                                                        
+
                                                         <label for="oldCost" class="form-label inputFieldLabel">Price of licence (per employee)</label>
                                                         <div class="input-group">
                                                             <input type="text" id="oldCost" class="form-control numberForm" placeholder="What does your current solution cost?" value="4,20" required><br>
@@ -107,7 +107,7 @@
                                                 <div class="col-md-6">
                                                     <div class="formSection">
                                                         <h3>New Software</h3>
-                                                        
+
                                                         <label for="newName" class="form-label inputFieldLabel">Product Name</label>
                                                         <input type="text" id="newName" class="form-control form-control-lg" value="LibreOffice" required>
 
@@ -129,7 +129,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <label for="nrFutureProgrammers" class="form-label inputFieldLabel">Maintanance programmers needed</label>
                                                         <div class="input-group">
                                                             <input type="text" id="nrFutureProgrammers" class="form-control numberForm" placeholder="Future programmer count" aria-describedby="nrFuturePHelp" value="3" required>
@@ -151,7 +151,7 @@
                                                         </div>
                                                         <div id="nrEmployeesHelp" class="form-text">Input the number of employees working at your company.</div>
                                                     </div>
-                                                
+
                                                     <div class="col-md-6 col-lg-4">
                                                         <label for="employeeCost" class="form-label inputFieldLabel">The average salary of an employee</label>
                                                         <div class="input-group">
@@ -181,7 +181,7 @@
                                                             <span class="input-group-text">$/€/£/¥/…¤</span>
                                                         </div>
                                                         <div id="pCostHelp" class="form-text">What does one programmer cost you?</div>
-                                                        
+
                                                         <div class="container">
                                                             <div class="row">
                                                                 <div class="form-check col-auto">
@@ -252,19 +252,19 @@
                                 <span class="h2">Results</span>
                             </button>
                         </h1>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#bigAccordion">
                             <div class="accordion-body">
-                                
+
                                 <div id="notingYetCalculated" style="text-align: center;">
                                     <p>Nothing was calculated yet. Go to the previous section to input data and receive results.</p>
 
                                     <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
                                         Go to Price Calculator</button>
                                 </div>
-                                
+
                                 <div class="results-section invisible" id="results-section">
                                     <div class="container">
-                                        
+
                                         <h2 id="resTitle"></h2>
                                         <div class="row">
                                             <div class="col-lg-6" id="tableDiv"></div>
@@ -316,7 +316,7 @@
                                 <span class="h2" id="advSecTitle">Open-Source vs Commercial Software</span>
                             </button>
                         </h1>
-                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#bigAccordion">
                             <div class="accordion-body">
                                 <div class="advantage-section" id="advantage-section">
                                     <div class="container">
@@ -406,43 +406,42 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-
-                    <div class="toastContainer">
-                        <div id="urlImportToastParent">
-                            <div class="toast bg-success" id="urlImportToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <strong class="me-auto">URL imported</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                                <div class="toast-body" style="color: white;">
-                                    The form was filled up using the parameters imported from the URL.
-                                </div>
+                <div class="toastContainer">
+                    <div id="urlImportToastParent">
+                        <div class="toast bg-success" id="urlImportToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <strong class="me-auto">URL imported</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body" style="color: white;">
+                                The form was filled up using the parameters imported from the URL.
                             </div>
                         </div>
+                    </div>
 
-                        <div id="errorToastParent">
-                            <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    <i class="bi bi-exclamation-diamond-fill"></i>
-                                    <strong class="me-auto">Error</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                                <div class="toast-body" id="errorToastBody"></div>
+                    <div id="errorToastParent">
+                        <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <i class="bi bi-exclamation-diamond-fill"></i>
+                                <strong class="me-auto">Error</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                             </div>
+                            <div class="toast-body" id="errorToastBody"></div>
                         </div>
+                    </div>
 
-                        <div id="urlCopyToastParent">
-                            <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <strong class="me-auto">URL copied</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                                <div class="toast-body" style="color: white;">
-                                    Your URL was successfully copied to the clipboard.
-                                </div>
+                    <div id="urlCopyToastParent">
+                        <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <strong class="me-auto">URL copied</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body" style="color: white;">
+                                Your URL was successfully copied to the clipboard.
                             </div>
                         </div>
                     </div>
@@ -462,7 +461,7 @@
         <script>
             // Initialize all Toasts
             var toastList = [].slice.call(document.querySelectorAll('.toast'));
-            
+
 
             toastList.map( toast => {
 
@@ -485,18 +484,18 @@
                 fillForm();
             }
 
-            
+
             // Initialize all form-inputs to make "Enter" start the calculation
             submitOnEnter("calcInput");
-            
-            
+
+
              // Initialize all the event-listener attributes needed for the visual pairing in the last section.
             const listClasses = ["aLi1", "aLi2", "aLi3", "bLi1", "bLi2", "bLi3", "bLi4"];
             for (let i=0; i<listClasses.length; i++) {
                 hoverPair(listClasses[i]);
             }
-        
-            
+
+
             // Initialize all Tooltips
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

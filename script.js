@@ -16,7 +16,7 @@ function main() {
     let nrCurrentProgrammers = getNrNum("nrCurrentProgrammers");
     let nrFutureProgrammers = getNrNum("nrFutureProgrammers");
 
-    
+
     oldSoftwareCost *= getRadioValue("oldCostPeriod"); // Turn all costs into their yearly equivalents (multiply monthly costs by 12)
     newSoftwareCost *= getRadioValue("newCostPeriod");
     employeeCost *= getRadioValue("eCostPeriod");
@@ -29,7 +29,7 @@ function main() {
 
     const maxYears = 20;
     const displayYears = [1,2,3,5,10,20];
-    
+
 
     const oldCost = calcCost(oldSoftwareCost, programmerCost, nrCurrentProgrammers, maxYears);
     writeCostSummaryLine("Old yearly cost: ", oldCost[0], true);
@@ -39,7 +39,7 @@ function main() {
 
     const newCost = addOneTimeCost(newYearlyCost, employeeCost, programmerCost);
     // The one-time cost gets added INSIDE the addOneTimeCost()-function. This is where the last "writeCostSummaryLine()" can be found.
-    
+
 
     outputResults(oldCost, newCost, displayYears);
 }
@@ -61,7 +61,7 @@ function getCostNum(id) {
     for(let i=0; i<currencySymbols.length; i++){
         input = input.replace(currencySymbols[i], "");
     }
-    
+
 
     if(isNaN(Number(input))) {
         let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.<br><br>";
@@ -85,8 +85,6 @@ function getNrNum(id) {
 
     let input = document.getElementById(id).value; // Get value by id
 
-    /* input = input.toString(); // Turn value into string
-    input = createTextNode(input); // Encode Input */
 
     while(input.includes(",")){
         input = input.replace(",", "");
@@ -142,10 +140,8 @@ function createError(message) {
     removeUrlField();
 
     // Prevent some bootstrap-specific errors:
-    if(globalErrorToast !== null) {
+    if(globalErrorToast !== null)
         globalErrorToast.dispose();
-        console.log(globalErrorToast);
-    }
 
     // Complain to the user.
     let toastBody = document.getElementById("errorToastBody");
@@ -189,7 +185,7 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
     const setupProgrammerCount = getNrNum("nrSetupProgrammers"); // Number of programmers needed to initially implement the new solution
     const setupMonthCount = getNrNum("nrSetupMonths"); // Number of months those Programmers work on that implementation
     const setupCost = monthlyProgrammerCost * setupProgrammerCount * setupMonthCount; // What the initial setup will cost you.
-    
+
     const oneTimeCost = employeeTrainingCost + setupCost; // Full one-time cost
 
     for(let i=0; i<cost.length; i++) { // Add the one-time cost to the yearly costs.
@@ -205,10 +201,10 @@ function writeCostSummaryLine(name, value, deleteContents) {
     // Add a line to the div under the "summary"-heading in the "results"-section.
 
     nameDiv = document.getElementById("summaryName");
-    valueDiv = document.getElementById("summaryValue"); 
+    valueDiv = document.getElementById("summaryValue");
 
     if (deleteContents) {
-        nameDiv.innerHTML = ""; // Make sure the 
+        nameDiv.innerHTML = ""; // Make sure the
         valueDiv.innerHTML = "";
     }
 
@@ -225,7 +221,7 @@ function writeCostSummaryLine(name, value, deleteContents) {
         let currentLetter = valueStr[valueStr.length - (i+1)];
         fullStr = currentLetter + fullStr;
         if(((i+1) % 3 == 0) && (i > 0) && ((i+1) < valueStr.length)) {
-            fullStr = "." + fullStr;
+            fullStr = "," + fullStr;
         }
     }
     valueLine = document.createElement("p"); // Create and add the value-part of the line
@@ -238,21 +234,22 @@ function writeCostSummaryLine(name, value, deleteContents) {
 function outputResults(oldCost, newCost, tableYears) {
     // This function first prepares the values for output and then outputs them.
 
-    const oldName = document.getElementById("oldName").value; // Set the title
-    const newName = document.getElementById("newName").value;
+    let oldName = document.getElementById("oldName").value; // Set the title
+    oldName = encodeHTML(oldName);
+    let newName = document.getElementById("newName").value;
+    newName = encodeHTML(newName);
     const title = "<strong>" + oldName + "</strong> vs <strong>" + newName + "</strong>";
     document.getElementById("resTitle").innerHTML = title;
-    
 
-    const prettyCostObj = makeCostsPretty(oldCost, newCost); // Prettify the cost-arrays and get their modifier text (for example, "M" for million)
+
+    const prettyCostObj = prepareTableData(oldCost, newCost); // Prettify the cost-arrays and get their modifier text (for example, "M" for million)
     const prettyOldCost = prettyCostObj["prettyOldCost"];
     const prettyNewCost = prettyCostObj["prettyNewCost"];
-    const modifierText = prettyCostObj["modifierText"];
+    const savedMoney = prettyCostObj["savedMoney"];
+    const turningPoint = prettyCostObj["turningPoint"];
 
-    
-    const table_turningPoint = createTable(oldName, newName, prettyOldCost, prettyNewCost, modifierText, tableYears);
-    const table = table_turningPoint["table"];
-    const turningPoint = table_turningPoint["turningPoint"];
+    const table = createTable(oldName, newName, prettyOldCost, prettyNewCost, savedMoney, turningPoint, tableYears);
+
 
     const graphConfig = createGraph(oldName, newName, oldCost, newCost);
 
@@ -288,18 +285,25 @@ function outputResults(oldCost, newCost, tableYears) {
     document.getElementById("resSecBtn").click(); // Switch to the section where the results will be displayed.
 }
 
-function makeCostsPretty(oldCost, newCost) {
+function prepareTableData(oldCost, newCost) {
     // This Function prettyfies the costs so that they can be displayed properly.
-
 
     let prettyOldCost = [];
     let prettyNewCost = [];
-    let modifierText = [];
+    let savedMoney = [];
+    let turningPoint;
 
     for(let i=0; i<oldCost.length; i++) { // Go through every element of the cost-arrays.
 
         let oldCost_i = oldCost[i];
         let newCost_i = newCost[i];
+        let savedMoney_i = oldCost_i - newCost_i; // Prepare the variable "savedMoney"
+
+        // Check which year the new solution first is worthwile (and see if there even is such a year).
+        if ((oldCost_i > newCost_i) && turningPoint == undefined) {
+            const yearNumber = i+1;
+            turningPoint = yearNumber;
+        }
 
         let number = 0;
         let numberString = "";
@@ -322,57 +326,75 @@ function makeCostsPretty(oldCost, newCost) {
         let nrDigits = numberString.length;
         let digitsToCut = Math.floor(nrDigits/3) * 3;
 
+        let modifierText = "";
         switch(digitsToCut) { // Get the text that should be displayed in the HTML-table.
             case 0:
-                modifierText.push("¤");
+                modifierText = "¤";
                 break;
             case 3:
-                modifierText.push("¤");
+                modifierText = "¤";
                 digitsToCut = 0;
                 break;
             case 6:
-                modifierText.push("M");
+                modifierText = "M";
                 break;
             case 9:
-                modifierText.push("B");
+                modifierText = "B";
                 break;
             case 12:
-                modifierText.push("T");
+                modifierText = "T";
                 break;
             default:
-                modifierText.push("x10^" + digitsToCut);
+                modifierText = "x10^" + digitsToCut;
         }
 
-        oldCost_i /= Math.pow(10, digitsToCut); // Finally prettify the cost.  // Cut digits
-        oldCost_i *= 100; // Prepare rounding
-        oldCost_i = Math.round(oldCost_i); // Rould
-        oldCost_i /= 100; // Finish rounding
-        prettyOldCost.push(oldCost_i); // Save result
 
+        let prettyOldCost_i = numberToPrettyString(oldCost_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
+        prettyOldCost.push(prettyOldCost_i); // Save result
 
-        newCost_i /= Math.pow(10, digitsToCut); // Cut digits
-        newCost_i *= 100; // Prepare rounding
-        newCost_i = Math.round(newCost_i); // Round
-        newCost_i /= 100; // Finish rounding
-        prettyNewCost.push(newCost_i); // Save result
+        let prettyNewCost_i = numberToPrettyString(newCost_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
+        prettyNewCost.push(prettyNewCost_i); // Save result
+
+        let prettySavedMoney_i = numberToPrettyString(savedMoney_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
+        savedMoney.push(prettySavedMoney_i); // Save result
     }
+
 
     return {
         prettyOldCost: prettyOldCost,
         prettyNewCost: prettyNewCost,
-        modifierText: modifierText,
+        savedMoney: savedMoney,
+        turningPoint: turningPoint,
     }
 }
 
-function createTable(oldName, newName, oldCost, newCost, modifierText, tableYears) {
+function numberToPrettyString(number, digitsToCut, modifierText) {
+    // Make the number shorter (according to "digitsToCut"), round it and make sure that it has two digits after the comma.
+    number /= Math.pow(10, digitsToCut); // Cut digits
+    number *= 100; // Prepare rounding
+    number = Math.round(number); // Round
+    number /= 100; // Finish rounding
+
+    number = number.toString();
+    splitNumber = number.split("."); // Make sure that the string always has TWO digits after the comma.
+
+    if (splitNumber.length == 1) {
+        number += ".00";
+    } else {
+        if (splitNumber[1].length < 2) {
+            number += "0";
+        }
+    }
+    number += " " + modifierText;
+    return number;
+}
+
+function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoint, tableYears) {
     // This function creates (and returns) the string for the displayed HTML-table.
     // It also creates (and returns) the year where the new Solution starts being worthwile.
-
-    let turningPoint = 0;
-
     let table = `
     <table class="table">
-        <thead>
+        <thead style="text-align: center;">
             <tr>
                 <th scope="col" class="col-auto">Time passed</th>
                 <th scope="col" class="col-auto">` + oldName + `</th>
@@ -384,26 +406,20 @@ function createTable(oldName, newName, oldCost, newCost, modifierText, tableYear
 
     for(let i=0; i<oldCost.length; i++) { // Create all the table rows
         let yearNumber = i+1;
+        if(tableYears.includes(yearNumber)) { // Only display the values for the "tableYears"-years in the table
 
-        let savedMoney = oldCost[i] - newCost[i]; // Prepare the variable "savedMoney"
-        savedMoney *= 100; // Prepare rounding
-        savedMoney = Math.round(savedMoney); // Round
-        savedMoney /= 100; // Finish rounding
-
-        let diffClass = ""; // Prepare the dynamic styles for some of the cells.
-        let isActive = "";
-        if(savedMoney < 0) {
-            diffClass = "table-danger";
-        } else {
-            diffClass = "table-success";
-            isActive += 'class="table-active"';
-
-            if(turningPoint == 0) {
-                turningPoint = yearNumber; // Save the year where the new solution first is cheaper than the old one.
+            let diffClass = ""; // Prepare the dynamic styles for some of the cells.
+            let activityClass = "";
+            if (turningPoint !== undefined) {
+                if(yearNumber < turningPoint) { // If the new solution is more expensive in the current year, make the field red.
+                    diffClass = "table-danger";
+                } else {
+                    diffClass = "table-success"; // Otherwhise style it green and make the year "active".
+                    activityClass += 'class="table-active"';
+                }
+            } else {
+                diffClass = "table-danger";
             }
-        }
-
-        if(tableYears.includes(yearNumber)) { // Only display the values for the "tableYears"-years in the table.
 
             let yearStr = "";
             if(yearNumber == 1) {yearStr = "year" // Get the gramatically correct form of "year"
@@ -413,16 +429,16 @@ function createTable(oldName, newName, oldCost, newCost, modifierText, tableYear
 
             table += `
             <tr>
-                <td scope="row" ` + isActive + `>After ` + yearNumber + " " + yearStr + `:</td>
-                <td>` + oldCost[i] + " " + modifierText[i] + `</td>
-                <td>` + newCost[i] + " " + modifierText[i] + `</td>
-                <td class=` + diffClass + `>` + savedMoney + " " + modifierText[i] + `</td>
+                <td scope="row" ` + activityClass + `>After ` + yearNumber + " " + yearStr + `:</td>
+                <td style="text-align: right;">` + oldCost[i] + `</td>
+                <td style="text-align: right;">` + newCost[i] + `</td>
+                <td style="text-align: right;" class="` + diffClass + `">` + savedMoney[i] + `</td>
             </tr>`;
         }
     }
     table += "</tbody>  </table>";
 
-    return {table: table, turningPoint: turningPoint};
+    return table;
 }
 
 function createGraph(oldName, newName, oldCost, newCost) {
@@ -513,7 +529,6 @@ function createMessage(oldName, newName, turningPoint) {
 
 
 
-
 function prepareToShare (linkDivID) {
 
     let form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
@@ -534,7 +549,7 @@ function createNewURL() {
     const currentURL = window.location.href;
     const splitURL = currentURL.split("?");
     const baseURL = splitURL[0]
-    
+
     const paramTypes = ["l", "l", "r", "l", "l", "l", "r", "l", "l", "l", "r", "l", "r", "l", "l", "l"]; // Add an "r" in front of the radio-values!! Otherwhise, add an "l".
     const paramValues = [
         document.getElementById("oldName").value,
@@ -668,14 +683,12 @@ let globalCopyToast = null;
 function copyUrl() {
     // Copy the URL in the input-field "linkP" to the clipboard.
 
-    if(globalCopyToast !== null) { // Prevent some bootstrap-specific errors:
+    if(globalCopyToast !== null) // Prevent some bootstrap-specific errors:
         globalCopyToast.dispose();
-        console.log(globalCopyToast);
-    }
 
 
     var linkP = document.getElementById("linkP");
-    
+
     if(document.body.createTextRange) { // for Internet Explorer
         var range = document.body.createTextRange();
         range.moveToElementText(linkP);
@@ -687,7 +700,7 @@ function copyUrl() {
         globalCopyToast.show();
     }
     else if(window.getSelection) { // for other browsers
-    
+
         var selection = window.getSelection();
         var range = document.createRange();
         range.selectNodeContents(linkP);
@@ -704,8 +717,6 @@ function copyUrl() {
 
 
 
-
-
 function fillForm () {
     // If the Website gets loaded and the URL contains parameters, fill the form according to those parameters.
 
@@ -717,7 +728,7 @@ function fillForm () {
 
         "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
     ]
-    
+
     const urlParams = new URLSearchParams(window.location.search); // Get the URL Parameters
     const entries = urlParams.entries()
 
@@ -742,7 +753,6 @@ function fillForm () {
 
 
 
-
 function submitOnEnter(inputId) {
     // This function adds an event-listener to each input-field to make them click the calculate-button upon pressed enter.
 
@@ -757,9 +767,8 @@ function submitOnEnter(inputId) {
             // Trigger the button element with a click
             document.getElementById("calcButton").click();
         }
-    }); 
+    });
 }
-
 
 
 
@@ -778,7 +787,7 @@ function hoverPair(className){
                 elements[n].classList.remove("nonHoverStyle");
             }
         })
-        
+
         elements[i].addEventListener('mouseleave', event => {
             for(let n = 0; n < elements.length; n++) {
                 elements[n].classList.remove("hoverStyle");
