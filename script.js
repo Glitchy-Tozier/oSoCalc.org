@@ -64,8 +64,8 @@ function getCostNum(id) {
     
 
     if(isNaN(Number(input))) {
-        let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.\n\n";
-        message += 'The problem was detected in the input "' + input + '".';
+        let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.<br><br>";
+        message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".';
         createError(message);
     }
     else if (input.toString().includes("e+")) {
@@ -103,7 +103,7 @@ function getNrNum(id) {
 
     if(isNaN(Number(input))) {
         let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?<br><br>";
-        message += 'The problem was detected in the input "<b>' + input + '</b>".'
+        message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".'
         createError(message);
     }
     else if (input.toString().includes("e+")) {
@@ -129,17 +129,31 @@ function getRadioValue(name) {
     }
 }
 
+function encodeHTML(data) {
+    // HTML-encodes some input and returns it.
+    let encodedElement = document.createElement("e");
+    encodedElement.innerText = data;
+    return encodedElement.innerHTML;
+}
+
+let globalErrorToast = null;
 function createError(message) {
     // Remove the share-URL-field.
     removeUrlField();
+
+    // Prevent some bootstrap-specific errors:
+    if(globalErrorToast !== null) {
+        globalErrorToast.dispose();
+        console.log(globalErrorToast);
+    }
 
     // Complain to the user.
     let toastBody = document.getElementById("errorToastBody");
     toastBody.innerHTML = message;
 
     let toastDiv = document.getElementById("errorToast")
-    let toast = new bootstrap.Toast(toastDiv);
-    toast.show()
+    globalErrorToast = new bootstrap.Toast(toastDiv);
+    globalErrorToast.show()
 
     // Stops execution.
     throw new Error(message);
@@ -650,9 +664,15 @@ function createNewUrlOutput(url, linkDiv) {
 
 
 
-
+let globalCopyToast = null;
 function copyUrl() {
     // Copy the URL in the input-field "linkP" to the clipboard.
+
+    if(globalCopyToast !== null) { // Prevent some bootstrap-specific errors:
+        globalCopyToast.dispose();
+        console.log(globalCopyToast);
+    }
+
 
     var linkP = document.getElementById("linkP");
     
@@ -662,9 +682,9 @@ function copyUrl() {
         range.select();
         document.execCommand("Copy");
 
-        let toastDiv = document.getElementById("urlCopyToast") // Tell user the URL was copied
-        let toast = new bootstrap.Toast(toastDiv);
-        toast.show()
+        let toastDiv = document.getElementById("urlCopyToast"); // Tell user the URL has been copied
+        globalCopyToast = new bootstrap.Toast(toastDiv);
+        globalCopyToast.show();
     }
     else if(window.getSelection) { // for other browsers
     
@@ -675,9 +695,9 @@ function copyUrl() {
         selection.addRange(range);
         document.execCommand("Copy");
 
-        let toastDiv = document.getElementById("urlCopyToast") // Tell user the URL was copied
-        let toast = new bootstrap.Toast(toastDiv);
-        toast.show()
+        let toastDiv = document.getElementById("urlCopyToast"); // Tell user the URL has been copied
+        globalCopyToast = new bootstrap.Toast(toastDiv);
+        globalCopyToast.show();
     }
 }
 
@@ -714,8 +734,6 @@ function fillForm () {
         i ++;
     }
 
-    /* let toastParent = document.getElementById("urlImportToast" + "Parent");
-    toastParent.classList.add("toastParent"); */
     let toastDiv = document.getElementById("urlImportToast") // Tell user the URL-parameters were imported.
     let toast = new bootstrap.Toast(toastDiv);
     toast.show()

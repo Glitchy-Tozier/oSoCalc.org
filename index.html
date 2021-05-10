@@ -229,20 +229,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                            <button type="button" class="btn btn-success" id="calcButton" onclick="main();">Calculate Financial Results</button>
-                                            <button type="button" class="btn btn-info" onclick='prepareToShare("linkDiv1");'>Share Website with Preinserted Values</button>
                                         </form>
+                                        <button type="button" class="btn btn-success" id="calcButton" onclick="main();">Calculate Financial Results</button>
+                                        <button type="button" class="btn btn-info" onclick='prepareToShare("linkDiv1");'>Share Website with Preinserted Values</button>
                                         <div class="container">
                                             <div class="row invisible bordered">
                                                 <div class="monospace col-md-10" id="linkDiv1"><!-- Here will be the JS-genarated p-tag (the URL) --></div>
                                                 <div class="col-md-2 align-self-center">
                                                     <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
                                                 </div>
-                                                <!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                    URL copied to clipboard.
-                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -415,11 +410,11 @@
 
                     <div class="toastContainer">
                         <div id="urlImportToastParent">
-                            <div class="toast bg-success" id="urlImportToast" data-bs-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast bg-success" id="urlImportToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
                                 <div class="toast-header">
                                     <i class="bi bi-check-circle-fill"></i>
                                     <strong class="me-auto">URL imported</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" style="z-index:100;"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                                 </div>
                                 <div class="toast-body" style="color: white;">
                                     The form was filled up using the parameters imported from the URL.
@@ -427,8 +422,19 @@
                             </div>
                         </div>
 
+                        <div id="errorToastParent">
+                            <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <i class="bi bi-exclamation-diamond-fill"></i>
+                                    <strong class="me-auto">Error</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                                <div class="toast-body" id="errorToastBody"></div>
+                            </div>
+                        </div>
+
                         <div id="urlCopyToastParent">
-                            <div class="toast bg-success" id="urlCopyToast" data-bs-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
                                 <div class="toast-header">
                                     <i class="bi bi-check-circle-fill"></i>
                                     <strong class="me-auto">URL copied</strong>
@@ -439,18 +445,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div id="errorToastParent">
-                            <div class="toast bg-warning" id="errorToast" data-bs-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    <i class="bi bi-exclamation-diamond-fill"></i>
-                                    <strong class="me-auto">Error</strong>
-                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                                <div class="toast-body" id="errorToastBody"></div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -493,17 +487,7 @@
 
             
             // Initialize all form-inputs to make "Enter" start the calculation
-            const formArrayIDs = [
-                "oldName", "oldCost", "oldYearly", "oldMonthly", "nrCurrentProgrammers",
-                "newName", "newCost", "newYearly", "newMonthly", "nrFutureProgrammers",
-
-                "nrEmployees", "employeeCost", "eYearly", "eMonthly", "programmerCost", "pYearly", "pMonthly",
-
-                "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
-            ];
-            for (let i=0; i<formArrayIDs.length; i++) {
-                submitOnEnter(formArrayIDs[i]);
-            }
+            submitOnEnter("calcInput");
             
             
              // Initialize all the event-listener attributes needed for the visual pairing in the last section.

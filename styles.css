@@ -123,9 +123,8 @@ li {
     top: 30px;
     z-index: 99;
 }
-
-.toast-body {
-    color: black;
+#urlImportToast {
+    top: 40%;
 }
 i {
     margin-right: 10px;
