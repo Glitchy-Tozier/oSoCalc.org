@@ -53,17 +53,17 @@ function getCostNum(id) {
 
     input = input.replace(",", ".");
 
-    while(input.includes(" ")){
+    while (input.includes(" ")) {
         input = input.replace(" ", "");
     }
 
     const currencySymbols = ["$","€","¢","¥","£","¤"];
-    for(let i=0; i<currencySymbols.length; i++){
+    for (let i=0; i<currencySymbols.length; i++) {
         input = input.replace(currencySymbols[i], "");
     }
 
 
-    if(isNaN(Number(input))) {
+    if (isNaN(Number(input))) {
         let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".';
         createError(message);
@@ -86,20 +86,20 @@ function getNrNum(id) {
     let input = document.getElementById(id).value; // Get value by id
 
 
-    while(input.includes(",")){
+    while (input.includes(",")) {
         input = input.replace(",", "");
     }
 
-    while(input.includes(".")){
+    while (input.includes(".")) {
         input = input.replace(".", "");
     }
 
-    while(input.includes(" ")){
+    while (input.includes(" ")) {
         input = input.replace(" ", "");
     }
 
 
-    if(isNaN(Number(input))) {
+    if (isNaN(Number(input))) {
         let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".'
         createError(message);
@@ -120,8 +120,8 @@ function getRadioValue(name) {
 
     const radioArray = document.getElementsByName(name);
 
-    for(let i = 0; i < radioArray.length; i++) {
-        if(radioArray[i].checked == true) {
+    for (let i = 0; i < radioArray.length; i++) {
+        if (radioArray[i].checked == true) {
             return radioArray[i].value;
         }
     }
@@ -140,7 +140,7 @@ function createError(message) {
     removeUrlField();
 
     // Prevent some bootstrap-specific errors:
-    if(globalErrorToast !== null)
+    if (globalErrorToast !== null)
         globalErrorToast.dispose();
 
     // Complain to the user.
@@ -163,7 +163,7 @@ function calcCost(softwareCost, programmerCost, nrMaintananceProgrammers, maxYea
     const yearlyCost = maintananceCost + softwareCost;
 
     let cost = [];
-    for(let i=0; i<maxYears; i++) {
+    for (let i=0; i<maxYears; i++) {
         cost.push(yearlyCost * (i+1));
     }
 
@@ -188,7 +188,7 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
 
     const oneTimeCost = employeeTrainingCost + setupCost; // Full one-time cost
 
-    for(let i=0; i<cost.length; i++) { // Add the one-time cost to the yearly costs.
+    for (let i=0; i<cost.length; i++) { // Add the one-time cost to the yearly costs.
         cost[i] += oneTimeCost;
     }
 
@@ -204,7 +204,7 @@ function writeCostSummaryLine(name, value, deleteContents) {
     valueDiv = document.getElementById("summaryValue");
 
     if (deleteContents) {
-        nameDiv.innerHTML = ""; // Make sure the
+        nameDiv.innerHTML = ""; // Clean up the previous summary.
         valueDiv.innerHTML = "";
     }
 
@@ -215,12 +215,13 @@ function writeCostSummaryLine(name, value, deleteContents) {
     nameDiv.appendChild(nameLine);
 
 
-    let valueStr = Math.round(value).toString(); // Make the cost look a little better.
+    const valueStr = Math.round(value).toString(); // Make the cost look a little better.
+    const nrDigits = valueStr.length;
     let fullStr = "";
-    for(let i = 0; i < valueStr.length; i++) {
-        let currentLetter = valueStr[valueStr.length - (i+1)];
+    for (let cycleNr = 0; cycleNr <= nrDigits; cycleNr++) {
+        let currentLetter = valueStr[nrDigits - cycleNr]; // Go through the whole string, starting from the back and working towarts the "front" of the number.
         fullStr = currentLetter + fullStr;
-        if(((i+1) % 3 == 0) && (i > 0) && ((i+1) < valueStr.length)) {
+        if ((cycleNr % 3==0) && (cycleNr>1) && (cycleNr<nrDigits)) {
             fullStr = "," + fullStr;
         }
     }
@@ -256,13 +257,13 @@ function outputResults(oldCost, newCost, tableYears) {
     const message = createMessage(oldName, newName, turningPoint);
 
 
-    if(document.getElementById("notingYetCalculated")) { // Remove the "Calculation wasn't started yet"-section
+    if (document.getElementById("notingYetCalculated")) { // Remove the "Calculation wasn't started yet"-section
         document.getElementById("notingYetCalculated").remove();
     }
 
     let outputDiv = document.getElementById("results-section");
 
-    if(outputDiv.classList.contains("invisible")) { // Make the results-section visible
+    if (outputDiv.classList.contains("invisible")) { // Make the results-section visible
         outputDiv.classList.remove("invisible");
     }
 
@@ -293,7 +294,7 @@ function prepareTableData(oldCost, newCost) {
     let savedMoney = [];
     let turningPoint;
 
-    for(let i=0; i<oldCost.length; i++) { // Go through every element of the cost-arrays.
+    for (let i=0; i<oldCost.length; i++) { // Go through every element of the cost-arrays.
 
         let oldCost_i = oldCost[i];
         let newCost_i = newCost[i];
@@ -307,7 +308,7 @@ function prepareTableData(oldCost, newCost) {
 
         let number = 0;
         let numberString = "";
-        if(oldCost_i < newCost_i) { // Canculate how many blocks of 3 digits we can cut. Do so according to the smaller of the two cell values.
+        if (oldCost_i < newCost_i) { // Canculate how many blocks of 3 digits we can cut. Do so according to the smaller of the two cell values.
             number = Math.round(oldCost_i)
             numberString += number.toString();
 
@@ -404,14 +405,14 @@ function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoin
         </thead>
         <tbody>`;
 
-    for(let i=0; i<oldCost.length; i++) { // Create all the table rows
+    for (let i=0; i<oldCost.length; i++) { // Create all the table rows
         let yearNumber = i+1;
-        if(tableYears.includes(yearNumber)) { // Only display the values for the "tableYears"-years in the table
+        if (tableYears.includes(yearNumber)) { // Only display the values for the "tableYears"-years in the table
 
             let diffClass = ""; // Prepare the dynamic styles for some of the cells.
             let activityClass = "";
             if (turningPoint !== undefined) {
-                if(yearNumber < turningPoint) { // If the new solution is more expensive in the current year, make the field red.
+                if (yearNumber < turningPoint) { // If the new solution is more expensive in the current year, make the field red.
                     diffClass = "table-danger";
                 } else {
                     diffClass = "table-success"; // Otherwhise style it green and make the year "active".
@@ -422,7 +423,7 @@ function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoin
             }
 
             let yearStr = "";
-            if(yearNumber == 1) {yearStr = "year" // Get the gramatically correct form of "year"
+            if (yearNumber == 1) {yearStr = "year" // Get the gramatically correct form of "year"
             } else {
                 yearStr = "years";
             }
@@ -512,8 +513,8 @@ function createMessage(oldName, newName, turningPoint) {
 
     let message = "<h3>So is it worth switching?</h3>";
 
-    if(turningPoint > 0) {
-        if(turningPoint == 1) {
+    if (turningPoint > 0) {
+        if (turningPoint == 1) {
             message += '<p style="text-align: center">Financially speaking, <strong>yes</strong>, you should switch from ' + oldName + " to " + newName + ".</p>";
         } else {
             message += '<p style="text-align: center">Financially speaking, you should switch from, ' + oldName + " to " + newName + " <strong>if you're planning ahead at least " + turningPoint + " Years</strong>.</p>";
@@ -610,8 +611,8 @@ function getCheckedRadioId(radioGroupName) {
 
     const radioArray = document.getElementsByName(radioGroupName); // Get group of radio buttons
 
-    for(let i = 0; i < radioArray.length; i++) { // Search and return the checked one.
-        if(radioArray[i].checked == true) {
+    for (let i = 0; i < radioArray.length; i++) { // Search and return the checked one.
+        if (radioArray[i].checked == true) {
             return radioArray[i].id;
         }
     }
@@ -648,7 +649,7 @@ function outputURL(url, linkDivID) {
 
 }
 
-function removeUrlField(){
+function removeUrlField() {
     // This function removes the current url-display-field by deleting some parts and making others invisible.
     // If there is no element called "linkP", do nothing.
 
@@ -683,13 +684,13 @@ let globalCopyToast = null;
 function copyUrl() {
     // Copy the URL in the input-field "linkP" to the clipboard.
 
-    if(globalCopyToast !== null) // Prevent some bootstrap-specific errors:
+    if (globalCopyToast !== null) // Prevent some bootstrap-specific errors:
         globalCopyToast.dispose();
 
 
     var linkP = document.getElementById("linkP");
 
-    if(document.body.createTextRange) { // for Internet Explorer
+    if (document.body.createTextRange) { // for Internet Explorer
         var range = document.body.createTextRange();
         range.moveToElementText(linkP);
         range.select();
@@ -699,7 +700,7 @@ function copyUrl() {
         globalCopyToast = new bootstrap.Toast(toastDiv);
         globalCopyToast.show();
     }
-    else if(window.getSelection) { // for other browsers
+    else if (window.getSelection) { // for other browsers
 
         var selection = window.getSelection();
         var range = document.createRange();
@@ -773,23 +774,23 @@ function submitOnEnter(inputId) {
 
 
 
-function hoverPair(className){
+function hoverPair(className) {
     // This function visually pairs two list-elements on hover.
     // Input their class-name.
 
     let elements = document.getElementsByClassName(className);
 
-    for(let i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
 
         elements[i].addEventListener('mouseenter', event => {
-            for(let n = 0; n < elements.length; n++) {
+            for (let n = 0; n < elements.length; n++) {
                 elements[n].classList.add("hoverStyle");
                 elements[n].classList.remove("nonHoverStyle");
             }
         })
 
         elements[i].addEventListener('mouseleave', event => {
-            for(let n = 0; n < elements.length; n++) {
+            for (let n = 0; n < elements.length; n++) {
                 elements[n].classList.remove("hoverStyle");
                 elements[n].classList.add("nonHoverStyle");
             }
