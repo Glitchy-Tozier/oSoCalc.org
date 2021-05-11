@@ -55,6 +55,13 @@
                         </div>
                     </div>
 
+                    <div class="zeroHeight" id="alertParent">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" id="urlImportAlert">
+                            <strong>URL imported.</strong> The form has been filled out accordingly.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+
                     <div class="accordion-item">
                         <h1 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" id="calcSecBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" autofocus>
@@ -277,7 +284,7 @@
                                                 <h3>Summary:</h3>
                                                 <div class="row">
                                                     <div class="col-auto" id="summaryName"></div>
-                                                    <div class="col-auto" id="summaryValue" style="text-align: right;"></div>
+                                                    <div class="col-auto" id="summaryCost" style="text-align: right;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -409,20 +416,7 @@
                 </div>
 
                 <div class="toastContainer">
-                    <div id="urlImportToastParent">
-                        <div class="toast bg-success" id="urlImportToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <strong class="me-auto">URL imported</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body" style="color: white;">
-                                The form was filled up using the parameters imported from the URL.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="errorToastParent">
+                    <div class="toastParent zeroHeight">
                         <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-header">
                                 <i class="bi bi-exclamation-diamond-fill"></i>
@@ -433,7 +427,7 @@
                         </div>
                     </div>
 
-                    <div id="urlCopyToastParent">
+                    <div class="toastParent zeroHeight">
                         <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-header">
                                 <i class="bi bi-check-circle-fill"></i>
@@ -461,18 +455,13 @@
         <script>
             // Initialize all Toasts
             var toastList = [].slice.call(document.querySelectorAll('.toast'));
-
-
             toastList.map( toast => {
-
                 toast.addEventListener('show.bs.toast', function () { // Necessary to make the 'X' for closing the toast clickable.
-                    toast.parentElement.classList.add("toastParent")
+                    toast.parentElement.classList.remove("zeroHeight");
                 })
-
                 toast.addEventListener('hidden.bs.toast', function () { // Necessary for not blocking the 'X's of other toasts.
-                    toast.parentElement.classList.remove("toastParent")
+                    toast.parentElement.classList.add("zeroHeight");
                 })
-
                 return new bootstrap.Toast(toast); // Initialize the toast.
             })
 
@@ -482,10 +471,15 @@
             const splitUrl = stringUrl.split("?");
             if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
                 fillForm();
+
+                let alertParent = document.getElementById("alertParent");
+                alertParent.classList.remove("zeroHeight");
+                let urlImportAlert = document.getElementById("urlImportAlert");
+                urlImportAlert.classList.add("show");
             }
 
 
-            // Initialize all form-inputs to make "Enter" start the calculation
+            // Initialize the form-inputs to make "Enter" start the calculation
             submitOnEnter("calcInput");
 
 

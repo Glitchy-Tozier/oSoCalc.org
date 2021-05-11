@@ -1,4 +1,10 @@
 function main() {
+    // Calculate and output the cossts of the two software-solutions.
+
+    let alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
+    if (alertParent !== null) {
+        alertParent.remove();
+    }
 
     let form = document.getElementById("calcInput");
     if (!form.checkValidity()) {
@@ -49,7 +55,8 @@ function getCostNum(id) {
     // It is only used for input-fields that ask the user to input an amount of money.
     // Input the input-form's ID
 
-    let input = document.getElementById(id).value;
+    let inputField = document.getElementById(id)
+    let input = inputField.value;
 
     input = input.replace(",", ".");
 
@@ -64,11 +71,13 @@ function getCostNum(id) {
 
 
     if (isNaN(Number(input))) {
+        inputField.focus();
         let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".';
         createError(message);
     }
     else if (input.toString().includes("e+")) {
+        inputField.focus();
         let message = "Please input smaller numbers.";
         createError(message);
     }
@@ -83,7 +92,8 @@ function getNrNum(id) {
     // It is used for all number-input-fields that do not ask for monetary amounts
     // Input the input-form's ID
 
-    let input = document.getElementById(id).value; // Get value by id
+    let inputField = document.getElementById(id); // Get value by id
+    let input = inputField.value;
 
 
     while (input.includes(",")) {
@@ -100,11 +110,13 @@ function getNrNum(id) {
 
 
     if (isNaN(Number(input))) {
+        inputField.focus();
         let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".'
         createError(message);
     }
     else if (input.toString().includes("e+")) {
+        inputField.focus();
         let message = "Please input smaller numbers.";
         createError(message);
     }
@@ -197,15 +209,15 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
     return cost
 }
 
-function writeCostSummaryLine(name, value, deleteContents) {
+function writeCostSummaryLine(name, cost, deleteContents) {
     // Add a line to the div under the "summary"-heading in the "results"-section.
 
     nameDiv = document.getElementById("summaryName");
-    valueDiv = document.getElementById("summaryValue");
+    costDiv = document.getElementById("summaryCost");
 
     if (deleteContents) {
         nameDiv.innerHTML = ""; // Clean up the previous summary.
-        valueDiv.innerHTML = "";
+        costDiv.innerHTML = "";
     }
 
     nameLine = document.createElement("p"); // Create and add the name-part of the line
@@ -215,21 +227,21 @@ function writeCostSummaryLine(name, value, deleteContents) {
     nameDiv.appendChild(nameLine);
 
 
-    const valueStr = Math.round(value).toString(); // Make the cost look a little better.
-    const nrDigits = valueStr.length;
+    const costStr = Math.round(cost).toString(); // Make the cost look a little better.
+    const nrDigits = costStr.length;
     let fullStr = "";
-    for (let cycleNr = 0; cycleNr <= nrDigits; cycleNr++) {
-        let currentLetter = valueStr[nrDigits - cycleNr]; // Go through the whole string, starting from the back and working towarts the "front" of the number.
+    for (let cycleNr = 1; cycleNr <= nrDigits; cycleNr++) {
+        let currentLetter = costStr[nrDigits - cycleNr]; // Go through the whole string, starting from the back and working towarts the "front" of the number.
         fullStr = currentLetter + fullStr;
-        if ((cycleNr % 3==0) && (cycleNr>1) && (cycleNr<nrDigits)) {
+        if ((cycleNr%3==0) && (cycleNr>1) && (cycleNr<nrDigits)) {
             fullStr = "," + fullStr;
         }
     }
-    valueLine = document.createElement("p"); // Create and add the value-part of the line
-    valueTextNode = document.createTextNode(fullStr);
+    costLine = document.createElement("p"); // Create and add the cost-part of the line
+    costTextNode = document.createTextNode(fullStr);
 
-    valueLine.appendChild(valueTextNode);
-    valueDiv.appendChild(valueLine);
+    costLine.appendChild(costTextNode);
+    costDiv.appendChild(costLine);
 }
 
 function outputResults(oldCost, newCost, tableYears) {
@@ -531,6 +543,12 @@ function createMessage(oldName, newName, turningPoint) {
 
 
 function prepareToShare (linkDivID) {
+    // Create and output an URL that contains the values inserted into the form.
+
+    let alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
+    if (alertParent !== null) {
+        alertParent.remove();
+    }
 
     let form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
     if (!form.checkValidity()) { // If it's not...
@@ -538,6 +556,7 @@ function prepareToShare (linkDivID) {
         form.reportValidity(); // 2. Complain to the user.
         return;
     }
+
 
     newURL = createNewURL(); // Create a new url using the current URL and the form inputs.
 
@@ -745,10 +764,6 @@ function fillForm () {
         }
         i ++;
     }
-
-    let toastDiv = document.getElementById("urlImportToast") // Tell user the URL-parameters were imported.
-    let toast = new bootstrap.Toast(toastDiv);
-    toast.show()
 }
 
 
