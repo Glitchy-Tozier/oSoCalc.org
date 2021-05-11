@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="zeroHeight" id="alertParent">
+                    <div class="invisible" id="alertParent">
                         <div class="alert alert-success alert-dismissible fade show" role="alert" id="urlImportAlert">
                             <strong>URL imported.</strong> The form has been filled out accordingly.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -416,7 +416,7 @@
                 </div>
 
                 <div class="toastContainer">
-                    <div class="toastParent zeroHeight">
+                    <div class="toastParent invisible">
                         <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-header">
                                 <i class="bi bi-exclamation-diamond-fill"></i>
@@ -427,7 +427,7 @@
                         </div>
                     </div>
 
-                    <div class="toastParent zeroHeight">
+                    <div class="toastParent invisible">
                         <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-header">
                                 <i class="bi bi-check-circle-fill"></i>
@@ -445,7 +445,24 @@
         </main>
 
         <footer>
-            <p><a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub</a></p>
+            <div class="container">
+                <div class="row content-justify-center">
+
+                    <div class="col" style="text-align: center;">
+                        <b>Suggest improvements or report bugs:</b><br>
+                        <a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub <i class="bi bi-github"></i></a>
+                    </div>
+
+                    <div class="col-auto align-self-center">
+                        <img src="images/info.jpeg" alt="Logo of the website." style="height: 40px;">
+                    </div>
+
+                    <div class="col" style="text-align: center;">
+                        <b>Contact</b><br>
+                        <a href="#">Contact Information</a>
+                    </div>
+                </div>
+            </div>
         </footer>
 
 
@@ -457,10 +474,10 @@
             var toastList = [].slice.call(document.querySelectorAll('.toast'));
             toastList.map( toast => {
                 toast.addEventListener('show.bs.toast', function () { // Necessary to make the 'X' for closing the toast clickable.
-                    toast.parentElement.classList.remove("zeroHeight");
+                    toast.parentElement.classList.remove("invisible");
                 })
                 toast.addEventListener('hidden.bs.toast', function () { // Necessary for not blocking the 'X's of other toasts.
-                    toast.parentElement.classList.add("zeroHeight");
+                    toast.parentElement.classList.add("invisible");
                 })
                 return new bootstrap.Toast(toast); // Initialize the toast.
             })
@@ -469,13 +486,13 @@
             // Check for URL parameters
             const stringUrl = window.location.href;
             const splitUrl = stringUrl.split("?");
+
+            let alertParent = document.getElementById("alertParent");
             if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
                 fillForm();
-
-                let alertParent = document.getElementById("alertParent");
-                alertParent.classList.remove("zeroHeight");
-                let urlImportAlert = document.getElementById("urlImportAlert");
-                urlImportAlert.classList.add("show");
+                alertParent.classList.remove("invisible");
+            } else {
+                alertParent.remove();
             }
 
 
