@@ -1,15 +1,28 @@
 h1 {
     text-align: center;
 }
+header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
 .subtitle {
     text-align: center;
+    font-style: italic;
 }
 h2 {
     text-align: center;
+    margin-top: 3rem;
+}
+p {
+    margin-bottom: 0.5rem;
 }
 h3 {
     text-align: center;
     margin-top: 30px;
+}
+
+.introduction-section {
+    text-align: justify;
 }
 
 .formSection {
@@ -111,8 +124,7 @@ li {
     color: darkred;
 }
 .infoI {
-    height: 16px;
-    width: 16px;
+    height: 1rem;
 }
 
 .toastParent {
@@ -128,12 +140,29 @@ li {
 i {
     margin-right: 10px;
 }
+.exampleSource {
+    text-align: center;
+    margin: 10px 0;
+}
 
+html {
+    position: relative;
+    min-height: 100%
+}
+main {
+    margin: 0 0 5rem;
+}
 footer {
     background-color: #333333;
     color: white;
 
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5rem;
+    width: 100%;
     padding: 10px;
+    overflow: hidden;
 }
 footer a {
     color: white;

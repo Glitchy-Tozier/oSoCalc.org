@@ -9,18 +9,17 @@
         <link rel="stylesheet" href="styles.css"> <!-- self-written -->
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- https://www.chartjs.org/ -->
-        <script type="text/javascript" src="script.js"></script> <!-- self-written-->
+        <script src="script.js"></script> <!-- self-written-->
         <title>o$o Calculator</title>
     </head>
 
     <body>
         <header>
-            <h1><strong>O</strong>pen <strong>So</strong>urce <strong>Calc</strong>ulator</h1>
+            <h1 class="titleHeading"><strong>O</strong>pen <strong>So</strong>urce <strong>Calc</strong>ulator</h1>
             <p class="subtitle">Is Switching to Open Source Optimal <strong>in Your Situation</strong>?</p>
         </header>
 
-        <main role="main" class="main" id="main">
-
+        <main>
 
             <div class="container" id="mainContainer">
 
@@ -37,11 +36,24 @@
                                 <div class="introduction-section" id="introduction-section">
                                     <div class="container">
                                         <h2>What does this website do?</h2>
-                                        <p>This website lets companies calculate whether it is worth it to switch to Free and Open-Source Software (FOSS) solutions.<br>
-                                            A promininent example would be MS Office vs Libreoffice</p>
+                                        <p>This website lets companies calculate whether it is worth it to switch to Free and Open-Source Software (FOSS) solutions.</p>
+                                        <p>This is done by estimating the <strong>one-time switching costs</strong> such as employee-training expenses temporary, inefficiency due to training, and setup-cost for the new software-solution.
+                                            Those costs will be added to the <strong>yearly expanses</strong> such as licence-fees and salaries payed the maintanance-programmers.</p>
+
+                                        <h2>How to use the calculator:</h2>
+                                        <p>Go to the next section (<b>Price Calculator</b>) and input the required costs and amounts.
+                                            Then click on the button titled "Calculate Financial Results". You will be shown the cost projection over the next 20 years.</p>
+                                        <p>It is recommended that you input values conservatively. For example, if you are unsure whether the number of
+                                            maintanance programmers nedded for the new solution is 2 or 3, go with three. This way, if the results are positive, you can be more confident in their accuracy.</p>
+                                        <br>
+                                        <p>Also, please keep in mind that the calculations performed on this website only incorporate the monetary consequences of switching between two software-solution.
+                                            To get an overview of additional (important!) factors which can't easily be portrayed in numbers, please visit the
+                                            <a href="#advSecTitle" onclick="document.getElementById('advSecBtn').focus();">!!!!!!!!!!last section</a> of this Website.</p>
+
+
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <h2>How to use the calculator:</h2>
+                                                <h2>If you plan on sharing the results with a superior:</h2>
                                                 <p></p>
                                             </div>
 
@@ -408,6 +420,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="exampleSource">
+                                            <span>The examples used in this section refer to <a href="https://www.microsoft.com/microsoft-365/business/compare-all-microsoft-365-business-products" target="_blank">Microsoft Office</a>
+                                                and <a href="https://www.libreoffice.org/download/libreoffice-in-business/" target="_blank">Libreoffice</a>.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -449,17 +465,17 @@
                 <div class="row content-justify-center">
 
                     <div class="col" style="text-align: center;">
-                        <b>Suggest improvements or report bugs:</b><br>
+                        <b>GPL-3.0 License</b><br>
                         <a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub <i class="bi bi-github"></i></a>
                     </div>
 
                     <div class="col-auto align-self-center">
-                        <img src="images/info.jpeg" alt="Logo of the website." style="height: 40px;">
+                        <img src="images/info.jpeg" alt="Logo of the website." style="height: 2.6rem;">
                     </div>
 
                     <div class="col" style="text-align: center;">
-                        <b>Contact</b><br>
-                        <a href="#">Contact Information</a>
+                        <b>About:</b><br>
+                        <a href="#">Link</a>
                     </div>
                 </div>
             </div>
@@ -468,7 +484,6 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-
         <script>
             // Initialize all Toasts
             var toastList = [].slice.call(document.querySelectorAll('.toast'));
