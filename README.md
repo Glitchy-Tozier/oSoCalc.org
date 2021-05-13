@@ -1,6 +1,7 @@
 # oSoCalc
 
-A small personal project that may help some people, companies or even institutions switch to open-source-solutions.
+*A small personal project that may help some people, companies or even institutions switch to open-source-solutions.*
+
 This website that let's you calculate whether it is worth it to switch to Free and Open-Source Software (FOSS) solutions and share your results with other people.
 A promininent example would be MS Office vs Libreoffice
 
