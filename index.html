@@ -37,30 +37,30 @@
                                     <div class="container">
                                         <h2>What does this website do?</h2>
                                         <p>This website lets companies calculate whether it is worth it to switch to Free and Open-Source Software (FOSS) solutions.</p>
-                                        <p>This is done by estimating the <strong>one-time switching costs</strong> such as employee-training expenses temporary, inefficiency due to training, and setup-cost for the new software-solution.
-                                            Those costs will be added to the <strong>yearly expanses</strong> such as licence-fees and salaries payed the maintanance-programmers.</p>
+                                        <p>This is done by estimating the <strong>one-time switching costs</strong> such as employee-training expenses, temporary inefficiency due to training, and setup-cost for the new software-solution.
+                                            These costs will be added to the <strong>yearly expanses</strong> such as licence-fees and salaries payed the maintanance-programmers.</p>
 
                                         <h2>How to use the calculator:</h2>
                                         <p>Go to the next section (<b>Price Calculator</b>) and input the required costs and amounts.
-                                            Then click on the button titled "Calculate Financial Results". You will be shown the cost projection over the next 20 years.</p>
+                                            Then click on the button titled "Calculate Financial Results". You will be shown the cost projection over the next 20 years in the <b>Results</b>-section.</p>
                                         <p>It is recommended that you input values conservatively. For example, if you are unsure whether the number of
                                             maintanance programmers nedded for the new solution is 2 or 3, go with three. This way, if the results are positive, you can be more confident in their accuracy.</p>
-                                        <br>
+                                        <!--<br>
                                         <p>Also, please keep in mind that the calculations performed on this website only incorporate the monetary consequences of switching between two software-solution.
                                             To get an overview of additional (important!) factors which can't easily be portrayed in numbers, please visit the
-                                            <a href="#advSecTitle" onclick="document.getElementById('advSecBtn').focus();">!!!!!!!!!!last section</a> of this Website.</p>
-
+                                            <a href="#advSecTitle" onclick="document.getElementById('advSecBtn').focus();">!!!!!!!!!!last section</a> of this Website.</p>-->
 
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <h2>If you plan on sharing your results with someone else:</h2>
+                                            <div class="col-lg-6" id="shareDiv">
+                                                <h2>Sharing your results with someone else:</h2>
                                                 <p>You can share your results (see turquoise button) by either just copying the URL or by sharing the link via email.
                                                     Make sure to double-check that your data before sharing the results.</p>
                                             </div>
 
-                                            <div class="col-lg-6">
-                                                <h2>If you arrived here using a link:</h2>
-                                                <p id="bossMessage"></p>
+                                            <div class="col-lg-6" id="welcomeDiv">
+                                                <h2>If you got sent here via a link:</h2>
+                                                <p>The values needed for calculation already have been filled out for you.
+                                                    You can double-check them in the <b>Price Calculator</b>-tab. Then click on "Calculate Financial Results" to receive your projection.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -290,7 +290,7 @@
                                         <h2 id="resTitle">Results of Calculation:</h2>
                                         <div class="row">
                                             <div class="col-lg-6" id="tableDiv"></div>
-                                            <div class="col-lg-6" id="chartDiv"></div>
+                                            <div class="col-lg-6" id="chartDiv" style="height: 100px;"></div>
                                         </div>
 
 
@@ -303,7 +303,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        
                                         <div id="worthSwitchingDiv"></div>
 
                                         <h3>Please Conisder This:</h3>
@@ -489,6 +489,28 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
         <script>
+            // Check for URL parameters
+            const stringUrl = window.location.href;
+            const splitUrl = stringUrl.split("?");
+
+            let alertParent = document.getElementById("alertParent");
+            if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
+                fillForm();
+                alertParent.classList.remove("invisible");
+            } else {
+                let shareDiv = document.getElementById("shareDiv");
+                shareDiv.classList.remove("col-lg-6");
+                shareDiv.classList.add("col-12");
+                let welcomeDiv = document.getElementById("welcomeDiv");
+                welcomeDiv.remove();
+
+                alertParent.remove();
+            }
+
+
+            // Initialize the form-inputs to make "Enter" start the calculation
+            submitOnEnter("calcInput");
+
             // Initialize all Toasts
             var toastList = [].slice.call(document.querySelectorAll('.toast'));
             toastList.map( toast => {
@@ -502,29 +524,11 @@
             })
 
 
-            // Check for URL parameters
-            const stringUrl = window.location.href;
-            const splitUrl = stringUrl.split("?");
-
-            let alertParent = document.getElementById("alertParent");
-            if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
-                fillForm();
-                alertParent.classList.remove("invisible");
-            } else {
-                alertParent.remove();
-            }
-
-
-            // Initialize the form-inputs to make "Enter" start the calculation
-            submitOnEnter("calcInput");
-
-
              // Initialize all the event-listener attributes needed for the visual pairing in the last section.
             const listClasses = ["aLi1", "aLi2", "aLi3", "bLi1", "bLi2", "bLi3", "bLi4"];
             for (let i=0; i<listClasses.length; i++) {
                 hoverPair(listClasses[i]);
             }
-
 
             // Initialize all Tooltips
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
