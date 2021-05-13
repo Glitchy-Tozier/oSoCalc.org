@@ -17,4 +17,4 @@ Go to the **Price Calculator**-section and input the required costs and amounts.
 
 It is recommended that you input values conservatively. For example, if you are unsure whether the number of maintanance programmers nedded for the new solution is 2 or 3, go with three. This way, if the results are positive, you can be more confident in their accuracy.
 
-You can share your results (see turquoise button) by either just copying the URL or by sharing the link via email. Make sure to double-check your data before sharing the results.
+You can **share** your results (see turquoise button) by either just copying the URL or by sharing the link via email. Make sure to double-check your data before sharing the results.
