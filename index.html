@@ -53,12 +53,14 @@
 
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <h2>If you plan on sharing the results with a superior:</h2>
-                                                <p></p>
+                                                <h2>If you plan on sharing your results with someone else:</h2>
+                                                <p>You can share your results (see turquoise button) by either just copying the URL or by sharing the link via email.
+                                                    Make sure to double-check that your data before sharing the results.</p>
                                             </div>
 
                                             <div class="col-lg-6">
-                                                <h2>If you're a boss getting sent here by an ambitious employee:</h2>
+                                                <h2>If you arrived here using a link:</h2>
+                                                <p id="bossMessage"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -250,12 +252,13 @@
                                             </div>
                                         </form>
                                         <button type="button" class="btn btn-success" id="calcButton" onclick="main();">Calculate Financial Results</button>
-                                        <button type="button" class="btn btn-info" onclick='prepareToShare("linkDiv1");'>Share Website with Preinserted Values</button>
+                                        <button type="button" class="btn btn-info" onclick='prepareToShare("1");'>Share Website with Preinserted Values</button>
                                         <div class="container">
                                             <div class="row invisible bordered">
                                                 <div class="monospace col-md-10" id="linkDiv1"><!-- Here will be the JS-genarated p-tag (the URL) --></div>
                                                 <div class="col-md-2 align-self-center">
                                                     <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
+                                                    <a href="mailto:?body=index.html" type="button" class="btn btn-info" id="mailto1">Send URL via Email</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -284,7 +287,7 @@
                                 <div class="results-section invisible" id="results-section">
                                     <div class="container">
 
-                                        <h2 id="resTitle"></h2>
+                                        <h2 id="resTitle">Results of Calculation:</h2>
                                         <div class="row">
                                             <div class="col-lg-6" id="tableDiv"></div>
                                             <div class="col-lg-6" id="chartDiv"></div>
@@ -311,7 +314,7 @@
                                         <div style="text-align: center;">
                                             <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
                                                 Go back to Price Calculator</button>
-                                            <button type="button" class="btn btn-info" onclick="prepareToShare('linkDiv2');">Share Website with Preinserted Values</button>
+                                            <button type="button" class="btn btn-info" onclick="prepareToShare('2');">Share Website with Preinserted Values</button>
                                             <button type="button" class="btn btn-primary" onclick="document.getElementById('advSecBtn').click();">
                                                 See List of Pros and Cons</button>
                                         </div>
@@ -320,6 +323,7 @@
                                                 <div class="monospace col-md-10" id="linkDiv2"><!-- Here will be the JS-genarated p-tag (the URL) --></div>
                                                 <div class="col-md-2 align-self-center">
                                                     <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
+                                                    <a href="mailto:?body=index.html" type="button" class="btn btn-info" id="mailto2">Send URL via Email</a>
                                                 </div>
                                             </div>
                                         </div>

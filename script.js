@@ -542,7 +542,7 @@ function createMessage(oldName, newName, turningPoint) {
 
 
 
-function prepareToShare (linkDivID) {
+function prepareToShare (placementNumber) {
     // Create and output an URL that contains the values inserted into the form.
 
     let alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
@@ -560,6 +560,11 @@ function prepareToShare (linkDivID) {
 
     newURL = createNewURL(); // Create a new url using the current URL and the form inputs.
 
+    const mailtoID = "mailto" + placementNumber;
+    let mailtoLink = document.getElementById(mailtoID);
+    mailtoLink.href = "mailto:?body=" + newURL;
+
+    const linkDivID = "linkDiv" + placementNumber;
     outputURL(newURL, linkDivID);
 }
 
