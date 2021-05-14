@@ -481,8 +481,8 @@ function createGraph(oldName, newName, oldCost, newCost) {
                     target: +1,
                     above: "#d1e7dd",
                     below: "#f8d7da",
-                }, */
-                fillColor: "green",
+                },
+                fillColor: "green",*/
                 data: oldCost,
             }, {
                 label: newName,
@@ -498,10 +498,12 @@ function createGraph(oldName, newName, oldCost, newCost) {
     const config = {
         type: "line",
         data,
-        options: { interaction: {
+        options: {
+            interaction: {
                 mode: "index",
                 intersect: false,
             },
+            maintainAspectRatio: false, // Makes sure the graph doesn't shrink down due the surrounding div's small width.
             scales: {
                 x: { title: {
                         display: true,

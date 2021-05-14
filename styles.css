@@ -2,12 +2,16 @@ h1 {
     text-align: center;
 }
 header {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px 20px;
 }
 .subtitle {
     text-align: center;
     font-style: italic;
+}
+.accordion-header {
+    border-color: blue;
+    border-style: hidden;
+    border-width: 5px;
 }
 h2 {
     text-align: center;
@@ -58,12 +62,7 @@ h3 {
     border-width: 5px;
     border-radius: 20px;
 
-    /* background-color: #f2f2f2; */
-
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 10px 20px;
 }
 .invisible {
     display: none;
@@ -115,24 +114,6 @@ li {
         border-radius: 5px;
         border-width: 1px;
     }
-}
-
-
-.row-eq-height {
-
-
-  display: -webkit-box;
-
-
-  display: -webkit-flex;
-
-
-  display: -ms-flexbox;
-
-
-  display:         flex;
-
-
 }
 
 .pros {
