@@ -9,8 +9,8 @@ header {
     font-style: italic;
 }
 .accordion-header {
-    border-color: blue;
     border-style: hidden;
+    border-color: blue;
     border-width: 5px;
 }
 h2 {
@@ -168,4 +168,15 @@ footer a {
 }
 footer a:hover {
     color: #cceeff;
+}
+
+
+.aboutLeftCol {
+    text-align: right;
+    padding: 5px;
+    font-weight: bold;
+}
+.aboutRightCol {
+    text-align: left;
+    padding: 5px;
 }
