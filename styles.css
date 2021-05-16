@@ -1,34 +1,36 @@
-h1 {
-    text-align: center;
-}
 header {
     padding: 50px 20px;
+}
+h1 {
+    text-align: center;
 }
 .subtitle {
     text-align: center;
     font-style: italic;
 }
-.accordion-header {
-    border-style: hidden;
-    border-color: blue;
-    border-width: 5px;
-}
 h2 {
     text-align: center;
     margin-top: 3rem;
-}
-p {
-    margin-bottom: 0.5rem;
 }
 h3 {
     text-align: center;
     margin-top: 30px;
 }
+p {
+    margin-bottom: 0.5rem;
+}
 
+.accordion-header {
+    border-style: hidden;
+    border-color: blue;
+    border-width: 5px;
+}
+/* Style introduction-section */
 .introduction-section {
     text-align: justify;
 }
 
+/* Style Form */
 .formSection {
     border-color: gray;
     border-style: solid;
@@ -43,41 +45,19 @@ h3 {
 
     margin-bottom: 20px;
 }
-
+.inputFieldLabel {
+    margin-top: 20px;
+}
+.numberForm {
+    text-align: right;
+}
 .btn {
     margin: 5px;
 }
 
-.numberForm {
-    text-align: right;
-}
-
-.inputFieldLabel {
-    margin-top: 20px;
-}
-
-.prosAndConsSection {
-    border-color: gray;
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 20px;
-
-    padding: 10px 20px;
-}
+/* Style the section where the URL is output */
 .invisible {
     display: none;
-}
-
-.monospace {
-    font-family: monospace;
-    background-color: lightgray;
-
-    border-style: solid;
-    border-color: black;
-    border-radius: 5px;
-    border-width: 2px;
-
-    padding-top: 10px;
 }
 .bordered {
     border-color: gray;
@@ -89,17 +69,39 @@ h3 {
 
     padding: 10px;
 }
-.doSwitch {
-    background-color: lightgreen;
-}
-.doNotSwitch {
-    background-color: lightpink;
+.monospace {
+    font-family: monospace;
+    background-color: lightgray;
+
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    border-width: 2px;
+
+    padding-top: 10px;
 }
 
+/* Style the section where the advantages and disadvantages of open/closed software are listed */
+.prosAndConsSection {
+    border-color: gray;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 20px;
+
+    padding: 10px 20px;
+}
 li {
     padding: 5px;
 }
-
+.pros {
+    color: darkgreen;
+}
+.cons {
+    color: darkred;
+}
+.infoI {
+    height: 1rem;
+}
 @media (min-width: 768px) {
     .nonHoverStyle {
         border-style: solid;
@@ -115,17 +117,12 @@ li {
         border-width: 1px;
     }
 }
-
-.pros {
-    color: darkgreen;
-}
-.cons {
-    color: darkred;
-}
-.infoI {
-    height: 1rem;
+.exampleSource {
+    text-align: center;
+    margin: 10px 0;
 }
 
+/* Style toasts */
 .toastParent {
     display: flex;
     justify-content: center;
@@ -135,15 +132,15 @@ li {
     top: 30px;
     z-index: 99;
 }
-
 i {
     margin-right: 10px;
 }
-.exampleSource {
-    text-align: center;
-    margin: 10px 0;
+.toastIcon {
+    margin-right: 10px;
 }
 
+
+/* Style footer */
 html {
     position: relative;
     min-height: 100%
@@ -171,6 +168,7 @@ footer a:hover {
 }
 
 
+/* Style about-page */
 .aboutLeftCol {
     text-align: right;
     padding: 5px;

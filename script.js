@@ -443,9 +443,9 @@ function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoin
             table += `
             <tr>
                 <td scope="row" ` + activityClass + `>After ` + yearNumber + " " + yearStr + `:</td>
-                <td style="text-align: right;">` + oldCost[i] + `</td>
-                <td style="text-align: right;">` + newCost[i] + `</td>
-                <td style="text-align: right;" class="` + diffClass + `">` + savedMoney[i] + `</td>
+                <td style="text-align: right; white-space: nowrap;">` + oldCost[i] + `</td>
+                <td style="text-align: right; white-space: nowrap;">` + newCost[i] + `</td>
+                <td style="text-align: right; white-space: nowrap;" class="` + diffClass + `">` + savedMoney[i] + `</td>
             </tr>`;
         }
     }
