@@ -81,6 +81,12 @@ p {
     padding-top: 10px;
 }
 
+/* Style the results-table */
+.costCell {
+    text-align: right;
+    white-space: nowrap;
+}
+
 /* Style the section where the advantages and disadvantages of open/closed software are listed */
 .prosAndConsSection {
     border-color: gray;
@@ -133,9 +139,6 @@ li {
     z-index: 99;
 }
 i {
-    margin-right: 10px;
-}
-.toastIcon {
     margin-right: 10px;
 }
 

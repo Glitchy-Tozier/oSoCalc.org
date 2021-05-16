@@ -337,7 +337,7 @@ function prepareTableData(oldCost, newCost) {
         }
 
         let nrDigits = numberString.length;
-        let digitsToCut = Math.floor(nrDigits/3) * 3;
+        let digitsToCut = Math.floor((nrDigits-1)/3) * 3;
 
         let modifierText = "";
         switch(digitsToCut) { // Get the text that should be displayed in the HTML-table.
@@ -345,8 +345,7 @@ function prepareTableData(oldCost, newCost) {
                 modifierText = "¤";
                 break;
             case 3:
-                modifierText = "¤";
-                digitsToCut = 0;
+                modifierText = "k";
                 break;
             case 6:
                 modifierText = "M";
@@ -443,9 +442,9 @@ function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoin
             table += `
             <tr>
                 <td scope="row" ` + activityClass + `>After ` + yearNumber + " " + yearStr + `:</td>
-                <td style="text-align: right; white-space: nowrap;">` + oldCost[i] + `</td>
-                <td style="text-align: right; white-space: nowrap;">` + newCost[i] + `</td>
-                <td style="text-align: right; white-space: nowrap;" class="` + diffClass + `">` + savedMoney[i] + `</td>
+                <td class="costCell">` + oldCost[i] + `</td>
+                <td class="costCell">` + newCost[i] + `</td>
+                <td class="costCell ` + diffClass + `">` + savedMoney[i] + `</td>
             </tr>`;
         }
     }
