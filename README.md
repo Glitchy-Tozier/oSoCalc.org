@@ -1,4 +1,4 @@
-# oSoCalc
+# oSoCalc.org
 
 *A small personal project that may help some people, companies or even institutions switch to open-source-solutions.*
 
