@@ -266,7 +266,7 @@
                                         <button type="button" class="btn btn-info" onclick='prepareToShare("1");'>Share Website with Preinserted Values</button>
                                         <div class="container">
                                             <div class="row invisible bordered">
-                                                <div class="monospace col-md-10" id="linkDiv1"><!-- Here will be the JS-genarated p-tag (the URL) --></div>
+                                                <div class="monospace col-md-10" id="linkDiv1"><!-- Here will be the JS-generated p-tag (the URL) --></div>
                                                 <div class="col-md-2 align-self-center">
                                                     <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
                                                     <a href="mailto:?body=https://osocalc.org/" class="btn btn-info" id="mailto1">Send URL via Email</a>
@@ -308,10 +308,11 @@
                                         <div class="row justify-content-center">
                                             <div class="col-auto">
                                                 <h3>Summary:</h3>
-                                                <div class="row" id="summaryRow">
-                                                    <div class="col-auto" id="summaryName"></div>
-                                                    <div class="col-auto" id="summaryCost" style="text-align: right;"></div>
-                                                </div>
+                                                <table class="table">
+                                                    <tbody id="summaryTableBody">
+                                                        <!-- The JS-generated summary-table will show up here. -->
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
 
@@ -331,7 +332,7 @@
                                         </div>
                                         <div class="container">
                                             <div class="row invisible bordered">
-                                                <div class="monospace col-md-10" id="linkDiv2"><!-- Here will be the JS-genarated p-tag (the URL) --></div>
+                                                <div class="monospace col-md-10" id="linkDiv2"><!-- Here will be the JS-generated p-tag (the URL) --></div>
                                                 <div class="col-md-2 align-self-center">
                                                     <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
                                                     <a href="mailto:?body=https://osocalc.org/" class="btn btn-info" id="mailto2">Send URL via Email</a>

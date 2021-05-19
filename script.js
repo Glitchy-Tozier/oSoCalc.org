@@ -212,36 +212,30 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
 function writeCostSummaryLine(name, cost, deleteContents) {
     // Add a line to the div under the "summary"-heading in the "results"-section.
 
-    nameDiv = document.getElementById("summaryName");
-    costDiv = document.getElementById("summaryCost");
+    summaryTable = document.getElementById("summaryTableBody");
 
     if (deleteContents) {
-        nameDiv.innerHTML = ""; // Clean up the previous summary.
-        costDiv.innerHTML = "";
+        summaryTable.innerHTML = ""; // Clean up the previous summary.
     }
-
-    nameLine = document.createElement("p"); // Create and add the name-part of the line
-    nameTextNode = document.createTextNode(name);
-
-    nameLine.appendChild(nameTextNode);
-    nameDiv.appendChild(nameLine);
-
 
     const costStr = Math.round(cost).toString(); // Make the cost look a little better.
     const nrDigits = costStr.length;
-    let fullStr = "";
+    let prettyCost = "";
     for (let cycleNr = 1; cycleNr <= nrDigits; cycleNr++) {
         let currentLetter = costStr[nrDigits - cycleNr]; // Go through the whole string, starting from the back and working towarts the "front" of the number.
-        fullStr = currentLetter + fullStr;
-        if ((cycleNr%3==0) && (cycleNr>1) && (cycleNr<nrDigits)) {
-            fullStr = "," + fullStr;
+        prettyCost = currentLetter + prettyCost;
+        if ((cycleNr%3==0) && (cycleNr>1) && (cycleNr<nrDigits)) { // Add a separator after every three digits.
+            prettyCost = "," + prettyCost;
         }
     }
-    costLine = document.createElement("p"); // Create and add the cost-part of the line
-    costTextNode = document.createTextNode(fullStr);
 
-    costLine.appendChild(costTextNode);
-    costDiv.appendChild(costLine);
+    const tableRowHTML = `
+        <td>` + name + `</td>
+        <td class="costCell">` + prettyCost + `</td>`
+
+    tableRow = document.createElement("tr"); // Create and add the name-part of the line
+    tableRow.innerHTML = tableRowHTML;
+    summaryTableBody.appendChild(tableRow);
 }
 
 function outputResults(oldCost, newCost, tableYears) {
