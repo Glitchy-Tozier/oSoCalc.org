@@ -116,12 +116,14 @@ li {
         border-width: 1px;
     }
     .hoverStyle {
-        background-color: yellow;
+        background-color: #e6f2ff;
 
         border-style: solid;
         border-color: black;
         border-radius: 5px;
         border-width: 1px;
+
+        color: black;
     }
 }
 .exampleSource {
