@@ -140,7 +140,7 @@ li {
     top: 30px;
     z-index: 99;
 }
-i {
+.toastIcon {
     margin-right: 10px;
 }
 
@@ -165,13 +165,35 @@ footer {
     padding: 10px;
     overflow: hidden;
 }
+.footerLogo {
+    height: 2.6rem;
+}
+.smallScreenOnly {
+    display: none;
+}
 footer a {
     color: white;
 }
 footer a:hover {
     color: #cceeff;
 }
-
+@media (max-width: 576px) {
+    main {
+        margin: 0 0 3rem;
+    }
+    footer {
+        height: 3rem;
+    }
+    .footerLogo {
+        height: 1.5rem;
+    }
+    .bigScreenOnly {
+        display: none;
+    }
+    .smallScreenOnly {
+        display: block;
+    }
+}
 
 /* Style about-page */
 .aboutLeftCol {

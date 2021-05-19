@@ -11,6 +11,15 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- https://www.chartjs.org/ -->
         <script src="script.js"></script> <!-- self-written-->
 
+        <!-- Favicon-stuff -->
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
         <title>Open Source Calculator</title>
         <meta name="description" content="Calculate whether switching to an Open-Source Software solution will save you money.">
     </head>
@@ -30,7 +39,7 @@
                     <div class="accordion-item">
                         <h1 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <span class="h2">Introduction to this Website</span>
+                                <span class="h2">Introduction</span>
                             </button>
                         </h1>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#bigAccordion">
@@ -39,12 +48,12 @@
                                     <div class="container">
                                         <h2>What does this website do?</h2>
                                         <p>This website lets companies calculate whether it is worth it to switch to Free and Open-Source Software (FOSS) solutions.</p>
-                                        <p>This is done by estimating the <strong>one-time switching costs</strong> such as employee-training expenses, temporary inefficiency due to training, and setup-cost for the new software-solution.
-                                            These costs will be added to the <strong>yearly expanses</strong> such as licence-fees and salaries payed the maintanance-programmers.</p>
+                                        <p>This is done by estimating the <strong>one-time switching costs</strong> such as employee training expenses, temporary inefficiency due to training, and setup cost for the new software solution.
+                                            These costs will be added to the <strong>yearly expanses</strong> such as licence fees and salaries payed the maintanance-programmers.</p>
 
                                         <h2>How to use the calculator:</h2>
                                         <p>Go to the next section (<b>Price Calculator</b>) and input the required costs and amounts.
-                                            Then click on the button titled "Calculate Financial Results". You will be shown the cost projection over the next 20 years in the <b>Results</b>-section.</p>
+                                            Then click on the button titled "Calculate Financial Results". You will be shown the cost projection over the next 20 years in the <b>Results</b> section.</p>
                                         <p>It is recommended that you input values conservatively. For example, if you are unsure whether the number of
                                             maintanance programmers nedded for the new solution is 2 or 3, go with three. This way, if the results are positive, you can be more confident in their accuracy.</p>
                                         <!--<br>
@@ -441,7 +450,7 @@
                     <div class="toastParent invisible">
                         <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-header">
-                                <i class="bi bi-exclamation-diamond-fill"></i>
+                                <i class="bi bi-exclamation-diamond-fill toastIcon"></i>
                                 <strong class="me-auto">Error</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                             </div>
@@ -452,7 +461,7 @@
                     <div class="toastParent invisible">
                         <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
                             <div class="toast-header">
-                                <i class="bi bi-check-circle-fill"></i>
+                                <i class="bi bi-check-circle-fill toastIcon"></i>
                                 <strong class="me-auto">URL copied</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                             </div>
@@ -470,17 +479,21 @@
             <div class="container">
                 <div class="row content-justify-center">
 
-                    <div class="col" style="text-align: center;">
-                        <b>GPL-3.0 License</b><br>
+                    <div class="col align-self-center" style="text-align: center;">
+                        <div class="bigScreenOnly">
+                            <b>GPL-3.0 License</b><br>
+                        </div>
                         <a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub <i class="bi bi-github"></i></a>
                     </div>
 
                     <div class="col-auto align-self-center">
-                        <img src="images/info.jpeg" alt="Logo of the website." style="height: 2.6rem;">
+                        <img src="images/favicon.png" alt="Logo of the website." class="footerLogo">
                     </div>
 
-                    <div class="col" style="text-align: center;">
-                        <b>About:</b><br>
+                    <div class="col align-self-center" style="text-align: center;">
+                        <div class="bigScreenOnly">
+                            <b>About:</b><br>
+                        </div>
                         <a href="about.html">o$oCalc About</a>
                     </div>
                 </div>
