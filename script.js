@@ -1,15 +1,21 @@
-function main() {
+function main(automaticallyTriggered) {
     // Calculate and output the cossts of the two software-solutions.
 
-    let alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
-    if (alertParent !== null) {
-        alertParent.remove();
-    }
+    if (typeof automaticallyTriggered === "undefined") { // If you get here by clicking the "Calculate..."-button.
+        const alert = document.getElementById("urlImportAlert"); // Remove the "URL was imported"-alert if there is one.
+        if (alert !== null ) {
+            let alertParent = alert.parentElement;
+            if (alertParent !== null) {
+                alertParent.remove();
+            }
+        }
 
-    let form = document.getElementById("calcInput");
-    if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
+        let form = document.getElementById("calcInput");
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            createError("Please fill out the form.");
+            return;
+        }
     }
 
     let oldSoftwareCost = getCostNum("oldCost"); // Get input from HTML form
