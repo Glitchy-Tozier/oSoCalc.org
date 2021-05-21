@@ -80,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div class="invisible" id="alertParent">
+                    <div class="invisible">
                         <div class="alert alert-success alert-dismissible fade show" role="alert" id="urlImportAlert">
                             <strong>URL imported.</strong> The form has been filled out accordingly.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -97,9 +97,15 @@
                             <div class="accordion-body">
                                 <div class="VS-section" id="VS-section">
                                     <div class="container">
+                                        <div class="invisible">
+                                            <div class="alert alert-light alert-dismissible fade show" role="alert" id="insertExampleAlert">
+                                                Click on this link to insert an example:
+                                                <button type="button" class="linkVisuals" data-bs-dismiss="alert" onclick="insertExample();">MS Office or LibreOffice</button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        </div>
 
                                         <form id="calcInput" name="calcInput">
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="formSection">
@@ -107,11 +113,11 @@
 
 
                                                         <label for="oldName" class="form-label inputFieldLabel">Product Name</label>
-                                                        <input type="text" id="oldName" class="form-control form-control-lg" value="MS Office" required>
+                                                        <input type="text" id="oldName" class="form-control form-control-lg" placeholder="Old product name" required>
 
                                                         <label for="oldCost" class="form-label inputFieldLabel">Price of licence (per employee)</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="oldCost" class="form-control numberForm" placeholder="What does your current solution cost?" value="4,20" required><br>
+                                                            <input type="text" id="oldCost" class="form-control numberForm" placeholder="Old licence cost" required><br>
                                                             <span class="input-group-text">$/€/£/¥/…¤</span>
                                                         </div>
 
@@ -130,7 +136,7 @@
 
                                                         <label for="nrCurrentProgrammers" class="form-label inputFieldLabel">Maintanance programmers needed</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="nrCurrentProgrammers" class="form-control numberForm" placeholder="Current programmer count" aria-describedby="nrCurrentPHelp" value="0" required>
+                                                            <input type="text" id="nrCurrentProgrammers" class="form-control numberForm" placeholder="Current programmer count" aria-describedby="nrCurrentPHelp" required>
                                                             <span class="input-group-text">x</span>
                                                         </div>
                                                         <div id="nrCurrentPHelp" class="form-text">Input the number of programmers that are working to maintain the current solution.</div>
@@ -141,11 +147,11 @@
                                                         <h3>New Software</h3>
 
                                                         <label for="newName" class="form-label inputFieldLabel">Product Name</label>
-                                                        <input type="text" id="newName" class="form-control form-control-lg" value="LibreOffice" required>
+                                                        <input type="text" id="newName" class="form-control form-control-lg" placeholder="New product name" required>
 
                                                         <label for="newCost" class="form-label inputFieldLabel">Price of licence (per employee)</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="newCost" class="form-control numberForm" placeholder="What would the new solution cost?" value="0" required><br>
+                                                            <input type="text" id="newCost" class="form-control numberForm" placeholder="Old licence cost" required><br>
                                                             <span class="input-group-text">$/€/£/¥/…¤</span>
                                                         </div>
 
@@ -164,7 +170,7 @@
 
                                                         <label for="nrFutureProgrammers" class="form-label inputFieldLabel">Maintanance programmers needed</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="nrFutureProgrammers" class="form-control numberForm" placeholder="Future programmer count" aria-describedby="nrFuturePHelp" value="2" required>
+                                                            <input type="text" id="nrFutureProgrammers" class="form-control numberForm" placeholder="Future programmer count" aria-describedby="nrFuturePHelp" required>
                                                             <span class="input-group-text">x</span>
                                                         </div>
                                                         <div id="nrFuturePHelp" class="form-text">Input the number of programmers that would be required to maintain the new solution.</div>
@@ -178,7 +184,7 @@
                                                     <div class="col-md-12 col-lg-4">
                                                         <label for="nrEmployees" class="form-label inputFieldLabel">Number of employees (=nr of licences)</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="nrEmployees" class="form-control numberForm" placeholder="Employee Count" aria-describedby="nrEmployeesHelp" value="40000" required>
+                                                            <input type="text" id="nrEmployees" class="form-control numberForm" placeholder="Employee Count" aria-describedby="nrEmployeesHelp" required>
                                                             <span class="input-group-text">x</span>
                                                         </div>
                                                         <div id="nrEmployeesHelp" class="form-text">Input the number of employees working at your company.</div>
@@ -187,7 +193,7 @@
                                                     <div class="col-md-6 col-lg-4">
                                                         <label for="employeeCost" class="form-label inputFieldLabel">The average salary of an employee</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="employeeCost" class="form-control numberForm" placeholder="Average Salary" aria-describedby="eCostHelp" value="50000" required>
+                                                            <input type="text" id="employeeCost" class="form-control numberForm" placeholder="Average Salary" aria-describedby="eCostHelp" required>
                                                             <span class="input-group-text">$/€/£/¥/…¤</span>
                                                         </div>
                                                         <div id="eCostHelp" class="form-text">What does one employee cost you?</div>
@@ -209,7 +215,7 @@
                                                     <div class="col-md-6 col-lg-4">
                                                         <label for="programmerCost" class="form-label inputFieldLabel">The average salary of a programmer</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="programmerCost" class="form-control numberForm" placeholder="Programmer Salary" aria-describedby="pCostHelp" value="100000" required>
+                                                            <input type="text" id="programmerCost" class="form-control numberForm" placeholder="Programmer Salary" aria-describedby="pCostHelp" required>
                                                             <span class="input-group-text">$/€/£/¥/…¤</span>
                                                         </div>
                                                         <div id="pCostHelp" class="form-text">What does one programmer cost you?</div>
@@ -236,7 +242,7 @@
                                                     <div class="col-lg-4">
                                                         <label for="trainingInactivity" class="form-label inputFieldLabel">Employee-inactivity</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="trainingInactivity" class="form-control numberForm" placeholder="Days of total inactivity" aria-describedby="inactivityHelp" value="2" required>
+                                                            <input type="text" id="trainingInactivity" class="form-control numberForm" placeholder="Days of total inactivity" aria-describedby="inactivityHelp" required>
                                                             <span class="input-group-text">days</span>
                                                         </div>
                                                         <div id="inactivityHelp" class="form-text">Input the number of days you assume your employees will be <strong>completely inactive</strong> because of training & inactivity.</div>
@@ -245,7 +251,7 @@
                                                     <div class="col-md-6 col-lg-4">
                                                         <label for="nrSetupProgrammers" class="form-label inputFieldLabel">Setup programmers</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="nrSetupProgrammers" class="form-control numberForm" placeholder="Setup-programmers" aria-describedby="setupProgrammersHelp" value="3" required>
+                                                            <input type="text" id="nrSetupProgrammers" class="form-control numberForm" placeholder="Setup-programmers" aria-describedby="setupProgrammersHelp" required>
                                                             <span class="input-group-text">x</span>
                                                         </div>
                                                         <div id="setupProgrammersHelp" class="form-text">Input the number of programmers needed to implement the new solution.</div>
@@ -254,7 +260,7 @@
                                                     <div class="col-md-6 col-lg-4">
                                                         <label for="nrSetupMonths" class="form-label inputFieldLabel">Setup time-period</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="nrSetupMonths" class="form-control numberForm" placeholder="Setup-time" aria-describedby="setupTimeHelp" value="3" required>
+                                                            <input type="text" id="nrSetupMonths" class="form-control numberForm" placeholder="Setup-time" aria-describedby="setupTimeHelp" required>
                                                             <span class="input-group-text">months</span>
                                                         </div>
                                                         <div id="setupTimeHelp" class="form-text">Input the months will take those programmers to implement the new solution.</div>
@@ -509,18 +515,25 @@
             const stringUrl = window.location.href;
             const splitUrl = stringUrl.split("?");
 
-            let alertParent = document.getElementById("alertParent");
+            const urlImportAlert = document.getElementById("urlImportAlert");
+            let urlImportParent = urlImportAlert.parentElement;
+
+            const insertExampleAlert = document.getElementById("insertExampleAlert");
+            let insertExampleParent = insertExampleAlert.parentElement;
+
             if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
-                fillForm();
-                alertParent.classList.remove("invisible");
+                fillForm(stringUrl);
+                urlImportParent.classList.remove("invisible");
+                insertExampleAlert.remove();
             } else {
-                let shareDiv = document.getElementById("shareDiv");
+                let shareDiv = document.getElementById("shareDiv"); // Remove the "If you got here via link"-div.
                 shareDiv.classList.remove("col-lg-6");
                 shareDiv.classList.add("col-12");
                 let welcomeDiv = document.getElementById("welcomeDiv");
                 welcomeDiv.remove();
 
-                alertParent.remove();
+                insertExampleParent.classList.remove("invisible");
+                urlImportParent.remove();
             }
 
 

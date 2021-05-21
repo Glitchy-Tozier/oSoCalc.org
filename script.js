@@ -736,8 +736,13 @@ function copyUrl() {
 
 
 
+function insertExample() {
+    // Fill out the form with the example-values. At some point of time a less lazy mechanism should probably be implemented.
+    const exampleValueURL="https://www.osocalc.org/?l0=MS%20Office&l1=10.5&r0=oldMonthly&l2=1&l3=LibreOffice&l4=0&r1=newMonthly&l5=2&l6=4000&l7=50000&r2=eYearly&l8=100000&r3=pYearly&l9=2&l10=3&l11=3";
+    fillForm(exampleValueURL);
+}
 
-function fillForm () {
+function fillForm (url) {
     // If the Website gets loaded and the URL contains parameters, fill the form according to those parameters.
 
     const paramNames = [
@@ -749,8 +754,8 @@ function fillForm () {
         "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
     ]
 
-    const urlParams = new URLSearchParams(window.location.search); // Get the URL Parameters
-    const entries = urlParams.entries()
+    const urlParams = new URLSearchParams(url); // Get the URL Parameters
+    const entries = urlParams.entries();
 
     let element;
     let i = 0;

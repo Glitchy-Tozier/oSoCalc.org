@@ -30,10 +30,24 @@ p {
     text-align: justify;
 }
 
+#insertExampleAlert {
+    borter-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+.linkVisuals {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
 /* Style Form */
 .formSection {
-    border-color: gray;
     border-style: solid;
+    border-color: gray;
     border-width: 5px;
     border-radius: 20px;
 
@@ -60,8 +74,8 @@ p {
     display: none;
 }
 .bordered {
-    border-color: gray;
     border-style: solid;
+    border-color: gray;
     border-width: 5px;
     border-radius: 20px;
 
@@ -89,8 +103,8 @@ p {
 
 /* Style the section where the advantages and disadvantages of open/closed software are listed */
 .prosAndConsSection {
-    border-color: gray;
     border-style: solid;
+    border-color: gray;
     border-width: 5px;
     border-radius: 20px;
 
