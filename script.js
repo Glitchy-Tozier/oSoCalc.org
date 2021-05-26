@@ -4,13 +4,13 @@ function main(automaticallyTriggered) {
     if (typeof automaticallyTriggered === "undefined") { // If you get here by clicking the "Calculate..."-button.
         const alert = document.getElementById("urlImportAlert"); // Remove the "URL was imported"-alert if there is one.
         if (alert !== null) {
-            let alertParent = alert.parentElement;
+            const alertParent = alert.parentElement;
             if (alertParent !== null) {
                 alertParent.remove();
             }
         }
 
-        let form = document.getElementById("calcInput");
+        const form = document.getElementById("calcInput");
         if (!form.checkValidity()) {
             form.reportValidity();
             createError("Please fill out the form.");
@@ -61,7 +61,7 @@ function getCostNum(id) {
     // It is only used for input-fields that ask the user to input an amount of money.
     // Input the input-form's ID
 
-    let inputField = document.getElementById(id)
+    const inputField = document.getElementById(id);
     let input = inputField.value;
 
     input = input.replace(",", ".");
@@ -81,13 +81,15 @@ function getCostNum(id) {
         let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".';
         createError(message);
-    } else if (input.toString().includes("e+")) {
-        inputField.focus();
-        let message = "Please input smaller numbers.";
-        createError(message);
     } else {
         input = Number(input);
-        return input;
+        if (input > Math.pow(10, 20)) {
+            inputField.focus();
+            const message = "Please input smaller numbers.";
+            createError(message);
+        } else {
+            return input;
+        }
     }
 }
 
@@ -96,7 +98,7 @@ function getNrNum(id) {
     // It is used for all number-input-fields that do not ask for monetary amounts
     // Input the input-form's ID
 
-    let inputField = document.getElementById(id); // Get value by id
+    const inputField = document.getElementById(id); // Get value by id
     let input = inputField.value;
 
 
@@ -112,19 +114,20 @@ function getNrNum(id) {
         input = input.replace(" ", "");
     }
 
-
     if (isNaN(Number(input))) {
         inputField.focus();
         let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".'
         createError(message);
-    } else if (input.toString().includes("e+")) {
-        inputField.focus();
-        let message = "Please input smaller numbers.";
-        createError(message);
     } else {
         input = Number(input);
-        return input;
+        if (input > Math.pow(10, 20)) {
+            inputField.focus();
+            const message = "Please input smaller numbers.";
+            createError(message);
+        } else {
+            return input;
+        }
     }
 }
 
@@ -143,7 +146,7 @@ function getRadioValue(name) {
 
 function encodeHTML(data) {
     // HTML-encodes some input and returns it.
-    let encodedElement = document.createElement("e");
+    const encodedElement = document.createElement("e");
     encodedElement.innerText = data;
     return encodedElement.innerHTML;
 }
@@ -187,13 +190,13 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
 
     writeCostSummaryLine("One-time switching cost: ", oneTimeCost);
 
-    return cost
+    return cost;
 }
 
 function writeCostSummaryLine(name, cost, deleteContents) {
     // Add a line to the div under the "summary"-heading in the "results"-section.
 
-    summaryTable = document.getElementById("summaryTableBody");
+    const summaryTable = document.getElementById("summaryTableBody");
 
     if (deleteContents) {
         summaryTable.innerHTML = ""; // Clean up the previous summary.
@@ -203,7 +206,7 @@ function writeCostSummaryLine(name, cost, deleteContents) {
     const nrDigits = costStr.length;
     let prettyCost = "";
     for (let cycleNr = 1; cycleNr <= nrDigits; cycleNr++) {
-        let currentLetter = costStr[nrDigits - cycleNr]; // Go through the whole string, starting from the back and working towarts the "front" of the number.
+        const currentLetter = costStr[nrDigits - cycleNr]; // Go through the whole string, starting from the back and working towarts the "front" of the number.
         prettyCost = currentLetter + prettyCost;
         if ((cycleNr % 3 == 0) && (cycleNr > 1) && (cycleNr < nrDigits)) { // Add a separator after every three digits.
             prettyCost = "," + prettyCost;
@@ -212,9 +215,9 @@ function writeCostSummaryLine(name, cost, deleteContents) {
 
     const tableRowHTML = `
         <td>` + name + `</td>
-        <td class="costCell">` + prettyCost + `</td>`
+        <td class="costCell">` + prettyCost + `</td>`;
 
-    tableRow = document.createElement("tr"); // Create and add the name-part of the line
+    const tableRow = document.createElement("tr"); // Create and add the name-part of the line
     tableRow.innerHTML = tableRowHTML;
     summaryTableBody.appendChild(tableRow);
 }
@@ -224,8 +227,10 @@ function outputResults(oldCost, newCost, tableYears) {
 
     let oldName = document.getElementById("oldName").value; // Set the title
     oldName = encodeHTML(oldName);
+
     let newName = document.getElementById("newName").value;
     newName = encodeHTML(newName);
+
     const title = "<strong>" + oldName + "</strong> vs <strong>" + newName + "</strong>";
     document.getElementById("resTitle").innerHTML = title;
 
@@ -244,19 +249,19 @@ function outputResults(oldCost, newCost, tableYears) {
     const message = createMessage(oldName, newName, turningPoint);
 
 
-    chartDiv = document.getElementById("chartDiv"); // Add the chart/graph to the DOM
+    const chartDiv = document.getElementById("chartDiv"); // Add the chart/graph to the DOM
     if (document.getElementById("chartCanvas")) {
         document.getElementById("chartCanvas").remove();
     }
-    let chartCanvas = document.createElement("canvas");
+    const chartCanvas = document.createElement("canvas");
     chartCanvas.id = "chartCanvas";
     new Chart(chartCanvas, graphConfig);
     chartDiv.appendChild(chartCanvas);
 
-    tableDiv = document.getElementById("tableDiv"); // Add the table to the DOM
+    const tableDiv = document.getElementById("tableDiv"); // Add the table to the DOM
     tableDiv.innerHTML = table;
 
-    messageDiv = document.getElementById("worthSwitchingDiv"); // Add the "sholud you switch?" Reply to the DOM
+    const messageDiv = document.getElementById("worthSwitchingDiv"); // Add the "sholud you switch?" Reply to the DOM
     messageDiv.innerHTML = message;
 
 
@@ -264,7 +269,7 @@ function outputResults(oldCost, newCost, tableYears) {
         document.getElementById("notingYetCalculated").remove();
     }
 
-    let outputDiv = document.getElementById("results-section");
+    const outputDiv = document.getElementById("results-section");
     if (outputDiv.classList.contains("invisible")) { // Make the results-section visible
         outputDiv.classList.remove("invisible");
     }
@@ -286,32 +291,27 @@ function prepareTableData(oldCost, newCost) {
         let newCost_i = newCost[i];
         let savedMoney_i = oldCost_i - newCost_i; // Prepare the variable "savedMoney"
 
+        if (oldCost_i > Math.pow(10, 20) || newCost_i > Math.pow(10, 20)) {
+            createError("Numbers are too large. (They got bigger than 10^20)");
+        }
+
         // Check which year the new solution first is worthwile (and see if there even is such a year).
         if ((oldCost_i > newCost_i) && turningPoint == undefined) {
             const yearNumber = i + 1;
             turningPoint = yearNumber;
         }
 
-        let number = 0;
         let numberString = "";
         if (oldCost_i < newCost_i) { // Canculate how many blocks of 3 digits we can cut. Do so according to the smaller of the two cell values.
-            number = Math.round(oldCost_i)
+            const number = Math.round(oldCost_i);
             numberString += number.toString();
-
-            if (newCost_i.toString().includes("e+")) { // Chech whether the larger number is within an acceptable range.
-                createError("Numbers are too large. (They got bigger than 10^20)")
-            }
         } else {
-            number = Math.round(newCost_i)
+            const number = Math.round(newCost_i);
             numberString += number.toString();
-
-            if (oldCost_i.toString().includes("e+")) { // Chech whether the larger number is within an acceptable range.
-                createError("Numbers are too large. (They got bigger than 10^20)")
-            }
         }
 
-        let nrDigits = numberString.length;
-        let digitsToCut = Math.floor((nrDigits - 1) / 3) * 3;
+        const nrDigits = numberString.length;
+        const digitsToCut = Math.floor((nrDigits - 1) / 3) * 3;
 
         let modifierText = "";
         switch (digitsToCut) { // Get the text that should be displayed in the HTML-table.
@@ -335,13 +335,13 @@ function prepareTableData(oldCost, newCost) {
         }
 
 
-        let prettyOldCost_i = numberToPrettyString(oldCost_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
+        const prettyOldCost_i = numberToPrettyString(oldCost_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
         prettyOldCost.push(prettyOldCost_i); // Save result
 
-        let prettyNewCost_i = numberToPrettyString(newCost_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
+        const prettyNewCost_i = numberToPrettyString(newCost_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
         prettyNewCost.push(prettyNewCost_i); // Save result
 
-        let prettySavedMoney_i = numberToPrettyString(savedMoney_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
+        const prettySavedMoney_i = numberToPrettyString(savedMoney_i, digitsToCut, modifierText); // Turn the cost into a pretty string.
         savedMoney.push(prettySavedMoney_i); // Save result
     }
 
@@ -362,7 +362,7 @@ function numberToPrettyString(number, digitsToCut, modifierText) {
     number /= 100; // Finish rounding
 
     number = number.toString();
-    splitNumber = number.split("."); // Make sure that the string always has TWO digits after the comma.
+    const splitNumber = number.split("."); // Make sure that the string always has TWO digits after the comma.
 
     if (splitNumber.length == 1) {
         number += ".00";
@@ -391,7 +391,7 @@ function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoin
         <tbody>`;
 
     for (let i = 0; i < oldCost.length; i++) { // Create all the table rows
-        let yearNumber = i + 1;
+        const yearNumber = i + 1;
         if (tableYears.includes(yearNumber)) { // Only display the values for the "tableYears"-years in the table
 
             let diffClass = ""; // Prepare the dynamic styles for some of the cells.
@@ -433,15 +433,10 @@ function createGraph(oldName, newName, oldCost, newCost) {
 
     let labels = [];
     for (let i = 0; i < oldCost.length; i++) {
-        if (true) { //(i + 1) % 2 == 0 ) {
-            labels.push(i + 1);
-        } else {
-            labels.push([]);
-        }
+        labels.push(i + 1);
         oldCost[i] = Math.round(oldCost[i]);
         newCost[i] = Math.round(newCost[i]);
     }
-
 
     const data = {
         labels: labels,
@@ -527,12 +522,12 @@ function createError(message) {
         globalErrorToast.dispose();
 
     // Complain to the user.
-    let toastBody = document.getElementById("errorToastBody");
+    const toastBody = document.getElementById("errorToastBody");
     toastBody.innerHTML = message;
 
-    let toastDiv = document.getElementById("errorToast")
-    globalErrorToast = new bootstrap.Toast(toastDiv);
-    globalErrorToast.show()
+    const toastDiv = document.getElementById("errorToast");
+    globalErrorToast = new bootstrap.Toast(toastDiv); // GLOBAL
+    globalErrorToast.show();
 
     // Stops execution.
     throw new Error(message);
@@ -542,9 +537,9 @@ function removeUrlField() {
     // This function removes the current url-display-field by deleting some parts and making others invisible.
     // If there is no element called "linkP", do nothing.
 
-    let linkP = document.getElementById("linkP");
+    const linkP = document.getElementById("linkP");
     if (linkP !== null) {
-        let linkDivParent = linkP.parentElement.parentElement;
+        const linkDivParent = linkP.parentElement.parentElement;
         linkDivParent.classList.add("invisible"); // Make the overarching parent invisible ...
         linkP.remove(); // and remove the previous the previous URL-section (=linkP).
     }
@@ -556,24 +551,25 @@ function removeUrlField() {
 function prepareToShare(placementNumber) {
     // Create and output an URL that contains the values inserted into the form.
 
-    let alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
+    const alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
     if (alertParent !== null) {
         alertParent.remove();
     }
 
-    let form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
+    const form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
     if (!form.checkValidity()) { // If it's not...
-        removeUrlField() // 1. Don't display URL-field anymore.
+        removeUrlField(); // 1. Don't display URL-field anymore.
         form.reportValidity(); // 2. Complain to the user.
         return;
     }
 
 
-    newURL = createNewURL(); // Create a new url using the current URL and the form inputs.
+    const newURL = createNewURL(); // Create a new url using the current URL and the form inputs.
 
     const mailtoID = "mailto" + placementNumber;
-    let mailtoLink = document.getElementById(mailtoID);
-    mailtoLink.href = "mailto:?body=" + newURL;
+    const mailtoButton = document.getElementById(mailtoID);
+    const mailtoLink = "mailto:?body=" + encodeURIComponent(newURL);
+    mailtoButton.href = mailtoLink;
 
     const linkDivID = "linkDiv" + placementNumber;
     outputURL(newURL, linkDivID);
@@ -609,17 +605,21 @@ function prepareToShare(placementNumber) {
             getNrNum("trainingInactivity").toString(),
             getNrNum("nrSetupProgrammers").toString(),
             getNrNum("nrSetupMonths").toString(),
-        ]
+        ];
 
         let paramString = "?";
 
-        let paramName = "";
-        let paramValue = "";
+        let paramName;
         let textFieldCount = 0;
         let radioCount = 0;
         for (let i = 0; i < paramValues.length; i++) {
 
-            if (paramTypes[i] == "l") {
+            if (paramValues[i].toString().includes("e+")) {
+                let message = "Please input smaller numbers.";
+                createError(message);
+            }
+
+            if (paramTypes[i] == "l") { // Label checkboxes differently than the other imputs
                 paramName = paramTypes[i] + textFieldCount;
                 textFieldCount++;
             } else {
@@ -627,10 +627,10 @@ function prepareToShare(placementNumber) {
                 radioCount++;
             }
 
-            paramValue = encodeURIComponent(paramValues[i]);
+            const paramValue = encodeURIComponent(paramValues[i]);
             paramString += paramName + "=" + paramValue;
 
-            if (i < paramValues.length - 1) {
+            if (i < paramValues.length - 1) { // After every parameter except for the last, add an "&".
                 paramString += "&";
             }
         }
@@ -658,19 +658,19 @@ function prepareToShare(placementNumber) {
 
         // window.history.pushState("object or string", "Title", url); // Display the URL in the URL-bar.
 
-        let oldLinkP = document.getElementById("linkP");
+        const oldLinkP = document.getElementById("linkP");
 
-        let newLinkDiv = document.getElementById(linkDivID);
+        const newLinkDiv = document.getElementById(linkDivID);
 
 
         if (oldLinkP !== null) { // If the URL was already output at least once...
 
-            let oldLinkDiv = oldLinkP.parentElement;
+            const oldLinkDiv = oldLinkP.parentElement;
             if (oldLinkDiv == newLinkDiv) { // If it's the same Location as before...
 
                 oldLinkP.innerHTML = ""; // replace the previous url
-                let text = document.createTextNode(url)
-                oldLinkP.appendChild(text)
+                const text = document.createTextNode(url);
+                oldLinkP.appendChild(text);
 
             } else { // If it's a different Location than before...
                 removeUrlField() // Remove the previous URL-div
@@ -688,16 +688,16 @@ function prepareToShare(placementNumber) {
     function createNewUrlOutput(url, linkDiv) {
         // Create the new URL output and make it visible.
 
-        let text = document.createTextNode(url)
+        const text = document.createTextNode(url);
 
-        let linkP = document.createElement("p");
-        linkP.id = "linkP"
+        const linkP = document.createElement("p");
+        linkP.id = "linkP";
 
-        linkP.appendChild(text)
-        linkDiv.appendChild(linkP)
+        linkP.appendChild(text);
+        linkDiv.appendChild(linkP);
 
 
-        let parentDiv = linkDiv.parentElement; // Make the overarching section visible
+        const parentDiv = linkDiv.parentElement; // Make the overarching section visible
         parentDiv.classList.remove("invisible");
     }
 }
@@ -709,31 +709,31 @@ let globalCopyToast = null;
 function copyUrl() {
     // Copy the URL in the input-field "linkP" to the clipboard.
 
-    if (globalCopyToast !== null) // Prevent some bootstrap-specific errors:
+    if (globalCopyToast !== null) { // Prevent some bootstrap-specific errors:
         globalCopyToast.dispose();
+    }
 
-
-    var linkP = document.getElementById("linkP");
+    const linkP = document.getElementById("linkP");
 
     if (document.body.createTextRange) { // for Internet Explorer
-        var range = document.body.createTextRange();
+        const range = document.body.createTextRange();
         range.moveToElementText(linkP);
         range.select();
         document.execCommand("Copy");
 
-        let toastDiv = document.getElementById("urlCopyToast"); // Tell user the URL has been copied
+        const toastDiv = document.getElementById("urlCopyToast"); // Tell user the URL has been copied
         globalCopyToast = new bootstrap.Toast(toastDiv);
         globalCopyToast.show();
     } else if (window.getSelection) { // for other browsers
 
-        var selection = window.getSelection();
-        var range = document.createRange();
+        const selection = window.getSelection();
+        const range = document.createRange();
         range.selectNodeContents(linkP);
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
 
-        let toastDiv = document.getElementById("urlCopyToast"); // Tell user the URL has been copied
+        const toastDiv = document.getElementById("urlCopyToast"); // Tell user the URL has been copied
         globalCopyToast = new bootstrap.Toast(toastDiv);
         globalCopyToast.show();
     }
@@ -758,19 +758,18 @@ function fillForm(url) {
         "nrEmployees", "employeeCost", "eCostPeriod", "programmerCost", "pCostPeriod",
 
         "trainingInactivity", "nrSetupProgrammers", "nrSetupMonths"
-    ]
+    ];
 
     const urlParams = new URLSearchParams(url); // Get the URL Parameters
     const entries = urlParams.entries();
 
-    let element;
     let i = 0;
     for (const entry of entries) {
         if (entry[0][0] == "r") {
-            element = document.getElementById(entry[1]); // If it's a radio button, check it.
+            const element = document.getElementById(entry[1]); // If it's a radio button, check it.
             element.checked = true;
         } else {
-            element = document.getElementById(paramNames[i]); // If it's an input field, insert a value.
+            const element = document.getElementById(paramNames[i]); // If it's an input field, insert a value.
             element.value = entry[1];
         }
         i++;
@@ -784,11 +783,11 @@ function submitFormOnEnter(inputId) {
     // This function adds an event-listener to each input-field to make them click the calculate-button upon pressed enter.
 
     // Get the input field
-    var input = document.getElementById(inputId);
+    const input = document.getElementById(inputId);
 
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", event => {
-        if (event.key === "Enter") { // Number 13 is the "Enter" key on the keyboard
+        if (event.key === "Enter") {
             // Cancel the default action, if needed
             event.preventDefault();
             // Trigger the button element with a click
@@ -804,7 +803,7 @@ function hoverPair(className) {
     // This function visually pairs two list-elements on hover.
     // Input their class-name.
 
-    let elements = document.getElementsByClassName(className);
+    const elements = document.getElementsByClassName(className);
 
     for (let i = 0; i < elements.length; i++) {
 
@@ -813,13 +812,13 @@ function hoverPair(className) {
                 elements[n].classList.add("hoverStyle");
                 elements[n].classList.remove("nonHoverStyle");
             }
-        })
+        });
 
         elements[i].addEventListener('mouseleave', event => {
             for (let n = 0; n < elements.length; n++) {
                 elements[n].classList.remove("hoverStyle");
                 elements[n].classList.add("nonHoverStyle");
             }
-        })
+        });
     }
 }

@@ -516,10 +516,10 @@
             const splitUrl = stringUrl.split("?");
 
             const urlImportAlert = document.getElementById("urlImportAlert");
-            let urlImportParent = urlImportAlert.parentElement;
+            const urlImportParent = urlImportAlert.parentElement;
 
             const insertExampleAlert = document.getElementById("insertExampleAlert");
-            let insertExampleParent = insertExampleAlert.parentElement;
+            const insertExampleParent = insertExampleAlert.parentElement;
 
             if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
                 fillForm(stringUrl);
@@ -527,10 +527,10 @@
                 insertExampleAlert.remove();
                 main("urlImport");
             } else {
-                let shareDiv = document.getElementById("shareDiv"); // Remove the "If you got here via link"-div.
+                const shareDiv = document.getElementById("shareDiv"); // Remove the "If you got here via link"-div.
                 shareDiv.classList.remove("col-lg-6");
                 shareDiv.classList.add("col-12");
-                let welcomeDiv = document.getElementById("welcomeDiv");
+                const welcomeDiv = document.getElementById("welcomeDiv");
                 welcomeDiv.remove();
 
                 insertExampleParent.classList.remove("invisible");
@@ -542,7 +542,7 @@
             submitFormOnEnter("calcInput");
 
             // Initialize all Toasts
-            var toastList = [].slice.call(document.querySelectorAll('.toast'));
+            const toastList = [].slice.call(document.querySelectorAll('.toast'));
             toastList.map( toast => {
                 toast.addEventListener('show.bs.toast', function () { // Necessary to make the 'X' for closing the toast clickable.
                     toast.parentElement.classList.remove("invisible");
@@ -551,7 +551,7 @@
                     toast.parentElement.classList.add("invisible");
                 })
                 return new bootstrap.Toast(toast); // Initialize the toast.
-            })
+            });
 
 
              // Initialize all the event-listener attributes needed for the visual pairing in the last section.
@@ -561,10 +561,10 @@
             }
 
             // Initialize all Tooltips
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl);
-            })
+            });
         </script>
     </body>
 </html>
