@@ -306,8 +306,8 @@
 
                                         <h2 id="resTitle">Results of Calculation:</h2>
                                         <div class="row">
-                                            <div class="col-lg-6" id="tableDiv"></div>
                                             <div class="col-lg-6" id="chartDiv"></div>
+                                            <div class="col-lg-6" id="tableDiv"></div>
                                         </div>
 
 
@@ -539,7 +539,7 @@
 
 
             // Initialize the form-inputs to make "Enter" start the calculation
-            submitOnEnter("calcInput");
+            submitFormOnEnter("calcInput");
 
             // Initialize all Toasts
             var toastList = [].slice.call(document.querySelectorAll('.toast'));

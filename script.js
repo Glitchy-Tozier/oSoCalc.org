@@ -3,7 +3,7 @@ function main(automaticallyTriggered) {
 
     if (typeof automaticallyTriggered === "undefined") { // If you get here by clicking the "Calculate..."-button.
         const alert = document.getElementById("urlImportAlert"); // Remove the "URL was imported"-alert if there is one.
-        if (alert !== null ) {
+        if (alert !== null) {
             let alertParent = alert.parentElement;
             if (alertParent !== null) {
                 alertParent.remove();
@@ -40,7 +40,7 @@ function main(automaticallyTriggered) {
 
 
     const maxYears = 20;
-    const displayYears = [1,2,3,5,10,20];
+    const displayYears = [1, 2, 3, 5, 10, 20];
 
 
     const oldCost = calcCost(oldSoftwareCost, programmerCost, nrCurrentProgrammers, maxYears);
@@ -70,8 +70,8 @@ function getCostNum(id) {
         input = input.replace(" ", "");
     }
 
-    const currencySymbols = ["$","€","¢","¥","£","¤"];
-    for (let i=0; i<currencySymbols.length; i++) {
+    const currencySymbols = ["$", "€", "¢", "¥", "£", "¤"];
+    for (let i = 0; i < currencySymbols.length; i++) {
         input = input.replace(currencySymbols[i], "");
     }
 
@@ -81,13 +81,11 @@ function getCostNum(id) {
         let message = "Please check for errors when inputting costs. Please do not use multiple periods or commas.<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".';
         createError(message);
-    }
-    else if (input.toString().includes("e+")) {
+    } else if (input.toString().includes("e+")) {
         inputField.focus();
         let message = "Please input smaller numbers.";
         createError(message);
-    }
-    else {
+    } else {
         input = Number(input);
         return input;
     }
@@ -120,13 +118,11 @@ function getNrNum(id) {
         let message = "Please check for errors when inputting numbers. Did you accidentally use letters or special symbols?<br><br>";
         message += 'The problem was detected in the input "<b>' + encodeHTML(input) + '</b>".'
         createError(message);
-    }
-    else if (input.toString().includes("e+")) {
+    } else if (input.toString().includes("e+")) {
         inputField.focus();
         let message = "Please input smaller numbers.";
         createError(message);
-    }
-    else {
+    } else {
         input = Number(input);
         return input;
     }
@@ -152,27 +148,6 @@ function encodeHTML(data) {
     return encodedElement.innerHTML;
 }
 
-let globalErrorToast = null;
-function createError(message) {
-    // Remove the share-URL-field.
-    removeUrlField();
-
-    // Prevent some bootstrap-specific errors:
-    if (globalErrorToast !== null)
-        globalErrorToast.dispose();
-
-    // Complain to the user.
-    let toastBody = document.getElementById("errorToastBody");
-    toastBody.innerHTML = message;
-
-    let toastDiv = document.getElementById("errorToast")
-    globalErrorToast = new bootstrap.Toast(toastDiv);
-    globalErrorToast.show()
-
-    // Stops execution.
-    throw new Error(message);
-}
-
 function calcCost(softwareCost, programmerCost, nrMaintananceProgrammers, maxYears) {
     // Calculates the recurring (yearly) accumulated cost for a software solution.
     // Returns those costs for the years specified in the "maxYears"-constant.
@@ -181,8 +156,8 @@ function calcCost(softwareCost, programmerCost, nrMaintananceProgrammers, maxYea
     const yearlyCost = maintananceCost + softwareCost;
 
     let cost = [];
-    for (let i=0; i<maxYears; i++) {
-        cost.push(yearlyCost * (i+1));
+    for (let i = 0; i < maxYears; i++) {
+        cost.push(yearlyCost * (i + 1));
     }
 
     return cost;
@@ -196,17 +171,17 @@ function addOneTimeCost(cost, employeeCost, programmerCost) {
     const workingDays = 265;
     const employeeDailySalary = employeeCost / workingDays; // What ALL your employees cost you each day
     const daysOfInactivity = getNrNum("trainingInactivity"); // Assume your employees are COMPLETELY INACTIVE for some time-period due to training and inefficiently with the new software.
-    const employeeTrainingCost =  employeeDailySalary * daysOfInactivity; // What inactivity will cost you.
+    const employeeTrainingCost = employeeDailySalary * daysOfInactivity; // What inactivity will cost you.
 
     // Setup cost
-    const monthlyProgrammerCost = programmerCost/12;
+    const monthlyProgrammerCost = programmerCost / 12;
     const setupProgrammerCount = getNrNum("nrSetupProgrammers"); // Number of programmers needed to initially implement the new solution
     const setupMonthCount = getNrNum("nrSetupMonths"); // Number of months those Programmers work on that implementation
     const setupCost = monthlyProgrammerCost * setupProgrammerCount * setupMonthCount; // What the initial setup will cost you.
 
     const oneTimeCost = employeeTrainingCost + setupCost; // Full one-time cost
 
-    for (let i=0; i<cost.length; i++) { // Add the one-time cost to the yearly costs.
+    for (let i = 0; i < cost.length; i++) { // Add the one-time cost to the yearly costs.
         cost[i] += oneTimeCost;
     }
 
@@ -230,7 +205,7 @@ function writeCostSummaryLine(name, cost, deleteContents) {
     for (let cycleNr = 1; cycleNr <= nrDigits; cycleNr++) {
         let currentLetter = costStr[nrDigits - cycleNr]; // Go through the whole string, starting from the back and working towarts the "front" of the number.
         prettyCost = currentLetter + prettyCost;
-        if ((cycleNr%3==0) && (cycleNr>1) && (cycleNr<nrDigits)) { // Add a separator after every three digits.
+        if ((cycleNr % 3 == 0) && (cycleNr > 1) && (cycleNr < nrDigits)) { // Add a separator after every three digits.
             prettyCost = "," + prettyCost;
         }
     }
@@ -269,19 +244,6 @@ function outputResults(oldCost, newCost, tableYears) {
     const message = createMessage(oldName, newName, turningPoint);
 
 
-    if (document.getElementById("notingYetCalculated")) { // Remove the "Calculation wasn't started yet"-section
-        document.getElementById("notingYetCalculated").remove();
-    }
-
-    let outputDiv = document.getElementById("results-section");
-
-    if (outputDiv.classList.contains("invisible")) { // Make the results-section visible
-        outputDiv.classList.remove("invisible");
-    }
-
-    tableDiv = document.getElementById("tableDiv"); // Add the table to the DOM
-    tableDiv.innerHTML = table;
-
     chartDiv = document.getElementById("chartDiv"); // Add the chart/graph to the DOM
     if (document.getElementById("chartCanvas")) {
         document.getElementById("chartCanvas").remove();
@@ -291,9 +253,21 @@ function outputResults(oldCost, newCost, tableYears) {
     new Chart(chartCanvas, graphConfig);
     chartDiv.appendChild(chartCanvas);
 
+    tableDiv = document.getElementById("tableDiv"); // Add the table to the DOM
+    tableDiv.innerHTML = table;
+
     messageDiv = document.getElementById("worthSwitchingDiv"); // Add the "sholud you switch?" Reply to the DOM
     messageDiv.innerHTML = message;
 
+
+    if (document.getElementById("notingYetCalculated")) { // Remove the "Calculation wasn't started yet"-section
+        document.getElementById("notingYetCalculated").remove();
+    }
+
+    let outputDiv = document.getElementById("results-section");
+    if (outputDiv.classList.contains("invisible")) { // Make the results-section visible
+        outputDiv.classList.remove("invisible");
+    }
 
     document.getElementById("resSecBtn").click(); // Switch to the section where the results will be displayed.
 }
@@ -306,7 +280,7 @@ function prepareTableData(oldCost, newCost) {
     let savedMoney = [];
     let turningPoint;
 
-    for (let i=0; i<oldCost.length; i++) { // Go through every element of the cost-arrays.
+    for (let i = 0; i < oldCost.length; i++) { // Go through every element of the cost-arrays.
 
         let oldCost_i = oldCost[i];
         let newCost_i = newCost[i];
@@ -314,7 +288,7 @@ function prepareTableData(oldCost, newCost) {
 
         // Check which year the new solution first is worthwile (and see if there even is such a year).
         if ((oldCost_i > newCost_i) && turningPoint == undefined) {
-            const yearNumber = i+1;
+            const yearNumber = i + 1;
             turningPoint = yearNumber;
         }
 
@@ -337,10 +311,10 @@ function prepareTableData(oldCost, newCost) {
         }
 
         let nrDigits = numberString.length;
-        let digitsToCut = Math.floor((nrDigits-1)/3) * 3;
+        let digitsToCut = Math.floor((nrDigits - 1) / 3) * 3;
 
         let modifierText = "";
-        switch(digitsToCut) { // Get the text that should be displayed in the HTML-table.
+        switch (digitsToCut) { // Get the text that should be displayed in the HTML-table.
             case 0:
                 modifierText = "¤";
                 break;
@@ -416,8 +390,8 @@ function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoin
         </thead>
         <tbody>`;
 
-    for (let i=0; i<oldCost.length; i++) { // Create all the table rows
-        let yearNumber = i+1;
+    for (let i = 0; i < oldCost.length; i++) { // Create all the table rows
+        let yearNumber = i + 1;
         if (tableYears.includes(yearNumber)) { // Only display the values for the "tableYears"-years in the table
 
             let diffClass = ""; // Prepare the dynamic styles for some of the cells.
@@ -434,7 +408,8 @@ function createTable(oldName, newName, oldCost, newCost, savedMoney, turningPoin
             }
 
             let yearStr = "";
-            if (yearNumber == 1) {yearStr = "year" // Get the gramatically correct form of "year"
+            if (yearNumber == 1) {
+                yearStr = "year" // Get the gramatically correct form of "year"
             } else {
                 yearStr = "years";
             }
@@ -458,8 +433,8 @@ function createGraph(oldName, newName, oldCost, newCost) {
 
     let labels = [];
     for (let i = 0; i < oldCost.length; i++) {
-        if ( true ) {//(i + 1) % 2 == 0 ) {
-            labels.push(i+1);
+        if (true) { //(i + 1) % 2 == 0 ) {
+            labels.push(i + 1);
         } else {
             labels.push([]);
         }
@@ -470,27 +445,25 @@ function createGraph(oldName, newName, oldCost, newCost) {
 
     const data = {
         labels: labels,
-        datasets: [
-            {
-                label: oldName,
-                borderColor: "black",
-                backgroundColor: "gray",
-                radius: 0,
-                /* fill: {
-                    target: +1,
-                    above: "#d1e7dd",
-                    below: "#f8d7da",
-                },
-                fillColor: "green",*/
-                data: oldCost,
-            }, {
-                label: newName,
-                borderColor: "darkorange",
-                backgroundColor: "orange",
-                radius: 0,
-                data: newCost,
-            }
-        ]
+        datasets: [{
+            label: oldName,
+            borderColor: "black",
+            backgroundColor: "gray",
+            radius: 0,
+            /* fill: {
+                target: +1,
+                above: "#d1e7dd",
+                below: "#f8d7da",
+            },
+            fillColor: "green",*/
+            data: oldCost,
+        }, {
+            label: newName,
+            borderColor: "darkorange",
+            backgroundColor: "orange",
+            radius: 0,
+            data: newCost,
+        }]
     };
 
 
@@ -504,12 +477,14 @@ function createGraph(oldName, newName, oldCost, newCost) {
             },
             maintainAspectRatio: false, // Makes sure the graph doesn't shrink down due the surrounding div's small width.
             scales: {
-                x: { title: {
+                x: {
+                    title: {
                         display: true,
                         text: "Years passed",
                     }
                 },
-                y: { title: {
+                y: {
+                    title: {
                         display: true,
                         text: "Money spent",
                     }
@@ -542,8 +517,43 @@ function createMessage(oldName, newName, turningPoint) {
 
 
 
+let globalErrorToast = null;
+function createError(message) {
+    // Remove the share-URL-field.
+    removeUrlField();
 
-function prepareToShare (placementNumber) {
+    // Prevent some bootstrap-specific errors:
+    if (globalErrorToast !== null)
+        globalErrorToast.dispose();
+
+    // Complain to the user.
+    let toastBody = document.getElementById("errorToastBody");
+    toastBody.innerHTML = message;
+
+    let toastDiv = document.getElementById("errorToast")
+    globalErrorToast = new bootstrap.Toast(toastDiv);
+    globalErrorToast.show()
+
+    // Stops execution.
+    throw new Error(message);
+}
+
+function removeUrlField() {
+    // This function removes the current url-display-field by deleting some parts and making others invisible.
+    // If there is no element called "linkP", do nothing.
+
+    let linkP = document.getElementById("linkP");
+    if (linkP !== null) {
+        let linkDivParent = linkP.parentElement.parentElement;
+        linkDivParent.classList.add("invisible"); // Make the overarching parent invisible ...
+        linkP.remove(); // and remove the previous the previous URL-section (=linkP).
+    }
+}
+
+
+
+
+function prepareToShare(placementNumber) {
     // Create and output an URL that contains the values inserted into the form.
 
     let alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
@@ -567,139 +577,129 @@ function prepareToShare (placementNumber) {
 
     const linkDivID = "linkDiv" + placementNumber;
     outputURL(newURL, linkDivID);
-}
-
-function createNewURL() {
-    // Create a new url using the current URL and the form inputs.
-
-    const currentURL = window.location.href;
-    const splitURL = currentURL.split("?");
-    const baseURL = splitURL[0]
-
-    const paramTypes = ["l", "l", "r", "l", "l", "l", "r", "l", "l", "l", "r", "l", "r", "l", "l", "l"]; // Add an "r" in front of the radio-values!! Otherwhise, add an "l".
-    const paramValues = [
-        document.getElementById("oldName").value,
-        getCostNum("oldCost").toString(),
-        getCheckedRadioId("oldCostPeriod").toString(), // radio
-        getNrNum("nrCurrentProgrammers").toString(),
 
 
-        document.getElementById("newName").value,
-        getCostNum("newCost").toString(),
-        getCheckedRadioId("newCostPeriod").toString(), // radio
-        getNrNum("nrFutureProgrammers").toString(),
+    function createNewURL() {
+        // Create a new url using the current URL and the form inputs.
+
+        const currentURL = window.location.href;
+        const splitURL = currentURL.split("?");
+        const baseURL = splitURL[0];
+
+        const paramTypes = ["l", "l", "r", "l", "l", "l", "r", "l", "l", "l", "r", "l", "r", "l", "l", "l"]; // Add an "r" in front of the radio-values!! Otherwhise, add an "l".
+        const paramValues = [
+            document.getElementById("oldName").value,
+            getCostNum("oldCost").toString(),
+            getCheckedRadioId("oldCostPeriod").toString(), // radio
+            getNrNum("nrCurrentProgrammers").toString(),
 
 
-        getNrNum("nrEmployees").toString(),
-        getCostNum("employeeCost").toString(),
-        getCheckedRadioId("eCostPeriod").toString(), // radio
-        getCostNum("programmerCost").toString(),
-        getCheckedRadioId("pCostPeriod").toString(), // radio
+            document.getElementById("newName").value,
+            getCostNum("newCost").toString(),
+            getCheckedRadioId("newCostPeriod").toString(), // radio
+            getNrNum("nrFutureProgrammers").toString(),
 
-        getNrNum("trainingInactivity").toString(),
-        getNrNum("nrSetupProgrammers").toString(),
-        getNrNum("nrSetupMonths").toString(),
-    ]
 
-    let paramString = "?";
+            getNrNum("nrEmployees").toString(),
+            getCostNum("employeeCost").toString(),
+            getCheckedRadioId("eCostPeriod").toString(), // radio
+            getCostNum("programmerCost").toString(),
+            getCheckedRadioId("pCostPeriod").toString(), // radio
 
-    let paramName = "";
-    let paramValue = "";
-    let textFieldCount = 0;
-    let radioCount = 0;
-    for (let i=0; i<paramValues.length; i++) {
+            getNrNum("trainingInactivity").toString(),
+            getNrNum("nrSetupProgrammers").toString(),
+            getNrNum("nrSetupMonths").toString(),
+        ]
 
-        if (paramTypes[i] == "l") {
-            paramName = paramTypes[i] + textFieldCount;
-            textFieldCount ++;
-        } else {
-            paramName = paramTypes[i] + radioCount;
-            radioCount ++;
+        let paramString = "?";
+
+        let paramName = "";
+        let paramValue = "";
+        let textFieldCount = 0;
+        let radioCount = 0;
+        for (let i = 0; i < paramValues.length; i++) {
+
+            if (paramTypes[i] == "l") {
+                paramName = paramTypes[i] + textFieldCount;
+                textFieldCount++;
+            } else {
+                paramName = paramTypes[i] + radioCount;
+                radioCount++;
+            }
+
+            paramValue = encodeURIComponent(paramValues[i]);
+            paramString += paramName + "=" + paramValue;
+
+            if (i < paramValues.length - 1) {
+                paramString += "&";
+            }
         }
 
-        paramValue = encodeURIComponent(paramValues[i]);
-        paramString += paramName + "=" + paramValue;
+        const url = baseURL + paramString;
 
-        if (i<paramValues.length-1) {
-            paramString += "&";
+        return url;
+    }
+
+    function getCheckedRadioId(radioGroupName) {
+        // Input name of radio button input group
+        // Outputs ID of the checked radio button
+
+        const radioArray = document.getElementsByName(radioGroupName); // Get group of radio buttons
+
+        for (let i = 0; i < radioArray.length; i++) { // Search and return the checked one.
+            if (radioArray[i].checked == true) {
+                return radioArray[i].id;
+            }
         }
     }
 
-    const url = baseURL + paramString;
+    function outputURL(url, linkDivID) {
+        // Outputs the url(which contains the parameters) so that the user can copy it.
 
-    return url;
-}
+        // window.history.pushState("object or string", "Title", url); // Display the URL in the URL-bar.
 
-function getCheckedRadioId(radioGroupName) {
-    // Input name of radio button input group
-    // Outputs ID of the checked radio button
+        let oldLinkP = document.getElementById("linkP");
 
-    const radioArray = document.getElementsByName(radioGroupName); // Get group of radio buttons
-
-    for (let i = 0; i < radioArray.length; i++) { // Search and return the checked one.
-        if (radioArray[i].checked == true) {
-            return radioArray[i].id;
-        }
-    }
-}
-
-function outputURL(url, linkDivID) {
-    // Outputs the url(which contains the parameters) so that the user can copy it.
-
-    // window.history.pushState("object or string", "Title", url); // Display the URL in the URL-bar.
-
-    let oldLinkP = document.getElementById("linkP");
-
-    let newLinkDiv = document.getElementById(linkDivID);
+        let newLinkDiv = document.getElementById(linkDivID);
 
 
-    if (oldLinkP !== null) { // If the URL was already output at least once...
+        if (oldLinkP !== null) { // If the URL was already output at least once...
 
-        let oldLinkDiv = oldLinkP.parentElement;
-        if (oldLinkDiv == newLinkDiv) { // If it's the same Location as before...
+            let oldLinkDiv = oldLinkP.parentElement;
+            if (oldLinkDiv == newLinkDiv) { // If it's the same Location as before...
 
-            oldLinkP.innerHTML = ""; // replace the previous url
-            let text = document.createTextNode(url)
-            oldLinkP.appendChild(text)
+                oldLinkP.innerHTML = ""; // replace the previous url
+                let text = document.createTextNode(url)
+                oldLinkP.appendChild(text)
 
-        } else { // If it's a different Location than before...
-            removeUrlField() // Remove the previous URL-div
+            } else { // If it's a different Location than before...
+                removeUrlField() // Remove the previous URL-div
+                createNewUrlOutput(url, newLinkDiv);
+            }
+
+
+        } else { // If the URL never has been output before:
             createNewUrlOutput(url, newLinkDiv);
         }
 
-
-    } else { // If the URL never has been output before:
-        createNewUrlOutput(url, newLinkDiv);
     }
 
-}
 
-function removeUrlField() {
-    // This function removes the current url-display-field by deleting some parts and making others invisible.
-    // If there is no element called "linkP", do nothing.
+    function createNewUrlOutput(url, linkDiv) {
+        // Create the new URL output and make it visible.
 
-    let linkP = document.getElementById("linkP");
-    if (linkP !== null) {
-        let linkDivParent = linkP.parentElement.parentElement;
-        linkDivParent.classList.add("invisible"); // Make the overarching parent invisible ...
-        linkP.remove(); // and remove the previous the previous URL-section (=linkP).
+        let text = document.createTextNode(url)
+
+        let linkP = document.createElement("p");
+        linkP.id = "linkP"
+
+        linkP.appendChild(text)
+        linkDiv.appendChild(linkP)
+
+
+        let parentDiv = linkDiv.parentElement; // Make the overarching section visible
+        parentDiv.classList.remove("invisible");
     }
-}
-
-function createNewUrlOutput(url, linkDiv) {
-    // Create the new URL output and make it visible.
-
-    let text = document.createTextNode(url)
-
-    let linkP = document.createElement("p");
-    linkP.id = "linkP"
-
-    linkP.appendChild(text)
-    linkDiv.appendChild(linkP)
-
-
-    let parentDiv = linkDiv.parentElement; // Make the overarching section visible
-    parentDiv.classList.remove("invisible");
 }
 
 
@@ -724,8 +724,7 @@ function copyUrl() {
         let toastDiv = document.getElementById("urlCopyToast"); // Tell user the URL has been copied
         globalCopyToast = new bootstrap.Toast(toastDiv);
         globalCopyToast.show();
-    }
-    else if (window.getSelection) { // for other browsers
+    } else if (window.getSelection) { // for other browsers
 
         var selection = window.getSelection();
         var range = document.createRange();
@@ -742,13 +741,14 @@ function copyUrl() {
 
 
 
+
 function insertExample() {
     // Fill out the form with the example-values. At some point of time a less lazy mechanism should probably be implemented.
-    const exampleValueURL="https://www.osocalc.org/?l0=MS%20Office&l1=10.5&r0=oldMonthly&l2=1&l3=LibreOffice&l4=0&r1=newMonthly&l5=2&l6=4000&l7=50000&r2=eYearly&l8=100000&r3=pYearly&l9=2&l10=3&l11=3";
+    const exampleValueURL = "https://www.osocalc.org/?l0=MS%20Office&l1=10.5&r0=oldMonthly&l2=1&l3=LibreOffice&l4=0&r1=newMonthly&l5=2&l6=4000&l7=50000&r2=eYearly&l8=100000&r3=pYearly&l9=2&l10=3&l11=3";
     fillForm(exampleValueURL);
 }
 
-function fillForm (url) {
+function fillForm(url) {
     // If the Website gets loaded and the URL contains parameters, fill the form according to those parameters.
 
     const paramNames = [
@@ -766,21 +766,21 @@ function fillForm (url) {
     let element;
     let i = 0;
     for (const entry of entries) {
-        if (entry[0][0]=="r") {
+        if (entry[0][0] == "r") {
             element = document.getElementById(entry[1]); // If it's a radio button, check it.
             element.checked = true;
         } else {
             element = document.getElementById(paramNames[i]); // If it's an input field, insert a value.
             element.value = entry[1];
         }
-        i ++;
+        i++;
     }
 }
 
 
 
 
-function submitOnEnter(inputId) {
+function submitFormOnEnter(inputId) {
     // This function adds an event-listener to each input-field to make them click the calculate-button upon pressed enter.
 
     // Get the input field
@@ -788,7 +788,7 @@ function submitOnEnter(inputId) {
 
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", event => {
-        if (event.key === "Enter") {// Number 13 is the "Enter" key on the keyboard
+        if (event.key === "Enter") { // Number 13 is the "Enter" key on the keyboard
             // Cancel the default action, if needed
             event.preventDefault();
             // Trigger the button element with a click
