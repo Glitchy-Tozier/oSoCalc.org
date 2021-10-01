@@ -31,7 +31,7 @@ p {
 }
 
 #insertExampleAlert {
-    borter-style: solid;
+    border-style: solid;
     border-color: black;
     border-width: 1px;
 }
