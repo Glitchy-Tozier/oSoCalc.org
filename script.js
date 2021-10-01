@@ -2,20 +2,8 @@ function main(automaticallyTriggered) {
     // Calculate and output the cossts of the two software-solutions.
 
     if (typeof automaticallyTriggered === "undefined") { // If you get here by clicking the "Calculate..."-button.
-        const alert = document.getElementById("urlImportAlert"); // Remove the "URL was imported"-alert if there is one.
-        if (alert !== null) {
-            const alertParent = alert.parentElement;
-            if (alertParent !== null) {
-                alertParent.remove();
-            }
-        }
-
-        const form = document.getElementById("calcInput");
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            createError("Please fill out the form.");
-            return;
-        }
+        rmUrlImportAlert();
+        validateForm();
     }
 
     let oldSoftwareCost = getCostNum("oldCost"); // Get input from HTML form
@@ -54,6 +42,28 @@ function main(automaticallyTriggered) {
 
 
     outputResults(oldCost, newCost, displayYears);
+}
+
+function rmUrlImportAlert() {
+    // Remove the "URL was imported"-alert if there is one.
+    const alert = document.getElementById("urlImportAlert");
+    if (alert !== null) {
+        const alertParent = alert.parentElement;
+        if (alertParent !== null) {
+            alertParent.remove();
+        }
+    }
+}
+
+function validateForm() {
+    // Check whether the form actually was filled out.
+    const form = document.getElementById("calcInput");
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        removeUrlField();
+        createError("Please fill out the form.");
+        return;
+    }
 }
 
 function getCostNum(id) {
@@ -551,17 +561,8 @@ function removeUrlField() {
 function prepareToShare(placementNumber) {
     // Create and output an URL that contains the values inserted into the form.
 
-    const alertParent = document.getElementById("alertParent"); // Remove the "URL was imported"-alert if there is one.
-    if (alertParent !== null) {
-        alertParent.remove();
-    }
-
-    const form = document.getElementById("calcInput"); // Make Sure the form is actually filled out.
-    if (!form.checkValidity()) { // If it's not...
-        removeUrlField(); // 1. Don't display URL-field anymore.
-        form.reportValidity(); // 2. Complain to the user.
-        return;
-    }
+    rmUrlImportAlert();
+    validateForm();
 
 
     const newURL = createNewURL(); // Create a new url using the current URL and the form inputs.
