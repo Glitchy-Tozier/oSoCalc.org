@@ -609,7 +609,7 @@ function prepareToShare(placementNumber) {
 
         let paramString = "?";
 
-        let paramName;
+        let paramName = "";
         let textFieldCount = 0;
         let radioCount = 0;
         for (let i = 0; i < paramValues.length; i++) {

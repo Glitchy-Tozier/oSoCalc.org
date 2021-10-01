@@ -1,570 +1,712 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"> <!-- bootstrap icon-font -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> <!-- https://getbootstrap.com/ -->
-        <link rel="stylesheet" href="styles.css"> <!-- self-written -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- https://www.chartjs.org/ -->
-        <script src="script.js"></script> <!-- self-written-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <!-- bootstrap icon-font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="styles.css"> <!-- self-written -->
 
-        <!-- Favicon-stuff -->
-        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- https://www.chartjs.org/ -->
+    <script src="script.js"></script> <!-- self-written-->
 
-        <title>Open Source Calculator</title>
-        <meta name="description" content="Calculate whether switching to an Open-Source Software solution will save you money.">
-    </head>
+    <!-- Favicon-stuff -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-    <body>
-        <header>
-            <h1><strong>O</strong>pen <strong>So</strong>urce <strong>Calc</strong>ulator</h1>
-            <p class="subtitle">Is Switching to Open Source Optimal <strong>in Your Situation</strong>?</p>
-        </header>
+    <title>Open Source Calculator</title>
+    <meta name="description"
+        content="Calculate whether switching to an Open-Source Software solution will save you money.">
+</head>
 
-        <main>
+<body>
+    <header>
+        <h1><strong>O</strong>pen <strong>So</strong>urce <strong>Calc</strong>ulator</h1>
+        <p class="subtitle">Is Switching to Open Source Optimal <strong>in Your Situation</strong>?</p>
+    </header>
 
-            <div class="container" id="mainContainer">
+    <main>
 
-                <div class="accordion accordion-flush" id="bigAccordion">
+        <div class="container" id="mainContainer">
 
-                    <div class="accordion-item">
-                        <h1 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <span class="h2">Introduction</span>
-                            </button>
-                        </h1>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#bigAccordion">
-                            <div class="accordion-body">
-                                <div class="introduction-section" id="introduction-section">
-                                    <div class="container">
-                                        <h2>What does this website do?</h2>
-                                        <p>This website lets companies calculate whether it pays for them to switch to Free and Open-Source Software (FOSS) solutions.</p>
-                                        <p>This is done by estimating the <strong>one-time switching costs</strong> such as employee training expenses, setup cost, and the acclimation period in which your staff gets used to using the new software.
-                                            These costs will be added to the <strong>yearly expanses</strong> such as licence fees and salaries payed the maintanance-programmers.</p>
+            <div class="accordion accordion-flush" id="bigAccordion">
 
-                                        <h2>How to use the calculator:</h2>
-                                        <p>Go to the next section (<b>Price Calculator</b>) and fill in the required costs and amounts.
-                                            Then click on the button titled "Calculate Financial Results". You will be shown the cost estimation over the next 20 years in the <b>Results</b> section.</p>
-                                        <p>It is recommended that you input values conservatively. For example, if you are unsure whether the number of
-                                            maintanance programmers nedded for the new solution is 2 or 3, go with 3. That way, you can be more confident in the results.</p>
-                                        <!--<br>
-                                        <p>Also, please keep in mind that the calculations performed on this website only incorporate the monetary consequences of switching between two software-solution.
-                                            To get an overview of additional (important!) factors which can't easily be portrayed in numbers, please visit the
-                                            <a href="#advSecTitle" onclick="document.getElementById('advSecBtn').focus();">!!!!!!!!!!last section</a> of this Website.</p>-->
+                <div class="accordion-item">
+                    <h1 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <span class="h2">Introduction</span>
+                        </button>
+                    </h1>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#bigAccordion">
+                        <div class="accordion-body">
+                            <div class="introduction-section" id="introduction-section">
+                                <div class="container">
+                                    <h2>What does this website do?</h2>
+                                    <p>This website lets companies calculate whether it pays for them to switch to Free
+                                        and Open-Source Software (FOSS) solutions.</p>
+                                    <p>This is done by estimating the <strong>one-time switching costs</strong> such as
+                                        employee training expenses, setup cost, and the acclimation period in which your
+                                        staff gets used to using the new software.
+                                        These costs will be added to the <strong>yearly expanses</strong> such as
+                                        licence fees and salaries payed the maintanance-programmers.</p>
 
-                                        <div class="row">
-                                            <div class="col-lg-6" id="shareDiv">
-                                                <h2>Sharing your results with someone else:</h2>
-                                                <p>You can share your results (see turquoise button) by either just copying the URL or by sharing the link via email.
-                                                    Make sure to double-check your data before sharing the results.</p>
-                                            </div>
+                                    <h2>How to use the calculator:</h2>
+                                    <p>Go to the next section (<b>Price Calculator</b>) and fill in the required costs
+                                        and amounts.
+                                        Then click on the button titled "Calculate Financial Results". You will be shown
+                                        the cost estimation over the next 20 years in the <b>Results</b> section.</p>
+                                    <p>It is recommended that you input values conservatively. For example, if you are
+                                        unsure whether the number of
+                                        maintanance programmers nedded for the new solution is 2 or 3, go with 3. That
+                                        way, you can be more confident in the results.</p>
 
-                                            <div class="col-lg-6" id="welcomeDiv">
-                                                <h2>If you got sent here via a link:</h2>
-                                                <p>The values needed for calculation already have been filled out for you.
-                                                    You can double-check them in the <b>Price Calculator</b> tab. Then click on "Calculate Financial Results" to receive your projection.</p>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-lg-6" id="shareDiv">
+                                            <h2>Sharing your results with someone else:</h2>
+                                            <p>You can share your results (see turquoise button) by either just copying
+                                                the URL or by sharing the link via email.
+                                                Make sure to double-check your data before sharing the results.</p>
+                                        </div>
+
+                                        <div class="col-lg-6" id="welcomeDiv">
+                                            <h2>If you got sent here via a link:</h2>
+                                            <p>The values needed for calculation already have been filled out for you.
+                                                You can double-check them in the <b>Price Calculator</b> tab. Then click
+                                                on "Calculate Financial Results" to receive your projection.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="invisible">
-                        <div class="alert alert-success alert-dismissible fade show" role="alert" id="urlImportAlert">
-                            <strong>URL imported.</strong> The form has been filled out accordingly.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                <div class="invisible">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="urlImportAlert">
+                        <strong>URL imported.</strong> The form has been filled out accordingly.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                </div>
 
-                    <div class="accordion-item">
-                        <h1 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" id="calcSecBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <span class="h2" id="calcSecTitle">Price Calculator</span>
-                            </button>
-                        </h1>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#bigAccordion">
-                            <div class="accordion-body">
-                                <div class="VS-section" id="VS-section">
-                                    <div class="container">
-                                        <div class="invisible">
-                                            <div class="alert alert-light alert-dismissible fade show" role="alert" id="insertExampleAlert">
-                                                Click on this link to insert an example:
-                                                <button type="button" class="linkVisuals" data-bs-dismiss="alert" onclick="insertExample();">MS Office or LibreOffice</button>
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="accordion-item">
+                    <h1 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" id="calcSecBtn" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            <span class="h2" id="calcSecTitle">Price Calculator</span>
+                        </button>
+                    </h1>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#bigAccordion">
+                        <div class="accordion-body">
+                            <div class="VS-section" id="VS-section">
+                                <div class="container">
+                                    <div class="invisible">
+                                        <div class="alert alert-light alert-dismissible fade show" role="alert"
+                                            id="insertExampleAlert">
+                                            Click on this link to insert an example:
+                                            <button type="button" class="linkVisuals" data-bs-dismiss="alert"
+                                                onclick="insertExample();">MS Office or LibreOffice</button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </div>
+                                    </div>
+
+                                    <form id="calcInput" name="calcInput">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="formSection">
+                                                    <h3>Old Software</h3>
+
+
+                                                    <label for="oldName" class="form-label inputFieldLabel">Product
+                                                        Name</label>
+                                                    <input type="text" id="oldName" class="form-control form-control-lg"
+                                                        required>
+
+                                                    <label for="oldCost" class="form-label inputFieldLabel">Price of
+                                                        licence (per employee)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="oldCost" class="form-control numberForm"
+                                                            required><br>
+                                                        <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                    </div>
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="oldCostPeriod"
+                                                                    class="form-check-input" id="oldYearly" value="1">
+                                                                <label for="oldYearly" class="form-check-label">Yearly
+                                                                    fee</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="oldCostPeriod"
+                                                                    class="form-check-input" id="oldMonthly" value="12"
+                                                                    checked>
+                                                                <label for="oldMonthly" class="form-check-label">Monthly
+                                                                    fee</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <label for="nrCurrentProgrammers"
+                                                        class="form-label inputFieldLabel">Maintanance programmers
+                                                        needed</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="nrCurrentProgrammers"
+                                                            class="form-control numberForm"
+                                                            aria-describedby="nrCurrentPHelp" required>
+                                                        <span class="input-group-text">x</span>
+                                                    </div>
+                                                    <div id="nrCurrentPHelp" class="form-text">Input the number of
+                                                        programmers that are working to maintain the current solution.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="formSection">
+                                                    <h3>New Software</h3>
+
+                                                    <label for="newName" class="form-label inputFieldLabel">Product
+                                                        Name</label>
+                                                    <input type="text" id="newName" class="form-control form-control-lg"
+                                                        required>
+
+                                                    <label for="newCost" class="form-label inputFieldLabel">Price of
+                                                        licence (per employee)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="newCost" class="form-control numberForm"
+                                                            required><br>
+                                                        <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                    </div>
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="newCostPeriod"
+                                                                    class="form-check-input" id="newYearly" value="1">
+                                                                <label for="newYearly" class="form-check-label">Yearly
+                                                                    fee</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name="newCostPeriod"
+                                                                    class="form-check-input" id="newMonthly" value="12"
+                                                                    checked>
+                                                                <label for="newMonthly" class="form-check-label">Monthly
+                                                                    fee</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <label for="nrFutureProgrammers"
+                                                        class="form-label inputFieldLabel">Maintanance programmers
+                                                        needed</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="nrFutureProgrammers"
+                                                            class="form-control numberForm"
+                                                            aria-describedby="nrFuturePHelp" required>
+                                                        <span class="input-group-text">x</span>
+                                                    </div>
+                                                    <div id="nrFuturePHelp" class="form-text">Input the number of
+                                                        programmers that would be required to maintain the new solution.
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <form id="calcInput" name="calcInput">
+                                        <div class="formSection">
+                                            <h3>General Data</h3>
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-12 col-lg-4">
+                                                    <label for="nrEmployees" class="form-label inputFieldLabel">Number
+                                                        of employees (=nr of licences)</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="nrEmployees"
+                                                            class="form-control numberForm"
+                                                            aria-describedby="nrEmployeesHelp" required>
+                                                        <span class="input-group-text">x</span>
+                                                    </div>
+                                                    <div id="nrEmployeesHelp" class="form-text">Input the number of
+                                                        employees working at your company.</div>
+                                                </div>
+
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="employeeCost" class="form-label inputFieldLabel">The
+                                                        average salary of an employee</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="employeeCost"
+                                                            class="form-control numberForm" aria-describedby="eCostHelp"
+                                                            required>
+                                                        <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                    </div>
+                                                    <div id="eCostHelp" class="form-text">What does one employee cost
+                                                        you?</div>
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=eCostPeriod
+                                                                    class="form-check-input" id="eYearly" value="1"
+                                                                    checked>
+                                                                <label for="eYearly" class="form-check-label">Yearly
+                                                                    salary</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=eCostPeriod
+                                                                    class="form-check-input" id="eMonthly" value="12">
+                                                                <label for="eMonthly" class="form-check-label">Monthly
+                                                                    salary</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="programmerCost" class="form-label inputFieldLabel">The
+                                                        average salary of a programmer</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="programmerCost"
+                                                            class="form-control numberForm" aria-describedby="pCostHelp"
+                                                            required>
+                                                        <span class="input-group-text">$/€/£/¥/…¤</span>
+                                                    </div>
+                                                    <div id="pCostHelp" class="form-text">What does one programmer cost
+                                                        you?</div>
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=pCostPeriod
+                                                                    class="form-check-input" id="pYearly" value="1"
+                                                                    checked>
+                                                                <label for="pYearly" class="form-check-label">Yearly
+                                                                    salary</label>
+                                                            </div>
+                                                            <div class="form-check col-auto">
+                                                                <input type="radio" name=pCostPeriod
+                                                                    class="form-check-input" id="pMonthly" value="12">
+                                                                <label for="pMonthly" class="form-check-label">Monthly
+                                                                    salary</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="formSection">
+                                            <h3>One-Time Cost</h3>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="formSection">
-                                                        <h3>Old Software</h3>
-
-
-                                                        <label for="oldName" class="form-label inputFieldLabel">Product Name</label>
-                                                        <input type="text" id="oldName" class="form-control form-control-lg" required>
-
-                                                        <label for="oldCost" class="form-label inputFieldLabel">Price of licence (per employee)</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="oldCost" class="form-control numberForm" required><br>
-                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
-                                                        </div>
-
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldYearly" value="1">
-                                                                    <label for="oldYearly" class="form-check-label">Yearly fee</label>
-                                                                </div>
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name="oldCostPeriod" class="form-check-input" id="oldMonthly" value="12" checked>
-                                                                    <label for="oldMonthly" class="form-check-label">Monthly fee</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <label for="nrCurrentProgrammers" class="form-label inputFieldLabel">Maintanance programmers needed</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="nrCurrentProgrammers" class="form-control numberForm" aria-describedby="nrCurrentPHelp" required>
-                                                            <span class="input-group-text">x</span>
-                                                        </div>
-                                                        <div id="nrCurrentPHelp" class="form-text">Input the number of programmers that are working to maintain the current solution.</div>
+                                                <div class="col-lg-4">
+                                                    <label for="trainingInactivity"
+                                                        class="form-label inputFieldLabel">Employee-inactivity</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="trainingInactivity"
+                                                            class="form-control numberForm"
+                                                            aria-describedby="inactivityHelp" required>
+                                                        <span class="input-group-text">days</span>
                                                     </div>
+                                                    <div id="inactivityHelp" class="form-text">Input the number of days
+                                                        you assume your employees will be <strong>completely
+                                                            inactive</strong> because of training & inactivity.</div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="formSection">
-                                                        <h3>New Software</h3>
 
-                                                        <label for="newName" class="form-label inputFieldLabel">Product Name</label>
-                                                        <input type="text" id="newName" class="form-control form-control-lg" required>
-
-                                                        <label for="newCost" class="form-label inputFieldLabel">Price of licence (per employee)</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="newCost" class="form-control numberForm" required><br>
-                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
-                                                        </div>
-
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name="newCostPeriod" class="form-check-input" id="newYearly" value="1">
-                                                                    <label for="newYearly" class="form-check-label">Yearly fee</label>
-                                                                </div>
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name="newCostPeriod" class="form-check-input" id="newMonthly" value="12" checked>
-                                                                    <label for="newMonthly" class="form-check-label">Monthly fee</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <label for="nrFutureProgrammers" class="form-label inputFieldLabel">Maintanance programmers needed</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="nrFutureProgrammers" class="form-control numberForm" aria-describedby="nrFuturePHelp" required>
-                                                            <span class="input-group-text">x</span>
-                                                        </div>
-                                                        <div id="nrFuturePHelp" class="form-text">Input the number of programmers that would be required to maintain the new solution.</div>
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="nrSetupProgrammers"
+                                                        class="form-label inputFieldLabel">Setup programmers</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="nrSetupProgrammers"
+                                                            class="form-control numberForm"
+                                                            aria-describedby="setupProgrammersHelp" required>
+                                                        <span class="input-group-text">x</span>
                                                     </div>
+                                                    <div id="setupProgrammersHelp" class="form-text">Input the number of
+                                                        programmers needed to implement the new solution.</div>
+                                                </div>
+
+                                                <div class="col-md-6 col-lg-4">
+                                                    <label for="nrSetupMonths" class="form-label inputFieldLabel">Setup
+                                                        time-period</label>
+                                                    <div class="input-group">
+                                                        <input type="text" id="nrSetupMonths"
+                                                            class="form-control numberForm"
+                                                            aria-describedby="setupTimeHelp" required>
+                                                        <span class="input-group-text">months</span>
+                                                    </div>
+                                                    <div id="setupTimeHelp" class="form-text">Input the months will take
+                                                        those programmers to implement the new solution.</div>
                                                 </div>
                                             </div>
-
-                                            <div class="formSection">
-                                                <h3>General Data</h3>
-                                                <div class="row justify-content-center">
-                                                    <div class="col-md-12 col-lg-4">
-                                                        <label for="nrEmployees" class="form-label inputFieldLabel">Number of employees (=nr of licences)</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="nrEmployees" class="form-control numberForm" aria-describedby="nrEmployeesHelp" required>
-                                                            <span class="input-group-text">x</span>
-                                                        </div>
-                                                        <div id="nrEmployeesHelp" class="form-text">Input the number of employees working at your company.</div>
-                                                    </div>
-
-                                                    <div class="col-md-6 col-lg-4">
-                                                        <label for="employeeCost" class="form-label inputFieldLabel">The average salary of an employee</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="employeeCost" class="form-control numberForm" aria-describedby="eCostHelp" required>
-                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
-                                                        </div>
-                                                        <div id="eCostHelp" class="form-text">What does one employee cost you?</div>
-
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name=eCostPeriod class="form-check-input" id="eYearly" value="1" checked>
-                                                                    <label for="eYearly" class="form-check-label">Yearly salary</label>
-                                                                </div>
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name=eCostPeriod class="form-check-input" id="eMonthly" value="12">
-                                                                    <label for="eMonthly" class="form-check-label">Monthly salary</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6 col-lg-4">
-                                                        <label for="programmerCost" class="form-label inputFieldLabel">The average salary of a programmer</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="programmerCost" class="form-control numberForm" aria-describedby="pCostHelp" required>
-                                                            <span class="input-group-text">$/€/£/¥/…¤</span>
-                                                        </div>
-                                                        <div id="pCostHelp" class="form-text">What does one programmer cost you?</div>
-
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name=pCostPeriod class="form-check-input" id="pYearly" value="1" checked>
-                                                                    <label for="pYearly" class="form-check-label">Yearly salary</label>
-                                                                </div>
-                                                                <div class="form-check col-auto">
-                                                                    <input type="radio" name=pCostPeriod class="form-check-input" id="pMonthly" value="12">
-                                                                    <label for="pMonthly" class="form-check-label">Monthly salary</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                    </form>
+                                    <button type="button" class="btn btn-success" id="calcButton"
+                                        onclick="main();">Calculate Financial Results</button>
+                                    <button type="button" class="btn btn-info" onclick='prepareToShare("1");'>Share
+                                        Website with Preinserted Values</button>
+                                    <div class="container">
+                                        <div class="row invisible bordered">
+                                            <div class="monospace col-md-10" id="linkDiv1">
+                                                <!-- Here will be the JS-generated p-tag (the URL) -->
                                             </div>
+                                            <div class="col-md-2 align-self-center">
+                                                <button type="button" class="btn btn-info" onclick="copyUrl();">Copy
+                                                    URL</button>
+                                                <a href="mailto:?body=https://osocalc.org/" class="btn btn-info"
+                                                    id="mailto1">Send URL via Email</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                            <div class="formSection">
-                                                <h3>One-Time Cost</h3>
+                <div class="accordion-item">
+                    <h1 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" id="resSecBtn"
+                            data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                            aria-controls="collapseThree">
+                            <span class="h2">Results</span>
+                        </button>
+                    </h1>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#bigAccordion">
+                        <div class="accordion-body">
+
+                            <div id="notingYetCalculated" style="text-align: center;">
+                                <p>Nothing was calculated yet. Go to the previous section to input data and receive
+                                    results.</p>
+
+                                <button type="button" class="btn btn-success"
+                                    onclick="document.getElementById('calcSecBtn').click();">
+                                    Go to Price Calculator</button>
+                            </div>
+
+                            <div class="results-section invisible" id="results-section">
+                                <div class="container">
+
+                                    <h2 id="resTitle">Results of Calculation:</h2>
+                                    <div class="row">
+                                        <div class="col-lg-6" id="chartDiv"></div>
+                                        <div class="col-lg-6" id="tableDiv"></div>
+                                    </div>
+
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-auto">
+                                            <h3>Summary:</h3>
+                                            <table class="table">
+                                                <tbody id="summaryTableBody">
+                                                    <!-- The JS-generated summary-table will show up here. -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div id="worthSwitchingDiv"></div>
+
+                                    <h3>Please Conisder This:</h3>
+                                    <p style="text-align: justify;">Those simply are the results of a somewhat basic
+                                        calculation.
+                                        This calculation <strong>does not</strong> include many (important!) other
+                                        aspects of switching from a commercial software solution to a FOSS solution.
+                                        In <a href="#advSecTitle">the following-section</a>, you find a few common
+                                        advantages and disadvantages of both, commercial and open-source software, to
+                                        help you decide whether to make a switch.</p>
+
+                                    <div style="text-align: center;">
+                                        <button type="button" class="btn btn-success"
+                                            onclick="document.getElementById('calcSecBtn').click();">
+                                            Go back to Price Calculator</button>
+                                        <button type="button" class="btn btn-info" onclick="prepareToShare('2');">Share
+                                            Website with Preinserted Values</button>
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="document.getElementById('advSecBtn').click();">
+                                            See List of Pros and Cons</button>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row invisible bordered">
+                                            <div class="monospace col-md-10" id="linkDiv2">
+                                                <!-- Here will be the JS-generated p-tag (the URL) -->
+                                            </div>
+                                            <div class="col-md-2 align-self-center">
+                                                <button type="button" class="btn btn-info" onclick="copyUrl();">Copy
+                                                    URL</button>
+                                                <a href="mailto:?body=https://osocalc.org/" class="btn btn-info"
+                                                    id="mailto2">Send URL via Email</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h1 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" id="advSecBtn"
+                            data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
+                            aria-controls="collapseFour">
+                            <span class="h2" id="advSecTitle">Commercial vs Open-Source Software</span>
+                        </button>
+                    </h1>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#bigAccordion">
+                        <div class="accordion-body">
+                            <div class="advantage-section" id="advantage-section">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <div class="prosAndConsSection">
+
                                                 <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <label for="trainingInactivity" class="form-label inputFieldLabel">Employee-inactivity</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="trainingInactivity" class="form-control numberForm" aria-describedby="inactivityHelp" required>
-                                                            <span class="input-group-text">days</span>
-                                                        </div>
-                                                        <div id="inactivityHelp" class="form-text">Input the number of days you assume your employees will be <strong>completely inactive</strong> because of training & inactivity.</div>
+                                                    <h2>Commercial Software</h2>
+                                                    <div class="col-xl">
+                                                        <h3>Common Advantages</h3>
+                                                        <ul class="pros">
+                                                            <li class="aLi1 nonHoverStyle">A lot of work is done for you
+                                                            </li>
+                                                            <li class="aLi2 nonHoverStyle">Feature-complete</li>
+                                                            <li class="aLi3 nonHoverStyle">May have better synergy with
+                                                                other commercial software
+                                                                <a data-bs-toggle="tooltip" title=""
+                                                                    data-bs-original-title="For example, MS Word synergizes very well with other Microsoft-solutions such as One-Drive.">
+                                                                    <img src="images/info.png" alt="Info-button"
+                                                                        class="infoI">
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-
-                                                    <div class="col-md-6 col-lg-4">
-                                                        <label for="nrSetupProgrammers" class="form-label inputFieldLabel">Setup programmers</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="nrSetupProgrammers" class="form-control numberForm" aria-describedby="setupProgrammersHelp" required>
-                                                            <span class="input-group-text">x</span>
-                                                        </div>
-                                                        <div id="setupProgrammersHelp" class="form-text">Input the number of programmers needed to implement the new solution.</div>
-                                                    </div>
-
-                                                    <div class="col-md-6 col-lg-4">
-                                                        <label for="nrSetupMonths" class="form-label inputFieldLabel">Setup time-period</label>
-                                                        <div class="input-group">
-                                                            <input type="text" id="nrSetupMonths" class="form-control numberForm" aria-describedby="setupTimeHelp" required>
-                                                            <span class="input-group-text">months</span>
-                                                        </div>
-                                                        <div id="setupTimeHelp" class="form-text">Input the months will take those programmers to implement the new solution.</div>
+                                                    <div class="col-xl">
+                                                        <h3>Common Disadvantages</h3>
+                                                        <ul class="cons">
+                                                            <li class="bLi1 nonHoverStyle">High cost</li>
+                                                            <li class="bLi2 nonHoverStyle">Dependance on external
+                                                                factors
+                                                                <a data-bs-toggle="tooltip" title=""
+                                                                    data-bs-original-title="For example, Microsoft may cut availibility of certain features for certain countries or certain clients.">
+                                                                    <img src="images/info.png" alt="Info-button"
+                                                                        class="infoI">
+                                                                </a>
+                                                            </li>
+                                                            <li class="bLi3 nonHoverStyle">May or may not include
+                                                                backdoors and telemetry</li>
+                                                            <li class="bLi4 nonHoverStyle">May not synergize well with
+                                                                software outside the proprietary ecosystem
+                                                                <a data-bs-toggle="tooltip" title=""
+                                                                    data-bs-original-title="For example, MS Word gives users a fake warning when they open an .odt-file.">
+                                                                    <img src="images/info.png" alt="Info-button"
+                                                                        class="infoI">
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                        <button type="button" class="btn btn-success" id="calcButton" onclick="main();">Calculate Financial Results</button>
-                                        <button type="button" class="btn btn-info" onclick='prepareToShare("1");'>Share Website with Preinserted Values</button>
-                                        <div class="container">
-                                            <div class="row invisible bordered">
-                                                <div class="monospace col-md-10" id="linkDiv1"><!-- Here will be the JS-generated p-tag (the URL) --></div>
-                                                <div class="col-md-2 align-self-center">
-                                                    <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
-                                                    <a href="mailto:?body=https://osocalc.org/" class="btn btn-info" id="mailto1">Send URL via Email</a>
+                                        </div>
+
+                                        <div class="col-md">
+                                            <div class="prosAndConsSection">
+
+                                                <div class="row">
+                                                    <h2>Open Source Software</h2>
+                                                    <div class="col-xl">
+                                                        <h3>Common Advantages</h3>
+                                                        <ul class="pros">
+                                                            <li class="bLi1 nonHoverStyle">Low cost</li>
+                                                            <li class="bLi2 nonHoverStyle">Freedom from external factors
+                                                                <a data-bs-toggle="tooltip" title=""
+                                                                    data-bs-original-title="The source-code will always be free and available for anyone to copy and use.">
+                                                                    <img src="images/info.png" alt="Info-button"
+                                                                        class="infoI">
+                                                                </a>
+                                                            </li>
+                                                            <li class="bLi3 nonHoverStyle">Data security
+                                                                <a data-bs-toggle="tooltip" title=""
+                                                                    data-bs-original-title="You can check for yourself what is happening inside the software. You're not forced to accept anyone's promises of data-security.">
+                                                                    <img src="images/info.png" alt="Info-button"
+                                                                        class="infoI">
+                                                                </a>
+                                                            </li>
+                                                            <li class="bLi4 nonHoverStyle">May have better synergy with
+                                                                other open-source software</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-xl">
+                                                        <h3>Common Disadvantages</h3>
+                                                        <ul class="cons">
+                                                            <li class="aLi1 nonHoverStyle">Extra staff may be required
+                                                                to implement or organize features</li>
+                                                            <li class="aLi2 nonHoverStyle">Two free solutions may be
+                                                                required to substitute for one commercial one.
+                                                                <a data-bs-toggle="tooltip" title="" data-bs-html="true"
+                                                                    data-bs-original-title="For example, LibreOffice <u>and</u> a self-hosted cloud are required to replace MS-Office's Cloud package.">
+                                                                    <img src="images/info.png" alt="Info-button"
+                                                                        class="infoI">
+                                                                </a>
+                                                            </li>
+                                                            <li class="aLi3 nonHoverStyle">Proprietary solutions may
+                                                                refuse to accept open standards
+                                                                <a data-bs-toggle="tooltip" title=""
+                                                                    data-bs-original-title="For example, MS Office saves .docx-files and .pptx-files in inconsistent formats, making it difficult for other Software such as LibreOffice to import their files.">
+                                                                    <img src="images/info.png" alt="Info-button"
+                                                                        class="infoI">
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h1 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" id="resSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <span class="h2">Results</span>
-                            </button>
-                        </h1>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#bigAccordion">
-                            <div class="accordion-body">
-
-                                <div id="notingYetCalculated" style="text-align: center;">
-                                    <p>Nothing was calculated yet. Go to the previous section to input data and receive results.</p>
-
-                                    <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
-                                        Go to Price Calculator</button>
-                                </div>
-
-                                <div class="results-section invisible" id="results-section">
-                                    <div class="container">
-
-                                        <h2 id="resTitle">Results of Calculation:</h2>
-                                        <div class="row">
-                                            <div class="col-lg-6" id="chartDiv"></div>
-                                            <div class="col-lg-6" id="tableDiv"></div>
-                                        </div>
-
-
-                                        <div class="row justify-content-center">
-                                            <div class="col-auto">
-                                                <h3>Summary:</h3>
-                                                <table class="table">
-                                                    <tbody id="summaryTableBody">
-                                                        <!-- The JS-generated summary-table will show up here. -->
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        <div id="worthSwitchingDiv"></div>
-
-                                        <h3>Please Conisder This:</h3>
-                                        <p style="text-align: justify;">Those simply are the results of a somewhat basic calculation.
-                                        This calculation <strong>does not</strong> include many (important!) other aspects of switching from a commercial software solution to a FOSS solution.
-                                        In <a href="#advSecTitle">the following-section</a>, you find a few common advantages and disadvantages of both, commercial and open-source software, to help you decide whether to make a switch.</p>
-
-                                        <div style="text-align: center;">
-                                            <button type="button" class="btn btn-success" onclick="document.getElementById('calcSecBtn').click();">
-                                                Go back to Price Calculator</button>
-                                            <button type="button" class="btn btn-info" onclick="prepareToShare('2');">Share Website with Preinserted Values</button>
-                                            <button type="button" class="btn btn-primary" onclick="document.getElementById('advSecBtn').click();">
-                                                See List of Pros and Cons</button>
-                                        </div>
-                                        <div class="container">
-                                            <div class="row invisible bordered">
-                                                <div class="monospace col-md-10" id="linkDiv2"><!-- Here will be the JS-generated p-tag (the URL) --></div>
-                                                <div class="col-md-2 align-self-center">
-                                                    <button type="button" class="btn btn-info" onclick="copyUrl();">Copy URL</button>
-                                                    <a href="mailto:?body=https://osocalc.org/" class="btn btn-info" id="mailto2">Send URL via Email</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="exampleSource">
+                                        <span>The examples used in this section refer to <a
+                                                href="https://www.microsoft.com/microsoft-365/business/compare-all-microsoft-365-business-products"
+                                                target="_blank">Microsoft Office</a>
+                                            and <a href="https://www.libreoffice.org/download/libreoffice-in-business/"
+                                                target="_blank">Libreoffice</a>.</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h1 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" id="advSecBtn" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <span class="h2" id="advSecTitle">Commercial vs Open-Source Software</span>
-                            </button>
-                        </h1>
-                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#bigAccordion">
-                            <div class="accordion-body">
-                                <div class="advantage-section" id="advantage-section">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <div class="prosAndConsSection">
-
-                                                    <div class="row">
-                                                        <h2>Commercial Software</h2>
-                                                        <div class="col-xl">
-                                                            <h3>Common Advantages</h3>
-                                                            <ul class="pros">
-                                                                <li class="aLi1 nonHoverStyle">A lot of work is done for you</li>
-                                                                <li class="aLi2 nonHoverStyle">Feature-complete</li>
-                                                                <li class="aLi3 nonHoverStyle">May have better synergy with other commercial software
-                                                                    <a data-bs-toggle="tooltip" title="" data-bs-original-title="For example, MS Word synergizes very well with other Microsoft-solutions such as One-Drive.">
-                                                                        <img src="images/info.png" alt="Info-button" class="infoI">
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-xl">
-                                                            <h3>Common Disadvantages</h3>
-                                                            <ul class="cons">
-                                                                <li class="bLi1 nonHoverStyle">High cost</li>
-                                                                <li class="bLi2 nonHoverStyle">Dependance on external factors
-                                                                    <a data-bs-toggle="tooltip" title="" data-bs-original-title="For example, Microsoft may cut availibility of certain features for certain countries or certain clients.">
-                                                                        <img src="images/info.png" alt="Info-button" class="infoI">
-                                                                    </a>
-                                                                </li>
-                                                                <li class="bLi3 nonHoverStyle">May or may not include backdoors and telemetry</li>
-                                                                <li class="bLi4 nonHoverStyle">May not synergize well with software outside the proprietary ecosystem
-                                                                    <a data-bs-toggle="tooltip" title="" data-bs-original-title="For example, MS Word gives users a fake warning when they open an .odt-file.">
-                                                                        <img src="images/info.png" alt="Info-button" class="infoI">
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md">
-                                                <div class="prosAndConsSection">
-
-                                                    <div class="row">
-                                                        <h2>Open Source Software</h2>
-                                                        <div class="col-xl">
-                                                            <h3>Common Advantages</h3>
-                                                            <ul class="pros">
-                                                                <li class="bLi1 nonHoverStyle">Low cost</li>
-                                                                <li class="bLi2 nonHoverStyle">Freedom from external factors
-                                                                    <a data-bs-toggle="tooltip" title="" data-bs-original-title="The source-code will always be free and available for anyone to copy and use.">
-                                                                        <img src="images/info.png" alt="Info-button" class="infoI">
-                                                                    </a>
-                                                                </li>
-                                                                <li class="bLi3 nonHoverStyle">Data security
-                                                                    <a data-bs-toggle="tooltip" title="" data-bs-original-title="You can check for yourself what is happening inside the software. You're not forced to accept anyone's promises of data-security.">
-                                                                        <img src="images/info.png" alt="Info-button" class="infoI">
-                                                                    </a>
-                                                                </li>
-                                                                <li class="bLi4 nonHoverStyle">May have better synergy with other open-source software</li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-xl">
-                                                            <h3>Common Disadvantages</h3>
-                                                            <ul class="cons">
-                                                                <li class="aLi1 nonHoverStyle">Extra staff may be required to implement or organize features</li>
-                                                                <li class="aLi2 nonHoverStyle">Two free solutions may be required to substitute for one commercial one.
-                                                                    <a data-bs-toggle="tooltip" title="" data-bs-html="true" data-bs-original-title="For example, LibreOffice <u>and</u> a self-hosted cloud are required to replace MS-Office's Cloud package.">
-                                                                        <img src="images/info.png" alt="Info-button" class="infoI">
-                                                                    </a>
-                                                                </li>
-                                                                <li class="aLi3 nonHoverStyle">Proprietary solutions may refuse to accept open standards
-                                                                    <a data-bs-toggle="tooltip" title="" data-bs-original-title="For example, MS Office saves .docx-files and .pptx-files in inconsistent formats, making it difficult for other Software such as LibreOffice to import their files.">
-                                                                        <img src="images/info.png" alt="Info-button" class="infoI">
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="exampleSource">
-                                            <span>The examples used in this section refer to <a href="https://www.microsoft.com/microsoft-365/business/compare-all-microsoft-365-business-products" target="_blank">Microsoft Office</a>
-                                                and <a href="https://www.libreoffice.org/download/libreoffice-in-business/" target="_blank">Libreoffice</a>.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="toastContainer">
-                    <div class="toastParent invisible">
-                        <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <i class="bi bi-exclamation-diamond-fill toastIcon"></i>
-                                <strong class="me-auto">Error</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body" id="errorToastBody"></div>
-                        </div>
-                    </div>
-
-                    <div class="toastParent invisible">
-                        <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <i class="bi bi-check-circle-fill toastIcon"></i>
-                                <strong class="me-auto">URL copied</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body" style="color: white;">
-                                Your URL was successfully copied to the clipboard.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </main>
-
-        <footer>
-            <div class="container">
-                <div class="row content-justify-center">
-
-                    <div class="col align-self-center" style="text-align: center;">
-                        <div class="bigScreenOnly">
-                            <b>GPL-3.0 License</b><br>
+            <div class="toastContainer">
+                <div class="toastParent invisible">
+                    <div class="toast bg-warning" id="errorToast" data-bs-delay="10000" role="alert"
+                        aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <i class="bi bi-exclamation-diamond-fill toastIcon"></i>
+                            <strong class="me-auto">Error</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
-                        <a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub <i class="bi bi-github"></i></a>
+                        <div class="toast-body" id="errorToastBody"></div>
                     </div>
+                </div>
 
-                    <div class="col-auto align-self-center">
-                        <img src="images/favicon.png" alt="Logo of the website." class="footerLogo">
-                    </div>
-
-                    <div class="col align-self-center" style="text-align: center;">
-                        <div class="bigScreenOnly">
-                            <b>About:</b><br>
+                <div class="toastParent invisible">
+                    <div class="toast bg-success" id="urlCopyToast" data-bs-delay="5000" role="alert"
+                        aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <i class="bi bi-check-circle-fill toastIcon"></i>
+                            <strong class="me-auto">URL copied</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
-                        <a href="about.html">o$oCalc About</a>
+                        <div class="toast-body" style="color: white;">
+                            Your URL was successfully copied to the clipboard.
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row content-justify-center">
+
+                <div class="col align-self-center" style="text-align: center;">
+                    <div class="bigScreenOnly">
+                        <b>GPL-3.0 License</b><br>
+                    </div>
+                    <a href="https://github.com/Glitchy-Tozier/oSoCalc">GitHub <i class="bi bi-github"></i></a>
+                </div>
+
+                <div class="col-auto align-self-center">
+                    <img src="images/favicon.png" alt="Logo of the website." class="footerLogo">
+                </div>
+
+                <div class="col align-self-center" style="text-align: center;">
+                    <div class="bigScreenOnly">
+                        <b>About:</b><br>
+                    </div>
+                    <a href="about.html">o$oCalc About</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-        <script>
-            // Check for URL parameters
-            const stringUrl = window.location.href;
-            const splitUrl = stringUrl.split("?");
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+        crossorigin="anonymous"></script>
+    <script>
+        // Check for URL parameters
+        const stringUrl = window.location.href;
+        const splitUrl = stringUrl.split("?");
 
-            const urlImportAlert = document.getElementById("urlImportAlert");
-            const urlImportParent = urlImportAlert.parentElement;
+        const urlImportAlert = document.getElementById("urlImportAlert");
+        const urlImportParent = urlImportAlert.parentElement;
 
-            const insertExampleAlert = document.getElementById("insertExampleAlert");
-            const insertExampleParent = insertExampleAlert.parentElement;
+        const insertExampleAlert = document.getElementById("insertExampleAlert");
+        const insertExampleParent = insertExampleAlert.parentElement;
 
-            if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
-                fillForm(stringUrl);
-                urlImportParent.classList.remove("invisible");
-                insertExampleAlert.remove();
-                main("urlImport");
-            } else {
-                const shareDiv = document.getElementById("shareDiv"); // Remove the "If you got here via link"-div.
-                shareDiv.classList.remove("col-lg-6");
-                shareDiv.classList.add("col-12");
-                const welcomeDiv = document.getElementById("welcomeDiv");
-                welcomeDiv.remove();
+        if (splitUrl.length > 1 && splitUrl[1] !== "") { // If URL-parametest exist, use them to fill the form.
+            fillForm(stringUrl);
+            urlImportParent.classList.remove("invisible");
+            insertExampleAlert.remove();
+            main("urlImport");
+        } else {
+            const shareDiv = document.getElementById("shareDiv"); // Remove the "If you got here via link"-div.
+            shareDiv.classList.remove("col-lg-6");
+            shareDiv.classList.add("col-12");
+            const welcomeDiv = document.getElementById("welcomeDiv");
+            welcomeDiv.remove();
 
-                insertExampleParent.classList.remove("invisible");
-                urlImportParent.remove();
-            }
-
-
-            // Initialize the form-inputs to make "Enter" start the calculation
-            submitFormOnEnter("calcInput");
-
-            // Initialize all Toasts
-            const toastList = [].slice.call(document.querySelectorAll('.toast'));
-            toastList.map( toast => {
-                toast.addEventListener('show.bs.toast', function () { // Necessary to make the 'X' for closing the toast clickable.
-                    toast.parentElement.classList.remove("invisible");
-                })
-                toast.addEventListener('hidden.bs.toast', function () { // Necessary for not blocking the 'X's of other toasts.
-                    toast.parentElement.classList.add("invisible");
-                })
-                return new bootstrap.Toast(toast); // Initialize the toast.
-            });
+            insertExampleParent.classList.remove("invisible");
+            urlImportParent.remove();
+        }
 
 
-             // Initialize all the event-listener attributes needed for the visual pairing in the last section.
-            const listClasses = ["aLi1", "aLi2", "aLi3", "bLi1", "bLi2", "bLi3", "bLi4"];
-            for (let i=0; i<listClasses.length; i++) {
-                hoverPair(listClasses[i]);
-            }
+        // Initialize the form-inputs to make "Enter" start the calculation
+        submitFormOnEnter("calcInput");
 
-            // Initialize all Tooltips
-            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        </script>
-    </body>
+        // Initialize all Toasts
+        const toastList = [].slice.call(document.querySelectorAll('.toast'));
+        toastList.map(toast => {
+            toast.addEventListener('show.bs.toast', function () { // Necessary to make the 'X' for closing the toast clickable.
+                toast.parentElement.classList.remove("invisible");
+            })
+            toast.addEventListener('hidden.bs.toast', function () { // Necessary for not blocking the 'X's of other toasts.
+                toast.parentElement.classList.add("invisible");
+            })
+            return new bootstrap.Toast(toast); // Initialize the toast.
+        });
+
+
+        // Initialize all the event-listener attributes needed for the visual pairing in the last section.
+        const listClasses = ["aLi1", "aLi2", "aLi3", "bLi1", "bLi2", "bLi3", "bLi4"];
+        for (let i = 0; i < listClasses.length; i++) {
+            hoverPair(listClasses[i]);
+        }
+
+        // Initialize all Tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+
 </html>
